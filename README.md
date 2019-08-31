@@ -13,7 +13,7 @@ Customer :
 Register
 Login
 Manage Profile
-Book Tickets
+Book Tickets->payment details
 Cancel Booking -> Refund
 View Reservation Details
 
