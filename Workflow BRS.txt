@@ -1,0 +1,12 @@
+
+Workflow :-
+1. MyApplication
+2. Create Customer extending User
+3. Login using customer overriding User's login() .
+4. To Book:-
+	a. Select schedule(Date), Source and Destination of ticket you are booking.
+	b. Display the list of Buses between those stops and on that day.
+	c. Select the bus you wish to travel with.
+	d. Proceed with adding passengers
+	e. Continue to payment
+	f. Create booking object
