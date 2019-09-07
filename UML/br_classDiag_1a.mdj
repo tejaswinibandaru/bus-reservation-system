@@ -1002,7 +1002,7 @@
 											"top": 505,
 											"width": 210.64697265625,
 											"height": 13,
-											"text": "+costCalc(bus B)",
+											"text": "+costCalc(Bus b)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3745,7 +3745,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFtAEFBPMRslm0="
 									},
-									"name": "bus B"
+									"name": "Bus b"
 								}
 							]
 						}
