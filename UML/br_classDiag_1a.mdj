@@ -987,13 +987,30 @@
 											"height": 13,
 											"text": "-modeOfPayment: String",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFtCqKe6TqGj+Y=",
+											"_parent": {
+												"$ref": "AAAAAAFs8n3apOm4JNk="
+											},
+											"model": {
+												"$ref": "AAAAAAFtCqKeyzqD1hs="
+											},
+											"font": "Arial;13;0",
+											"left": 429,
+											"top": 497,
+											"width": 210.64697265625,
+											"height": 13,
+											"text": "-totalCost: Double",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 424,
 									"top": 417,
 									"width": 220.64697265625,
-									"height": 83
+									"height": 98
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1016,7 +1033,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 429,
-											"top": 505,
+											"top": 520,
 											"width": 210.64697265625,
 											"height": 13,
 											"text": "+costCalc(): Double",
@@ -1025,7 +1042,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 424,
-									"top": 500,
+									"top": 515,
 									"width": 220.64697265625,
 									"height": 23
 								},
@@ -2346,7 +2363,7 @@
 											"top": 450,
 											"width": 207,
 											"height": 13,
-											"text": "+CalculateSeats(): Integer",
+											"text": "+calculateSeats(): Integer",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3774,6 +3791,16 @@
 							"name": "modeOfPayment",
 							"visibility": "private",
 							"type": "String"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFtCqKeyzqD1hs=",
+							"_parent": {
+								"$ref": "AAAAAAFs8n3aoumwSHw="
+							},
+							"name": "totalCost",
+							"visibility": "private",
+							"type": "Double"
 						}
 					],
 					"operations": [
@@ -3938,7 +3965,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFs9WXebureJY0="
 							},
-							"name": "CalculateSeats",
+							"name": "calculateSeats",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
