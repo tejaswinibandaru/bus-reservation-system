@@ -255,13 +255,30 @@
 											"height": 13,
 											"text": "-busList: ArrayList<Bus>",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFtCpqPUaz7db0=",
+											"_parent": {
+												"$ref": "AAAAAAFs8nKSsuizlAU="
+											},
+											"model": {
+												"$ref": "AAAAAAFtCpqO+qz4PSs="
+											},
+											"font": "Arial;13;0",
+											"left": 221,
+											"top": 190,
+											"width": 235.421875,
+											"height": 13,
+											"text": "-transactionList: ArrayList<Transaction>",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 216,
 									"top": 65,
 									"width": 245.421875,
-									"height": 128
+									"height": 143
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -284,7 +301,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 221,
-											"top": 198,
+											"top": 213,
 											"width": 235.421875,
 											"height": 13,
 											"text": "+bookTicket(Booking b): Integer",
@@ -301,7 +318,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 221,
-											"top": 213,
+											"top": 228,
 											"width": 235.421875,
 											"height": 13,
 											"text": "+viewTicket(Date d): ArrayList<Booking>",
@@ -318,7 +335,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 221,
-											"top": 228,
+											"top": 243,
 											"width": 235.421875,
 											"height": 13,
 											"text": "+cancelTicket(Booking b): Integer",
@@ -335,7 +352,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 221,
-											"top": 243,
+											"top": 258,
 											"width": 235.421875,
 											"height": 13,
 											"text": "+viewTicketList(): ArrayList<Booking>",
@@ -352,7 +369,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 221,
-											"top": 258,
+											"top": 273,
 											"width": 235.421875,
 											"height": 13,
 											"text": "+addBus(Bus b): Integer",
@@ -369,7 +386,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 221,
-											"top": 273,
+											"top": 288,
 											"width": 235.421875,
 											"height": 13,
 											"text": "+modifyBus(Bus b): Integer",
@@ -386,7 +403,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 221,
-											"top": 288,
+											"top": 303,
 											"width": 235.421875,
 											"height": 13,
 											"text": "+removeBus(Bus b): Integer",
@@ -395,7 +412,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 216,
-									"top": 193,
+									"top": 208,
 									"width": 245.421875,
 									"height": 113
 								},
@@ -437,7 +454,7 @@
 							"left": 216,
 							"top": 40,
 							"width": 245.421875,
-							"height": 266,
+							"height": 281,
 							"nameCompartment": {
 								"$ref": "AAAAAAFs8nKSsuiuraU="
 							},
@@ -1002,7 +1019,7 @@
 											"top": 505,
 											"width": 210.64697265625,
 											"height": 13,
-											"text": "+costCalc(Bus b)",
+											"text": "+costCalc(): Double",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1333,8 +1350,8 @@
 										"$ref": "AAAAAAFs8ukIK+5spbE="
 									},
 									"font": "Arial;13;0",
-									"left": 442,
-									"top": 333,
+									"left": 445,
+									"top": 341,
 									"width": 42.28173828125,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1356,8 +1373,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 476,
-									"top": 325,
+									"left": 479,
+									"top": 333,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -1377,8 +1394,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 438,
-									"top": 350,
+									"left": 441,
+									"top": 358,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -1398,8 +1415,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 450,
-									"top": 313,
+									"left": 457,
+									"top": 328,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -1419,8 +1436,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 463,
-									"top": 308,
+									"left": 470,
+									"top": 323,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -1439,8 +1456,8 @@
 										"$ref": "AAAAAAFs8ukIK+5tWRg="
 									},
 									"font": "Arial;13;0",
-									"left": 422,
-									"top": 324,
+									"left": 429,
+									"top": 339,
 									"width": 7.22998046875,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -1462,7 +1479,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 477,
+									"left": 475,
 									"top": 355,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -1482,7 +1499,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 487,
+									"left": 485,
 									"top": 345,
 									"height": 13,
 									"alpha": -0.7853981633974483,
@@ -1501,7 +1518,7 @@
 										"$ref": "AAAAAAFs8ukIK+5uXEM="
 									},
 									"font": "Arial;13;0",
-									"left": 446,
+									"left": 444,
 									"top": 373,
 									"width": 20,
 									"height": 13,
@@ -1549,7 +1566,7 @@
 								"$ref": "AAAAAAFs8nKSsuitg/E="
 							},
 							"lineStyle": 1,
-							"points": "424:306;479:391",
+							"points": "431:321;477:391",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFs8ukILO5x8lU="
@@ -2314,11 +2331,30 @@
 									"model": {
 										"$ref": "AAAAAAFs9WXebureJY0="
 									},
+									"subViews": [
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFtCpBvM6t3DxA=",
+											"_parent": {
+												"$ref": "AAAAAAFs9WXeb+rnVuk="
+											},
+											"model": {
+												"$ref": "AAAAAAFtCpBuy6trVyw="
+											},
+											"font": "Arial;13;0",
+											"left": 125,
+											"top": 450,
+											"width": 207,
+											"height": 13,
+											"text": "+CalculateSeats(): Integer",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
 									"left": 120,
 									"top": 445,
 									"width": 217,
-									"height": 10
+									"height": 23
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2958,6 +2994,16 @@
 							"name": "busList",
 							"visibility": "private",
 							"type": "ArrayList<Bus>"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFtCpqO+qz4PSs=",
+							"_parent": {
+								"$ref": "AAAAAAFs8i2+kehSwBM="
+							},
+							"name": "transactionList",
+							"visibility": "private",
+							"type": "ArrayList<Transaction>"
 						}
 					],
 					"operations": [
@@ -3741,11 +3787,12 @@
 							"parameters": [
 								{
 									"_type": "UMLParameter",
-									"_id": "AAAAAAFtAEF0J8UYCPI=",
+									"_id": "AAAAAAFtCpqFkqyVkRk=",
 									"_parent": {
 										"$ref": "AAAAAAFtAEFBPMRslm0="
 									},
-									"name": "Bus b"
+									"type": "Double",
+									"direction": "return"
 								}
 							]
 						}
@@ -3882,6 +3929,27 @@
 							"type": {
 								"$ref": "AAAAAAFs8nMp9+kThTo="
 							}
+						}
+					],
+					"operations": [
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFtCpBuy6trVyw=",
+							"_parent": {
+								"$ref": "AAAAAAFs9WXebureJY0="
+							},
+							"name": "CalculateSeats",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFtCpmjHav2RVs=",
+									"_parent": {
+										"$ref": "AAAAAAFtCpBuy6trVyw="
+									},
+									"type": "Integer",
+									"direction": "return"
+								}
+							]
 						}
 					]
 				}
