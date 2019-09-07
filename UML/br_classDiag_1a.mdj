@@ -1002,7 +1002,7 @@
 											"top": 505,
 											"width": 210.64697265625,
 											"height": 13,
-											"text": "+costCalc(Route r)",
+											"text": "+costCalc(bus B)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2280,13 +2280,30 @@
 											"height": 13,
 											"text": "-bookings: ArrayList<Booking>",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFtCfWlgExmGZE=",
+											"_parent": {
+												"$ref": "AAAAAAFs9WXeb+rmXJA="
+											},
+											"model": {
+												"$ref": "AAAAAAFtCfWlFkxad8g="
+											},
+											"font": "Arial;13;0",
+											"left": 125,
+											"top": 427,
+											"width": 207,
+											"height": 13,
+											"text": "-bus: Bus",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 120,
 									"top": 377,
 									"width": 217,
-									"height": 53
+									"height": 68
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -2299,7 +2316,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 120,
-									"top": 430,
+									"top": 445,
 									"width": 217,
 									"height": 10
 								},
@@ -2546,9 +2563,9 @@
 										"$ref": "AAAAAAFs9Wo15O8swdc="
 									},
 									"font": "Arial;13;0",
-									"left": 390,
+									"left": 389,
 									"top": 452,
-									"width": 19.5126953125,
+									"width": 20,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -3728,8 +3745,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFtAEFBPMRslm0="
 									},
-									"name": "Route r",
-									"type": ""
+									"name": "bus B"
 								}
 							]
 						}
@@ -3854,6 +3870,18 @@
 							"name": "bookings",
 							"visibility": "private",
 							"type": "ArrayList<Booking>"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFtCfWlFkxad8g=",
+							"_parent": {
+								"$ref": "AAAAAAFs9WXebureJY0="
+							},
+							"name": "bus",
+							"visibility": "private",
+							"type": {
+								"$ref": "AAAAAAFs8nMp9+kThTo="
+							}
 						}
 					]
 				}
