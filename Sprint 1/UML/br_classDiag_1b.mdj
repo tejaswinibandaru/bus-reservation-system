@@ -479,7 +479,7 @@
 											"top": 318,
 											"width": 235.421875,
 											"height": 13,
-											"text": "-bookingsList: ArrayList<Booking>",
+											"text": "-bookingsList: List<Booking>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -530,7 +530,7 @@
 											"top": 356,
 											"width": 235.421875,
 											"height": 13,
-											"text": "+viewTicket(Date d): ArrayList<Booking>",
+											"text": "+viewTicket(Date d): List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -564,7 +564,7 @@
 											"top": 386,
 											"width": 235.421875,
 											"height": 13,
-											"text": "+viewTicketList(): ArrayList<Booking>",
+											"text": "+viewTicketList(): List<Booking>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -670,7 +670,7 @@
 											"font": "Arial;13;1",
 											"left": 109,
 											"top": 263,
-											"width": 207.76513671875,
+											"width": 229.28369140625,
 											"height": 13,
 											"text": "Admin"
 										},
@@ -705,7 +705,7 @@
 									"font": "Arial;13;0",
 									"left": 104,
 									"top": 256,
-									"width": 217.76513671875,
+									"width": 239.28369140625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFs8nMGrejtucI="
@@ -742,9 +742,9 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 286,
-											"width": 207.76513671875,
+											"width": 229.28369140625,
 											"height": 13,
-											"text": "-busList: ArrayList<Bus>",
+											"text": "-busList: List<Bus>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -759,16 +759,16 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 301,
-											"width": 207.76513671875,
+											"width": 229.28369140625,
 											"height": 13,
-											"text": "-routeList: ArrayList<Route>",
+											"text": "-transactionList: List<Transaction>",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 104,
 									"top": 281,
-									"width": 217.76513671875,
+									"width": 239.28369140625,
 									"height": 38
 								},
 								{
@@ -793,7 +793,7 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 324,
-											"width": 207.76513671875,
+											"width": 229.28369140625,
 											"height": 13,
 											"text": "+addBus(Bus b): Integer",
 											"horizontalAlignment": 0
@@ -810,7 +810,7 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 339,
-											"width": 207.76513671875,
+											"width": 229.28369140625,
 											"height": 13,
 											"text": "+modifyBus(Bus b): Integer",
 											"horizontalAlignment": 0
@@ -827,68 +827,17 @@
 											"font": "Arial;13;0",
 											"left": 109,
 											"top": 354,
-											"width": 207.76513671875,
+											"width": 229.28369140625,
 											"height": 13,
 											"text": "+removeBus(Bus b): Integer",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAFs8qD50eqtT3A=",
-											"_parent": {
-												"$ref": "AAAAAAFs8nMGrujyI4A="
-											},
-											"model": {
-												"$ref": "AAAAAAFs8qD5eOqqqv8="
-											},
-											"font": "Arial;13;0",
-											"left": 109,
-											"top": 369,
-											"width": 207.76513671875,
-											"height": 13,
-											"text": "+addRoute(Route r): Integer",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAFs8rDEnOsjI1Y=",
-											"_parent": {
-												"$ref": "AAAAAAFs8nMGrujyI4A="
-											},
-											"model": {
-												"$ref": "AAAAAAFs8rDEWOsg8XE="
-											},
-											"font": "Arial;13;0",
-											"left": 109,
-											"top": 384,
-											"width": 207.76513671875,
-											"height": 13,
-											"text": "+modifyRoute(Route r): Integer",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAFs8rEI/Osq6B4=",
-											"_parent": {
-												"$ref": "AAAAAAFs8nMGrujyI4A="
-											},
-											"model": {
-												"$ref": "AAAAAAFs8rEIpesnEZE="
-											},
-											"font": "Arial;13;0",
-											"left": 109,
-											"top": 399,
-											"width": 207.76513671875,
-											"height": 13,
-											"text": "+deleteRoute(Route r): Integer",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 104,
 									"top": 319,
-									"width": 217.76513671875,
-									"height": 98
+									"width": 239.28369140625,
+									"height": 53
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -927,7 +876,7 @@
 							"containerChangeable": true,
 							"left": 104,
 							"top": 256,
-							"width": 217.76513671875,
+							"width": 239.28369140625,
 							"height": 191,
 							"nameCompartment": {
 								"$ref": "AAAAAAFs8nMGrejs2ZE="
@@ -1028,7 +977,7 @@
 								"$ref": "AAAAAAFs8nMGrejrbuw="
 							},
 							"lineStyle": 1,
-							"points": "322:269;383:224;391:215",
+							"points": "343:256;383:224;391:215",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFs9VKBpdqkfsQ="
@@ -1375,7 +1324,7 @@
 							},
 							"name": "bookingsList",
 							"visibility": "private",
-							"type": "ArrayList<Booking>"
+							"type": "List<Booking>"
 						}
 					],
 					"operations": [
@@ -1421,8 +1370,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs8qJmD+rWVJs="
 									},
-									"name": "Date d",
-									"type": ""
+									"name": "Date d"
 								},
 								{
 									"_type": "UMLParameter",
@@ -1430,7 +1378,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs8qJmD+rWVJs="
 									},
-									"type": "ArrayList<Booking>",
+									"type": "List<Booking>",
 									"direction": "return"
 								}
 							]
@@ -1477,7 +1425,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs9eGpYRPv2PQ="
 									},
-									"type": "ArrayList<Booking>",
+									"type": "List<Booking>",
 									"direction": "return"
 								}
 							]
@@ -1544,7 +1492,7 @@
 							},
 							"name": "busList",
 							"visibility": "private",
-							"type": "ArrayList<Bus>"
+							"type": "List<Bus>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1552,9 +1500,9 @@
 							"_parent": {
 								"$ref": "AAAAAAFs8nMGrOjpbAY="
 							},
-							"name": "routeList",
+							"name": "transactionList",
 							"visibility": "private",
-							"type": "ArrayList<Route>"
+							"type": "List<Transaction>"
 						}
 					],
 					"operations": [
@@ -1636,90 +1584,6 @@
 									"_id": "AAAAAAFs9ePdBReEAeI=",
 									"_parent": {
 										"$ref": "AAAAAAFs8rClSOsZip4="
-									},
-									"type": "Integer",
-									"direction": "return"
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFs8qD5eOqqqv8=",
-							"_parent": {
-								"$ref": "AAAAAAFs8nMGrOjpbAY="
-							},
-							"name": "addRoute",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFs9eQLQhgGLGc=",
-									"_parent": {
-										"$ref": "AAAAAAFs8qD5eOqqqv8="
-									},
-									"name": "Route r",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFs9eQLQhgHVxo=",
-									"_parent": {
-										"$ref": "AAAAAAFs8qD5eOqqqv8="
-									},
-									"type": "Integer",
-									"direction": "return"
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFs8rDEWOsg8XE=",
-							"_parent": {
-								"$ref": "AAAAAAFs8nMGrOjpbAY="
-							},
-							"name": "modifyRoute",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFs9eRBbxiJa28=",
-									"_parent": {
-										"$ref": "AAAAAAFs8rDEWOsg8XE="
-									},
-									"name": "Route r",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFs9eRBbxiKO8E=",
-									"_parent": {
-										"$ref": "AAAAAAFs8rDEWOsg8XE="
-									},
-									"type": "Integer",
-									"direction": "return"
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFs8rEIpesnEZE=",
-							"_parent": {
-								"$ref": "AAAAAAFs8nMGrOjpbAY="
-							},
-							"name": "deleteRoute",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFs9eT5LBkM43c=",
-									"_parent": {
-										"$ref": "AAAAAAFs8rEIpesnEZE="
-									},
-									"name": "Route r",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFs9eT5LBkNN9Y=",
-									"_parent": {
-										"$ref": "AAAAAAFs8rEIpesnEZE="
 									},
 									"type": "Integer",
 									"direction": "return"

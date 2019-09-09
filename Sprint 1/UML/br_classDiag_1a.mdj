@@ -236,7 +236,7 @@
 											"top": 160,
 											"width": 235.421875,
 											"height": 13,
-											"text": "-bookingsList: ArrayList<Booking>",
+											"text": "-bookingsList: List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -253,7 +253,7 @@
 											"top": 175,
 											"width": 235.421875,
 											"height": 13,
-											"text": "-busList: ArrayList<Bus>",
+											"text": "-busList: List<Bus>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -270,7 +270,7 @@
 											"top": 190,
 											"width": 235.421875,
 											"height": 13,
-											"text": "-transactionList: ArrayList<Transaction>",
+											"text": "-transactionList: List<Transaction>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -321,7 +321,7 @@
 											"top": 228,
 											"width": 235.421875,
 											"height": 13,
-											"text": "+viewTicket(Date d): ArrayList<Booking>",
+											"text": "+viewTicket(Date d): List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -355,7 +355,7 @@
 											"top": 258,
 											"width": 235.421875,
 											"height": 13,
-											"text": "+viewTicketList(): ArrayList<Booking>",
+											"text": "+viewTicketList(): List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -512,7 +512,7 @@
 											"font": "Arial;13;1",
 											"left": 757,
 											"top": 303,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "Bus"
 										},
@@ -547,7 +547,7 @@
 									"font": "Arial;13;0",
 									"left": 752,
 									"top": 296,
-									"width": 213.49951171875,
+									"width": 233.26611328125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFs8nMp+OkXVmY="
@@ -584,7 +584,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 326,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-busId: BigInteger",
 											"horizontalAlignment": 0
@@ -601,7 +601,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 341,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-busName: String",
 											"horizontalAlignment": 0
@@ -618,7 +618,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 356,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-busTypeList: String[]",
 											"horizontalAlignment": 0
@@ -635,7 +635,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 371,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-busClassList: String[]",
 											"horizontalAlignment": 0
@@ -652,7 +652,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 386,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-busType: String",
 											"horizontalAlignment": 0
@@ -669,7 +669,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 401,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-busClass: String",
 											"horizontalAlignment": 0
@@ -686,7 +686,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 416,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-noOfSeats: Integer",
 											"horizontalAlignment": 0
@@ -703,9 +703,9 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 431,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
-											"text": "-dayOfJourney: DayOfWeek(enum)",
+											"text": "-dayOfJourney: Set<DayOfWeek>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -720,7 +720,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 446,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-source: String",
 											"horizontalAlignment": 0
@@ -737,7 +737,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 461,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-destination: String",
 											"horizontalAlignment": 0
@@ -754,7 +754,7 @@
 											"font": "Arial;13;0",
 											"left": 757,
 											"top": 476,
-											"width": 203.49951171875,
+											"width": 223.26611328125,
 											"height": 13,
 											"text": "-cost: Double",
 											"horizontalAlignment": 0
@@ -763,7 +763,7 @@
 									"font": "Arial;13;0",
 									"left": 752,
 									"top": 321,
-									"width": 213.49951171875,
+									"width": 233.26611328125,
 									"height": 173
 								},
 								{
@@ -778,7 +778,7 @@
 									"font": "Arial;13;0",
 									"left": 752,
 									"top": 494,
-									"width": 213.49951171875,
+									"width": 233.26611328125,
 									"height": 10
 								},
 								{
@@ -818,7 +818,7 @@
 							"containerChangeable": true,
 							"left": 752,
 							"top": 296,
-							"width": 213.49951171875,
+							"width": 233.26611328125,
 							"height": 208,
 							"nameCompartment": {
 								"$ref": "AAAAAAFs8nMp+OkWlUI="
@@ -1002,7 +1002,7 @@
 											"top": 467,
 											"width": 210.64697265625,
 											"height": 13,
-											"text": "-passengers: ArrayList<Passenger>",
+											"text": "-passengers: List<Passenger>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1946,7 +1946,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 680,
-									"top": 415,
+									"top": 417,
 									"width": 28.5517578125,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1969,7 +1969,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 691,
-									"top": 400,
+									"top": 402,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -1990,7 +1990,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 701,
-									"top": 444,
+									"top": 446,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2010,8 +2010,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 666,
-									"top": 422,
+									"left": 667,
+									"top": 423,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -2032,7 +2032,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 666,
-									"top": 408,
+									"top": 410,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -2052,7 +2052,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 665,
-									"top": 450,
+									"top": 451,
 									"width": 7.22998046875,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -2075,7 +2075,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 722,
-									"top": 409,
+									"top": 411,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -2094,8 +2094,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 716,
-									"top": 396,
+									"left": 717,
+									"top": 398,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -2114,7 +2114,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 729,
-									"top": 435,
+									"top": 436,
 									"width": 7.22998046875,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -2161,7 +2161,7 @@
 								"$ref": "AAAAAAFs8n3ao+myJtI="
 							},
 							"lineStyle": 1,
-							"points": "645:449;751:424",
+							"points": "645:450;751:426",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFs8uphW+/K284="
@@ -2346,7 +2346,7 @@
 											"top": 412,
 											"width": 207,
 											"height": 13,
-											"text": "-bookings: ArrayList<Booking>",
+											"text": "-bookings: List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3034,7 +3034,7 @@
 							},
 							"name": "bookingsList",
 							"visibility": "private",
-							"type": "ArrayList<Booking>"
+							"type": "List<Booking>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3044,7 +3044,7 @@
 							},
 							"name": "busList",
 							"visibility": "private",
-							"type": "ArrayList<Bus>"
+							"type": "List<Bus>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3054,7 +3054,7 @@
 							},
 							"name": "transactionList",
 							"visibility": "private",
-							"type": "ArrayList<Transaction>"
+							"type": "List<Transaction>"
 						}
 					],
 					"operations": [
@@ -3100,8 +3100,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs8qJmD+rWVJs="
 									},
-									"name": "Date d",
-									"type": ""
+									"name": "Date d"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3109,7 +3108,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs8qJmD+rWVJs="
 									},
-									"type": "ArrayList<Booking>",
+									"type": "List<Booking>",
 									"direction": "return"
 								}
 							]
@@ -3156,7 +3155,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs9eGpYRPv2PQ="
 									},
-									"type": "ArrayList<Booking>",
+									"type": "List<Booking>",
 									"direction": "return"
 								}
 							]
@@ -3577,7 +3576,7 @@
 							},
 							"name": "dayOfJourney",
 							"visibility": "private",
-							"type": "DayOfWeek(enum)"
+							"type": "Set<DayOfWeek>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3834,7 +3833,7 @@
 							},
 							"name": "passengers",
 							"visibility": "private",
-							"type": "ArrayList<Passenger>"
+							"type": "List<Passenger>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3997,7 +3996,7 @@
 							},
 							"name": "bookings",
 							"visibility": "private",
-							"type": "ArrayList<Booking>"
+							"type": "List<Booking>"
 						},
 						{
 							"_type": "UMLAttribute",
