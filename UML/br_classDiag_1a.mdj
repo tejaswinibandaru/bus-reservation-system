@@ -620,7 +620,7 @@
 											"top": 356,
 											"width": 203.49951171875,
 											"height": 13,
-											"text": "-busType: String",
+											"text": "-busType: String[]",
 											"horizontalAlignment": 0
 										},
 										{
@@ -637,7 +637,7 @@
 											"top": 371,
 											"width": 203.49951171875,
 											"height": 13,
-											"text": "-busClass: String",
+											"text": "-busClass: String[]",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3493,7 +3493,7 @@
 							},
 							"name": "busType",
 							"visibility": "private",
-							"type": "String"
+							"type": "String[]"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3503,7 +3503,7 @@
 							},
 							"name": "busClass",
 							"visibility": "private",
-							"type": "String"
+							"type": "String[]"
 						},
 						{
 							"_type": "UMLAttribute",
