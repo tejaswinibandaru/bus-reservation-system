@@ -479,7 +479,7 @@
 											"top": 318,
 											"width": 235.421875,
 											"height": 13,
-											"text": "-bookingsList: ArrayList<Booking>",
+											"text": "-bookingsList: List<Booking>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -530,7 +530,7 @@
 											"top": 356,
 											"width": 235.421875,
 											"height": 13,
-											"text": "+viewTicket(Date d): ArrayList<Booking>",
+											"text": "+viewTicket(Date d): List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -564,7 +564,7 @@
 											"top": 386,
 											"width": 235.421875,
 											"height": 13,
-											"text": "+viewTicketList(): ArrayList<Booking>",
+											"text": "+viewTicketList(): List<Booking>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -744,7 +744,7 @@
 											"top": 286,
 											"width": 229.28369140625,
 											"height": 13,
-											"text": "-busList: ArrayList<Bus>",
+											"text": "-busList: List<Bus>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -761,7 +761,7 @@
 											"top": 301,
 											"width": 229.28369140625,
 											"height": 13,
-											"text": "-transactionList: ArrayList<Transaction>",
+											"text": "-transactionList: List<Transaction>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1324,7 +1324,7 @@
 							},
 							"name": "bookingsList",
 							"visibility": "private",
-							"type": "ArrayList<Booking>"
+							"type": "List<Booking>"
 						}
 					],
 					"operations": [
@@ -1370,8 +1370,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs8qJmD+rWVJs="
 									},
-									"name": "Date d",
-									"type": ""
+									"name": "Date d"
 								},
 								{
 									"_type": "UMLParameter",
@@ -1379,7 +1378,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs8qJmD+rWVJs="
 									},
-									"type": "ArrayList<Booking>",
+									"type": "List<Booking>",
 									"direction": "return"
 								}
 							]
@@ -1426,7 +1425,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs9eGpYRPv2PQ="
 									},
-									"type": "ArrayList<Booking>",
+									"type": "List<Booking>",
 									"direction": "return"
 								}
 							]
@@ -1493,7 +1492,7 @@
 							},
 							"name": "busList",
 							"visibility": "private",
-							"type": "ArrayList<Bus>"
+							"type": "List<Bus>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1503,7 +1502,7 @@
 							},
 							"name": "transactionList",
 							"visibility": "private",
-							"type": "ArrayList<Transaction>"
+							"type": "List<Transaction>"
 						}
 					],
 					"operations": [

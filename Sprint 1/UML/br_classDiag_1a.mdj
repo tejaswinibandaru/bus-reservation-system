@@ -236,7 +236,7 @@
 											"top": 160,
 											"width": 235.421875,
 											"height": 13,
-											"text": "-bookingsList: ArrayList<Booking>",
+											"text": "-bookingsList: List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -253,7 +253,7 @@
 											"top": 175,
 											"width": 235.421875,
 											"height": 13,
-											"text": "-busList: ArrayList<Bus>",
+											"text": "-busList: List<Bus>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -270,7 +270,7 @@
 											"top": 190,
 											"width": 235.421875,
 											"height": 13,
-											"text": "-transactionList: ArrayList<Transaction>",
+											"text": "-transactionList: List<Transaction>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -321,7 +321,7 @@
 											"top": 228,
 											"width": 235.421875,
 											"height": 13,
-											"text": "+viewTicket(Date d): ArrayList<Booking>",
+											"text": "+viewTicket(Date d): List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -355,7 +355,7 @@
 											"top": 258,
 											"width": 235.421875,
 											"height": 13,
-											"text": "+viewTicketList(): ArrayList<Booking>",
+											"text": "+viewTicketList(): List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -705,7 +705,7 @@
 											"top": 431,
 											"width": 223.26611328125,
 											"height": 13,
-											"text": "-dayOfJourney: TreeSet<DayOfWeek>",
+											"text": "-dayOfJourney: Set<DayOfWeek>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1002,7 +1002,7 @@
 											"top": 467,
 											"width": 210.64697265625,
 											"height": 13,
-											"text": "-passengers: ArrayList<Passenger>",
+											"text": "-passengers: List<Passenger>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2346,7 +2346,7 @@
 											"top": 412,
 											"width": 207,
 											"height": 13,
-											"text": "-bookings: ArrayList<Booking>",
+											"text": "-bookings: List<Booking>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3034,7 +3034,7 @@
 							},
 							"name": "bookingsList",
 							"visibility": "private",
-							"type": "ArrayList<Booking>"
+							"type": "List<Booking>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3044,7 +3044,7 @@
 							},
 							"name": "busList",
 							"visibility": "private",
-							"type": "ArrayList<Bus>"
+							"type": "List<Bus>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3054,7 +3054,7 @@
 							},
 							"name": "transactionList",
 							"visibility": "private",
-							"type": "ArrayList<Transaction>"
+							"type": "List<Transaction>"
 						}
 					],
 					"operations": [
@@ -3100,8 +3100,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs8qJmD+rWVJs="
 									},
-									"name": "Date d",
-									"type": ""
+									"name": "Date d"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3109,7 +3108,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs8qJmD+rWVJs="
 									},
-									"type": "ArrayList<Booking>",
+									"type": "List<Booking>",
 									"direction": "return"
 								}
 							]
@@ -3156,7 +3155,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFs9eGpYRPv2PQ="
 									},
-									"type": "ArrayList<Booking>",
+									"type": "List<Booking>",
 									"direction": "return"
 								}
 							]
@@ -3577,7 +3576,7 @@
 							},
 							"name": "dayOfJourney",
 							"visibility": "private",
-							"type": "TreeSet<DayOfWeek>"
+							"type": "Set<DayOfWeek>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3834,7 +3833,7 @@
 							},
 							"name": "passengers",
 							"visibility": "private",
-							"type": "ArrayList<Passenger>"
+							"type": "List<Passenger>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3997,7 +3996,7 @@
 							},
 							"name": "bookings",
 							"visibility": "private",
-							"type": "ArrayList<Booking>"
+							"type": "List<Booking>"
 						},
 						{
 							"_type": "UMLAttribute",
