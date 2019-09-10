@@ -16,7 +16,7 @@ public class MyApplication {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(System.in);
 		//int ch= sc.nextInt();
 		
 //		BookingDao bd = new BookingDaoImpl();
