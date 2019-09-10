@@ -28,17 +28,20 @@ public class MyApplication {
 		days.add(DayOfWeek.of(1));
 		days.add(DayOfWeek.of(3));
 		System.out.println("try2");
-		//Bus b1 = new Bus((BigInteger.valueOf(2342)),"Rampyari", "sleeper", "ac", 33, days,"Mum","Pune",345.5);
-		Bus b2 = new Bus();
-//		try {
+		try {
+		Bus b1 = new Bus((BigInteger.valueOf(2342)),"Rampyari", "sleeper", "ac", 33, days,"Mum","Pune",345.5);
+		busDao.saveBus(b1);
+		Bus b2 = new Bus((BigInteger.valueOf(2343)),"Rampyari1", "semi-sleeper", "non-ac", 33, days,"Pune","Mum",340.0);
+		busDao.saveBus(b2);
+		
 			System.out.println("try1");
 		System.out.println(busDao.findAllBuses());
 		System.out.println("try");
-//		}
-//		catch(Exception e) {
-//			System.out.println("err");
-//			System.out.println(e.getMessage());
-//		}
+		}
+		catch(Exception e) {
+			System.out.println("err");
+			System.out.println(e.getMessage());
+		}
 	}
 
 }
