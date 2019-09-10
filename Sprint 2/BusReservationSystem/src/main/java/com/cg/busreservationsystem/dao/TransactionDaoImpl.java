@@ -15,14 +15,21 @@ public class TransactionDaoImpl implements TransactionDao{
 	public Transaction saveTransaction(Transaction transaction) {
 		// TODO Auto-generated method stub
 		for(Transaction t: transactionList) {
-			
+			if(t.getDate()==transaction.getDate() && t.getBus()==transaction.getBus()) {
+				transactionList.set(transactionList.indexOf(t), transaction);
+			}
 		}
-		return null;
+		if(!transactionList.contains(transaction)) {
+			transactionList.add(transaction);
+		}
+		return transaction;
 	}
 
 	@Override
 	public Integer removeTransaction(Integer transId) {
 		// TODO Auto-generated method stub
+		for(Transaction t:transactionList) {
+		}
 		return null;
 	}
 
