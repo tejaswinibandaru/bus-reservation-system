@@ -1,7 +1,10 @@
 package com.cg.busreservationsystem.service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.cg.busreservationsystem.dao.BookingDao;
 import com.cg.busreservationsystem.dao.BookingDaoImpl;
@@ -10,6 +13,7 @@ import com.cg.busreservationsystem.dao.BusDaoImpl;
 import com.cg.busreservationsystem.dao.TransactionDao;
 import com.cg.busreservationsystem.dao.TransactionDaoImpl;
 import com.cg.busreservationsystem.dto.Booking;
+import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
 
 public class CustomerServiceImpl implements CustomerService{
@@ -18,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService{
 	BookingDao bookingDao = new BookingDaoImpl();
 	TransactionDao transactionDao = new TransactionDaoImpl();
 	@Override
-	public Integer bookTicket(Booking b) {
+	public Integer bookTicket(LocalDate dateOfJourney, String src, String dest) {	//change method [parameters
 		// TODO Auto-generated method stub
 		/*Steps :
 			1. Input Date, Src, Destination
@@ -33,8 +37,28 @@ public class CustomerServiceImpl implements CustomerService{
 			9. create booking object by adding remaining details.
 			10. add to list<booking:>
 		*/
+		//DayOfWeek d = b.getDateOfJourney().getDayOfWeek();
+		getBuses(dateOfJourney, src, dest);
 		return null;
 	}
+	
+	List<Bus> getBuses(LocalDate dateOfJourney, String src, String dest){
+		List<Bus> busList = new ArrayList<Bus>();
+		Set<DayOfWeek> days;
+		DayOfWeek d = dateOfJourney.getDayOfWeek();
+		for (Bus bus : (busDao.findAllBuses())) {
+			days = bus.getDayOfJourney();
+			if(days.contains(d)) {
+				if((bus.getSource().equalsIgnoreCase(src)) && bus.getDestination().equalsIgnoreCase(dest))
+				busList.add(bus);
+			}
+		}
+		
+		
+		return busList;
+		
+	}
+	
 
 	@Override
 	public List<Booking> viewTicketsByDate(LocalDate date) {
