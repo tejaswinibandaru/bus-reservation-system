@@ -62,29 +62,52 @@ public class MyApplication {
 	}
 
 	static void adminMenu() {
-		System.out.println("Press 1 for Adding Bus Details");
-		System.out.println("Press 2 for Removing Bus Details");
-		System.out.println("Press 3 for Modifying Bus Details");
-		System.out.println("Press 4 for Viewing Transaction Details");
-		System.out.println("Press 5 for Editing Personal Details");
 		Scanner scr = new Scanner(System.in);
-		int choice;
-		while((choice = scr.nextInt())<6) {
+		int choice=0;
+		while(choice<6) {
+			System.out.println("Press 1 for Adding Bus Details");
+			System.out.println("Press 2 for Removing Bus Details");
+			System.out.println("Press 3 for Modifying Bus Details");
+			System.out.println("Press 4 for Viewing Transaction Details");
+			System.out.println("Press 5 for Editing Personal Details");
+			choice= scr.nextInt();
 			switch(choice)
 			{
 			case 1:
 				//fetch details here
 				System.out.println("Enter the bus name");
 				String busName = scr.next();
-				
+				int bt=0;
+				while(true) {
+					
 				System.out.println("Enter the bus type, 0 for sleeper, 1 for semi-sleeper");
-				int bt= scr.nextInt();
+				bt= scr.nextInt();
+				
+				try {
+					AdminServiceImpl.validateBusType(bt);
+					break;
+				}catch (RuntimeException e) {
+					// TODO: handle exception
+					System.out.println(e.getMessage());
+					continue;
+				}
+				}
 				
 				System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
 				int bc= scr.nextInt();
 				
-				System.out.println("Enter the no of bus seats");
-				int bs = scr.nextInt();
+				int bs;
+				while(true) {
+					System.out.println("Enter the no of bus seats");
+					try {
+						bs = AdminServiceImpl.checkNumberInput();
+						break;
+					}catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Exception :"+e.getMessage());
+						continue;
+					}
+				}
 				
 				System.out.println("Enter the no of days of the week on which day the bus will run");
 				int noOfDays=scr.nextInt();
@@ -106,7 +129,8 @@ public class MyApplication {
 
 				
 				Bus bus = new Bus(busName, bt, bc, bs, days, source, destination, costPerSeat);
-				adm.addBusDetails(bus);
+				System.out.println(adm.addBusDetails(bus));
+				
 				break;
 				
 			case 2:

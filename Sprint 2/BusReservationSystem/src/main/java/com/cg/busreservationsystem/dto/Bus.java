@@ -56,8 +56,21 @@ public class Bus {
 	public void setBusName(String busName) {
 		this.busName = busName;
 	}
-
-
+	
+	public String getBusType() {
+		return this.busType;
+	}
+	
+	public String getBusClass() {
+		return this.busClass;
+	}
+	
+	public static String[] getBusTypeList() {
+		return busTypeList;
+	}
+	public static String[] getBusClassList() {
+		return busClassList;
+	}
 	public Integer getNoOfSeats() {
 		return noOfSeats;
 	}
