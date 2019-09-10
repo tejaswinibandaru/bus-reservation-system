@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cg.busreservationsystem.dto.Bus;
+import com.cg.busreservationsystem.exception.BusException;
 
 public class BusDaoImpl implements BusDao{
 	
@@ -12,7 +13,7 @@ public class BusDaoImpl implements BusDao{
 	
 
 	@Override
-	public Bus saveBus(Bus bus) {
+	public Bus saveBus(Bus bus){
 		// TODO Auto-generated method stub
 		for(Bus b:busList) {
 			if(bus.getBusId()==b.getBusId()) {
@@ -21,6 +22,7 @@ public class BusDaoImpl implements BusDao{
 		}
 		if(!busList.contains(bus)) {
 			busList.add(bus);
+			//throw new BusException("Bus is not working");
 		}
 		return bus;
 	}

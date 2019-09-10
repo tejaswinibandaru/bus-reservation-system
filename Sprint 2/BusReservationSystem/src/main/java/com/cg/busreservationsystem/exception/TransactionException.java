@@ -6,4 +6,9 @@ public class TransactionException extends Exception{
 		super(msg);
 	}
 
+	public TransactionException() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }
