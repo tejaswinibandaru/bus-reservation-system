@@ -12,6 +12,14 @@ public class TransactionDaoImpl implements TransactionDao{
 	private List<Transaction> transactionList=new ArrayList<Transaction>();
 	
 
+	public List<Transaction> getTransactionList() {
+		return transactionList;
+	}
+
+	public void setTransactionList(List<Transaction> transactionList) {
+		this.transactionList = transactionList;
+	}
+
 	@Override
 	public Transaction saveTransaction(Transaction transaction) {
 		// TODO Auto-generated method stub
