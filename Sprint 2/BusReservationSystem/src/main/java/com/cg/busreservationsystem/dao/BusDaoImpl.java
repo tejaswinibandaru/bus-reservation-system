@@ -8,7 +8,7 @@ import com.cg.busreservationsystem.dto.Bus;
 
 public class BusDaoImpl implements BusDao{
 	
-	List<Bus> busList=new ArrayList<Bus>();
+	private List<Bus> busList=new ArrayList<Bus>();
 	
 
 	@Override
