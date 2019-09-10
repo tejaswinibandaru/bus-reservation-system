@@ -5,6 +5,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
@@ -166,6 +167,24 @@ public class MyApplication {
 				String source=scr.next();
 				System.out.println("Enter your destination: ");
 				String destination=scr.next();
+				List<Bus> busList=cust.getRunningBuses(date, source, destination);
+				System.out.println("Running buses on your day of journey: ");
+				int i=0;
+				for(Bus b:busList) {
+					System.out.println(i+1+" "+b.getBusId()+" "+b.getBusName()+" "+b.getBusType()+" "+b.getBusClass());
+				}
+				System.out.println("Enter the bus Id of the bus you will be travelling: ");
+				BigInteger busId=scr.nextBigInteger();
+				for(Bus b:busList) {
+					if(busId==b.getBusId()) {
+						System.out.println("Enter the number of passengers: ");
+						int passengersCount=scr.nextInt();
+						boolean bookingStatus=cust.checkBusTransaction(date, b, passengersCount);
+						if(bookingStatus) {
+							
+						}
+					}
+				}
 				
 				break;
 
