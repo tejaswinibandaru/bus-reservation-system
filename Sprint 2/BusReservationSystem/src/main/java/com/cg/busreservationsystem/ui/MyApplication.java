@@ -31,22 +31,22 @@ public class MyApplication {
 
 		showType();
 
-		Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
-		days.add(DayOfWeek.of(1));
-		days.add(DayOfWeek.of(3));
-		try {
-			//Bus b1 = new Bus((BigInteger.valueOf(2342)),"Rampyari", "sleeper", "ac", 33, days,"Mum","Pune",345.5);
-			//busDao.saveBus(b1);
-			//Bus b2 = new Bus((BigInteger.valueOf(2343)),"Rampyari1", "semi-sleeper", "non-ac", 33, days,"Pune","Mum",340.0);
-			//busDao.saveBus(b2);
-
-			//System.out.println(busDao.findAllBuses());
-			System.out.println("try");
-		}
-		catch(Exception e) {
-			System.out.println("err");
-			System.out.println(e.getMessage());
-		}
+//		Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
+//		days.add(DayOfWeek.of(1));
+//		days.add(DayOfWeek.of(3));
+//		try {
+//			//Bus b1 = new Bus((BigInteger.valueOf(2342)),"Rampyari", "sleeper", "ac", 33, days,"Mum","Pune",345.5);
+//			//busDao.saveBus(b1);
+//			//Bus b2 = new Bus((BigInteger.valueOf(2343)),"Rampyari1", "semi-sleeper", "non-ac", 33, days,"Pune","Mum",340.0);
+//			//busDao.saveBus(b2);
+//
+//			//System.out.println(busDao.findAllBuses());
+//			System.out.println("try");
+//		}
+//		catch(Exception e) {
+//			System.out.println("err");
+//			System.out.println(e.getMessage());
+//		}
 	}
 
 	static void showType() {
@@ -181,7 +181,7 @@ public class MyApplication {
 						int passengersCount=scr.nextInt();
 						boolean bookingStatus=cust.checkBusTransaction(date, b, passengersCount);
 						if(bookingStatus) {
-							
+							System.out.println(bookingStatus);
 						}
 					}
 				}
