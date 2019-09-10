@@ -3,6 +3,7 @@ package com.cg.busreservationsystem.ui;
 import java.math.BigInteger;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -70,6 +71,7 @@ public class MyApplication {
 			System.out.println("Press 3 for Modifying Bus Details");
 			System.out.println("Press 4 for Viewing Transaction Details");
 			System.out.println("Press 5 for Editing Personal Details");
+			System.out.println("Enter your choice:");
 			choice= scr.nextInt();
 			switch(choice)
 			{
@@ -143,12 +145,35 @@ public class MyApplication {
 	}
 
 	static void custMenu() {
-		System.out.println("Press 1 to Booking a Ticket");
-		System.out.println("Press 2 for Viewing a Booking");
-		System.out.println("Press 3 for Viewing Bookings List");
-		System.out.println("Press 4 for Cancelling a Ticket");
-		System.out.println("Press 5 for Editing Personal Details");
+		Scanner scr=new Scanner(System.in);
+		int choice=0;
+		while(choice<6) {
+			System.out.println("Press 1 to Booking a Ticket");
+			System.out.println("Press 2 for Viewing a Booking");
+			System.out.println("Press 3 for Viewing Bookings List");
+			System.out.println("Press 4 for Cancelling a Ticket");
+			System.out.println("Press 5 for Editing Personal Details");
+			System.out.println("Enter your choice: ");
+			choice=scr.nextInt();
+			
+			switch (choice) {
+			case 1:
+				System.out.println("Enter your date of journey(DD/MM/YYYY):" );
+				String dateStr=scr.next();
+				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("DD/MM/YYYY");
+				LocalDate date=LocalDate.parse(dateStr, formatter);
+				System.out.println("Enter your source: ");
+				String source=scr.next();
+				System.out.println("Enter your destination: ");
+				String destination=scr.next();
+				
+				break;
 
+			default:
+				break;
+			}
+			
+		}
 
 	}
 
