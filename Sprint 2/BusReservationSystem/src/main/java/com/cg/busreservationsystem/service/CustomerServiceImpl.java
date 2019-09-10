@@ -15,12 +15,14 @@ import com.cg.busreservationsystem.dao.TransactionDaoImpl;
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
+import com.cg.busreservationsystem.dto.Transaction;
 
 public class CustomerServiceImpl implements CustomerService{
 
-	BusDao busDao = new BusDaoImpl();
+	//BusDao busDao = new BusDaoImpl();
 	BookingDao bookingDao = new BookingDaoImpl();
-	TransactionDao transactionDao = new TransactionDaoImpl();
+	//TransactionDao transactionDao = new TransactionDaoImpl();
+	AdminServiceImpl adminServ = new AdminServiceImpl();
 	@Override
 	public List<Bus> getRunningBuses(LocalDate dateOfJourney, String src, String dest) {	//change method [parameters
 		// TODO Auto-generated method stub
@@ -43,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService{
 		List<Bus> busList = new ArrayList<Bus>();
 		Set<DayOfWeek> days;
 		DayOfWeek d = dateOfJourney.getDayOfWeek();
-		for (Bus bus : (busDao.findAllBuses())) {
+		for (Bus bus : ((adminServ.busDao).findAllBuses())) {
 			days = bus.getDayOfJourney();
 			if(days.contains(d)) {
 				if((bus.getSource().equalsIgnoreCase(src)) && bus.getDestination().equalsIgnoreCase(dest))
@@ -52,6 +54,23 @@ public class CustomerServiceImpl implements CustomerService{
 			
 		}
 		return busList;
+	}
+
+	
+
+	@Override
+	public boolean checkBusTransaction(LocalDate dateOfJourney, Bus bus, Integer noOfPassengers) {
+		// TODO Auto-generated method stub
+		List<Transaction> listTransaction = (adminServ.transactionDao).getTransactionList();
+		for (Transaction transaction : listTransaction) {
+			for (Booking booking : transaction.getBookings()) {
+				if(booking.getBus().equals(bus))
+					if(booking.getDateOfJourney().equals(dateOfJourney))
+						if(transaction.getAvailableSeats()>=noOfPassengers)
+							return true;
+			}
+		}
+		return false;
 	}
 
 
