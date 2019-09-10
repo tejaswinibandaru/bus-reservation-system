@@ -36,10 +36,10 @@ public class CustomerServiceImpl implements CustomerService{
 			8. if yes, then proceed to add passengers, add to list<passenger>
 			9. create booking object by adding remaining details.
 			10. add to list<booking:>
-		*/
+		 */
 		//DayOfWeek d = b.getDateOfJourney().getDayOfWeek();
 		//getBuses(dateOfJourney, src, dest);
-		
+
 		List<Bus> busList = new ArrayList<Bus>();
 		Set<DayOfWeek> days;
 		DayOfWeek d = dateOfJourney.getDayOfWeek();
@@ -47,12 +47,14 @@ public class CustomerServiceImpl implements CustomerService{
 			days = bus.getDayOfJourney();
 			if(days.contains(d)) {
 				if((bus.getSource().equalsIgnoreCase(src)) && bus.getDestination().equalsIgnoreCase(dest))
-				busList.add(bus);
+					busList.add(bus);
 			}
+			
+		}
 		return busList;
 	}
-	
-	
+
+
 
 	@Override
 	public List<Booking> viewTicketsByDate(LocalDate date) {
