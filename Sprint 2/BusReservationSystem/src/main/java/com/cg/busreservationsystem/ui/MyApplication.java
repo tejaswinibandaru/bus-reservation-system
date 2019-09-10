@@ -3,6 +3,7 @@ package com.cg.busreservationsystem.ui;
 import java.math.BigInteger;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
@@ -75,24 +76,35 @@ public class MyApplication {
 				//fetch details here
 				System.out.println("Enter the bus name");
 				String busName = scr.nextLine();
+				
 				System.out.println("Enter the bus type, 0 for sleeper, 1 for semi-sleeper");
 				int bt= scr.nextInt();
+				
 				System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
 				int bc= scr.nextInt();
-				System.out.println("Enter the days of running");
-				String days = scr.next();
 				
-				char daysRunning[] = days.toCharArray();
 				System.out.println("Enter the no of bus seats");
 				int bs = scr.nextInt();
+				
+				System.out.println("Enter the no of days of the week on which day the bus will run");
+				int noOfDays=scr.nextInt();
+				Set<DayOfWeek> days=new TreeSet<DayOfWeek>();
+				for(int i=0;i<noOfDays;i++) {
+					System.out.println("Enter the day number starting from 1(Monday) to 7(Sunday): ");
+					int day=scr.nextInt();
+					days.add(DayOfWeek.of(day));
+				}
+				
 				System.out.println("Enter the bus source");
 				String source = scr.next();
+				
 				System.out.println("Enter the bus destination");
 				String destination = scr.next();
+				
 				System.out.println("Enter the bus cost per seat");
 				double costPerSeat = scr.nextDouble();
+				
 				Bus bus = new Bus();
-				adm.addBusDetails(bus);
 				break;
 				
 			case 2:
