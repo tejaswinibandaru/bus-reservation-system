@@ -92,37 +92,42 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public List<Booking> viewTicketsByDate(LocalDate date) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Booking> listBooking = new ArrayList<Booking>();
+		for (Booking booking : bookingDao.findAllBookings()) {
+			if(booking.getDateOfJourney().equals(date))
+				listBooking.add(booking);
+			
+		}
+		return listBooking;
 	}
 
 	@Override
 	public Integer cancelTicket(Booking b) {
 		// TODO Auto-generated method stub
-		return null;
+		boolean cancel =bookingDao.findAllBookings().remove(b);
+		if(cancel) return 1;
+		else return 0;
 	}
 
 	@Override
 	public List<Booking> viewTicketList() {
 		// TODO Auto-generated method stub
-		return null;
+		return bookingDao.findAllBookings();
 	}
 
-	@Override
+/*	@Override
 	public Passenger addPassenger(Passenger passenger) {
 		// TODO Auto-generated method stub
+		
 		return null;
-	}
+	}*/
 
 	@Override
 	public List<Passenger> viewPassengers() {
 		// TODO Auto-generated method stub
-		return null;
+		return bookingDao.findAllPassengers();
 	}
 
-	@Override
-	public Double calculateCost() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

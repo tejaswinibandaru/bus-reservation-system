@@ -17,8 +17,8 @@ public interface CustomerService {
 	public List<Booking> viewTicketsByDate(LocalDate date);
 	public Integer cancelTicket(Booking b);
 	public List<Booking> viewTicketList();
-	public Passenger addPassenger(Passenger passenger);
+	//public Passenger addPassenger(Passenger passenger);
 	public List<Passenger> viewPassengers();
-	public Double calculateCost();
+	
 	
 }
