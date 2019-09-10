@@ -1,7 +1,7 @@
 package com.cg.busreservationsystem.exception;
 
 
-public class BookingException extends Exception{
+public class BookingException extends RuntimeException{
 	
 	public BookingException() {
 		super();

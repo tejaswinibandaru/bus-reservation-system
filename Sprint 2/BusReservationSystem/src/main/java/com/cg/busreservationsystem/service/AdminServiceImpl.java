@@ -1,5 +1,6 @@
 package com.cg.busreservationsystem.service;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,37 +15,38 @@ import com.cg.busreservationsystem.dto.Transaction;
 
 public class AdminServiceImpl implements AdminService{
 	
-	BusDao busDao=new BusDaoImpl();
-	TransactionDao transactionDao=new TransactionDaoImpl();
+	BusDao busDao = new BusDaoImpl();
+	BookingDao bookingDao = new BookingDaoImpl();
+	TransactionDao transactionDao = new TransactionDaoImpl();
 
 	@Override
 	public Bus addBusDetails(Bus bus) {
 		// TODO Auto-generated method stub
-		return null;
+		return busDao.saveBus(bus);
 	}
 
 	@Override
-	public Integer removeBusDetails(Integer busId) {
+	public Integer removeBusDetails(BigInteger busId) {
 		// TODO Auto-generated method stub
-		return null;
+		return busDao.removeBus(busId);
 	}
 
 	@Override
-	public Bus searchBus(Integer busId) {
+	public Bus searchBus(BigInteger busId) {
 		// TODO Auto-generated method stub
-		return null;
+		return busDao.findBusById(busId);
 	}
 
 	@Override
 	public List<Bus> viewBuses() {
 		// TODO Auto-generated method stub
-		return null;
+		return busDao.findAllBuses();
 	}
 
 	@Override
 	public List<Transaction> getTransactionsByDate(LocalDate date) {
 		// TODO Auto-generated method stub
-		return null;
+		return transactionDao.findTransactionsByDate(date);
 	}
 
 }

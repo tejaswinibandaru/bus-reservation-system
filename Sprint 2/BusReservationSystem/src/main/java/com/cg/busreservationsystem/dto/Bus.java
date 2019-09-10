@@ -22,13 +22,13 @@ public class Bus {
 	}
 	
 	
-	public Bus(BigInteger busId, String busName, String busType, String busClass, Integer noOfSeats,
+	public Bus(BigInteger busId, String busName, int busType, int busClass, Integer noOfSeats,
 			Set<DayOfWeek> dayOfJourney, String source, String destination, Double cost) {
 		super();
 		this.busId = busId;
 		this.busName = busName;
-		this.busType = busType;
-		this.busClass = busClass;
+		this.busType = busTypeList[busType];
+		this.busClass = busClassList[busClass];
 		this.noOfSeats = noOfSeats;
 		this.dayOfJourney = dayOfJourney;
 		this.source = source;
@@ -53,21 +53,6 @@ public class Bus {
 		this.busName = busName;
 	}
 
-	public String getBusType() {
-		return busType;
-	}
-
-	public void setBusType(String busType) {
-		this.busType = busType;
-	}
-
-	public String getBusClass() {
-		return busClass;
-	}
-
-	public void setBusClass(String busClass) {
-		this.busClass = busClass;
-	}
 
 	public Integer getNoOfSeats() {
 		return noOfSeats;
