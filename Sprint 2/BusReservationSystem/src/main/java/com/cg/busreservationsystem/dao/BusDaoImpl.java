@@ -22,7 +22,6 @@ public class BusDaoImpl implements BusDao{
 		}
 		if(!busList.contains(bus)) {
 			busList.add(bus);
-			throw new BusException("Bus is not working");
 		}
 		return bus;
 	}
