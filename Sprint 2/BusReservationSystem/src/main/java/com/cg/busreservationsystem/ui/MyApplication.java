@@ -103,12 +103,19 @@ public class MyApplication {
 				
 				System.out.println("Enter the bus cost per seat");
 				double costPerSeat = scr.nextDouble();
+<<<<<<< HEAD
 				
 				Bus bus = new Bus();
+=======
+				Bus bus = new Bus();//to pass parameters here
+				adm.addBusDetails(bus);
+>>>>>>> branch 'master' of https://github.com/tejaswinibandaru/bus-reservation-system
 				break;
 				
 			case 2:
-				
+				System.out.println("Enter the bus id to remove");
+				BigInteger busId = scr.nextBigInteger();
+				adm.removeBusDetails(busId);
 				break;
 			}
 		}
