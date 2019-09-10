@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Transaction;
 
 public class TransactionDaoImpl implements TransactionDao{
@@ -26,23 +27,34 @@ public class TransactionDaoImpl implements TransactionDao{
 	}
 
 	@Override
-	public Integer removeTransaction(Integer transId) {
+	public Integer removeTransaction(Bus bus) {
 		// TODO Auto-generated method stub
 		for(Transaction t:transactionList) {
+			if(t.getBus()==bus) {
+				transactionList.remove(bus);
+				return 1;
+			}
 		}
-		return null;
+		return 0;
 	}
 
 	@Override
 	public List<Transaction> findAllTransactions() {
 		// TODO Auto-generated method stub
-		return null;
+		return transactionList;
 	}
 
 	@Override
 	public List<Transaction> findTransactionsByDate(LocalDate date) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Transaction> transactionsByDate=new ArrayList<Transaction>();
+		for(Transaction t:transactionList) {
+			if(date.equals(t.getDate())) {
+				transactionsByDate.add(t);
+			}
+		}
+		
+		return transactionsByDate;
 	}
 
 }
