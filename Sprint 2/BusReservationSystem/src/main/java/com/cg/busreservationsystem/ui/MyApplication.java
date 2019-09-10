@@ -91,12 +91,14 @@ public class MyApplication {
 				String destination = scr.next();
 				System.out.println("Enter the bus cost per seat");
 				double costPerSeat = scr.nextDouble();
-				Bus bus = new Bus();
+				Bus bus = new Bus();//to pass parameters here
 				adm.addBusDetails(bus);
 				break;
 				
 			case 2:
-				
+				System.out.println("Enter the bus id to remove");
+				BigInteger busId = scr.nextBigInteger();
+				adm.removeBusDetails(busId);
 				break;
 			}
 		}
