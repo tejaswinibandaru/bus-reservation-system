@@ -73,6 +73,20 @@ public class CustomerServiceImpl implements CustomerService{
 		return false;
 	}
 
+	
+	public Booking createBooking(List<Passenger> passengerList, LocalDate dateOfJourney, Bus bus, String modeOfPayment) {
+		
+		Booking b = new Booking(dateOfJourney, bus, passengerList, modeOfPayment);
+		List<Transaction> listTransactions = (adminServ.transactionDao).getTransactionList();
+		for (Transaction transaction : listTransactions) {
+			if(transaction.getDate().equals(dateOfJourney))
+			{
+				transaction.getBookings().add(b);
+			}
+		}
+		return b;
+		
+	}
 
 
 	@Override

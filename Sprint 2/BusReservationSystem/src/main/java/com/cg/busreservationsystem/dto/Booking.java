@@ -3,6 +3,7 @@ package com.cg.busreservationsystem.dto;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Booking {
 	
@@ -13,19 +14,23 @@ public class Booking {
 	private String modeOfPayment;
 	private Double totalCost;
 	
+	static BigInteger idCounter= BigInteger.valueOf(1000L);
+	
 	public Booking() {
 		
 	}
 
-	public Booking(BigInteger bookingId, LocalDate dateOfJourney, Bus bus, ArrayList<Passenger> passengers,
-			String modeOfPayment, Double totalCost) {
+	public Booking(LocalDate dateOfJourney, Bus bus, List<Passenger> passengerList,
+			String modeOfPayment) {
 		super();
-		this.bookingId = bookingId;
+		idCounter.add(BigInteger.valueOf(1L));
+		
+		this.bookingId = idCounter;
 		this.dateOfJourney = dateOfJourney;
 		this.bus = bus;
-		this.passengers = passengers;
+		this.passengers = passengerList;
 		this.modeOfPayment = modeOfPayment;
-		this.totalCost = totalCost;
+		this.totalCost = costCalc();
 	}
 
 	public BigInteger getBookingId() {
@@ -137,5 +142,9 @@ public class Booking {
 				+ passengers + ", modeOfPayment=" + modeOfPayment + ", totalCost=" + totalCost + "]";
 	}
 	
+	double costCalc() {
+		double cost = (bus.getCost())*(passengers.size());
+		return cost;
+	}
 	
 }
