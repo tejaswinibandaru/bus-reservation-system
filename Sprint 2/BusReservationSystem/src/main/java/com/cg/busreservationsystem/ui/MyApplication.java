@@ -154,6 +154,7 @@ public class MyApplication {
 			System.out.println("Press 3 for Viewing Bookings List");
 			System.out.println("Press 4 for Cancelling a Ticket");
 			System.out.println("Press 5 for Editing Personal Details");
+			
 			System.out.println("Enter your choice: ");
 			choice=scr.nextInt();
 			
