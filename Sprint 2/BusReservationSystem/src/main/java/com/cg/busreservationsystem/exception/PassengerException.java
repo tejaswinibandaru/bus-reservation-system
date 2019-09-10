@@ -6,4 +6,9 @@ public class PassengerException extends Exception{
 		super(msg);
 	}
 
+	public PassengerException() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }
