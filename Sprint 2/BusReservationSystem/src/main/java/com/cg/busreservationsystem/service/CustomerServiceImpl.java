@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService{
 	BookingDao bookingDao = new BookingDaoImpl();
 	TransactionDao transactionDao = new TransactionDaoImpl();
 	@Override
-	public Integer bookTicket(LocalDate dateOfJourney, String src, String dest) {	//change method [parameters
+	public List<Bus> getRunningBuses(LocalDate dateOfJourney, String src, String dest) {	//change method [parameters
 		// TODO Auto-generated method stub
 		/*Steps :
 			1. Input Date, Src, Destination
@@ -38,11 +38,8 @@ public class CustomerServiceImpl implements CustomerService{
 			10. add to list<booking:>
 		*/
 		//DayOfWeek d = b.getDateOfJourney().getDayOfWeek();
-		getBuses(dateOfJourney, src, dest);
-		return null;
-	}
-	
-	List<Bus> getBuses(LocalDate dateOfJourney, String src, String dest){
+		//getBuses(dateOfJourney, src, dest);
+		
 		List<Bus> busList = new ArrayList<Bus>();
 		Set<DayOfWeek> days;
 		DayOfWeek d = dateOfJourney.getDayOfWeek();
@@ -52,12 +49,9 @@ public class CustomerServiceImpl implements CustomerService{
 				if((bus.getSource().equalsIgnoreCase(src)) && bus.getDestination().equalsIgnoreCase(dest))
 				busList.add(bus);
 			}
-		}
-		
-		
 		return busList;
-		
 	}
+	
 	
 
 	@Override
