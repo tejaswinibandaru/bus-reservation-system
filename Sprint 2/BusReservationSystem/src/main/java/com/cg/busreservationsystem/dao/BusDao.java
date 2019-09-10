@@ -1,5 +1,6 @@
 package com.cg.busreservationsystem.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import com.cg.busreservationsystem.dto.Bus;
@@ -7,8 +8,8 @@ import com.cg.busreservationsystem.dto.Bus;
 public interface BusDao {
 	
 	public Bus saveBus(Bus bus);
-	public Integer removeBus(Integer busId);
+	public Integer removeBus(BigInteger busId);
 	public List<Bus> findAllBuses();
-	public Bus findBusById(Integer busId);
+	public Bus findBusById(BigInteger busId);
 
 }

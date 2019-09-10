@@ -1,33 +1,56 @@
 package com.cg.busreservationsystem.dao;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cg.busreservationsystem.dto.Bus;
 
 public class BusDaoImpl implements BusDao{
 	
+	List<Bus> busList=new ArrayList<Bus>();
+	
 
 	@Override
 	public Bus saveBus(Bus bus) {
 		// TODO Auto-generated method stub
-		return null;
+		for(Bus b:busList) {
+			if(bus.getBusId()==b.getBusId()) {
+				busList.set(busList.indexOf(b), bus);
+			}
+		}
+		if(!busList.contains(bus)) {
+			busList.add(bus);
+		}
+		return bus;
 	}
 
 	@Override
-	public Integer removeBus(Integer busId) {
+	public Integer removeBus(BigInteger busId) {
 		// TODO Auto-generated method stub
-		return null;
+		for(Bus b:busList) {
+			if(busId==b.getBusId()) {
+				busList.remove(b);
+				return 1;
+			}
+		}
+		return 0;
 	}
 
 	@Override
 	public List<Bus> findAllBuses() {
 		// TODO Auto-generated method stub
-		return null;
+		return busList;
 	}
 
 	@Override
-	public Bus findBusById(Integer busId) {
+	public Bus findBusById(BigInteger busId) {
 		// TODO Auto-generated method stub
+		for(Bus b:busList) {
+			if(busId==b.getBusId()) {
+				return b;
+			}
+		}
 		return null;
 	}
 
