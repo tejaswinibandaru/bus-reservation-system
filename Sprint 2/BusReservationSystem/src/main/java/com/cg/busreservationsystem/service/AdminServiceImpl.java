@@ -2,7 +2,9 @@ package com.cg.busreservationsystem.service;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 import com.cg.busreservationsystem.dao.BookingDao;
 import com.cg.busreservationsystem.dao.BookingDaoImpl;
@@ -12,6 +14,7 @@ import com.cg.busreservationsystem.dao.TransactionDao;
 import com.cg.busreservationsystem.dao.TransactionDaoImpl;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Transaction;
+import com.cg.busreservationsystem.exception.BusException;
 
 public class AdminServiceImpl implements AdminService{
 	
@@ -47,6 +50,23 @@ public class AdminServiceImpl implements AdminService{
 	public List<Transaction> getTransactionsByDate(LocalDate date) {
 		// TODO Auto-generated method stub
 		return transactionDao.findTransactionsByDate(date);
+	}
+	
+	public static void validateBusType(int busType) {
+		if(busType < 0 || busType > 1) {
+			 throw new BusException("Wrong bus type");
+		}
+	}
+	
+	public static int checkNumberInput() throws InputMismatchException{
+		Scanner sc=new Scanner(System.in);
+		try {
+			return sc.nextInt();
+		}catch (InputMismatchException e) {
+			// TODO: handle exception
+			throw new InputMismatchException("Wrong input type");
+		}
+		
 	}
 
 }
