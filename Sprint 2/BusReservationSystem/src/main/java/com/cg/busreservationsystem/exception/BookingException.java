@@ -1,5 +1,10 @@
 package com.cg.busreservationsystem.exception;
 
-public class BookingException {
+
+public class BookingException extends Exception{
+	
+	public BookingException(String msg) {
+		super(msg);
+	}
 
 }
