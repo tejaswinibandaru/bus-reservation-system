@@ -75,7 +75,7 @@ public class MyApplication {
 			case 1:
 				//fetch details here
 				System.out.println("Enter the bus name");
-				String busName = scr.nextLine();
+				String busName = scr.next();
 				
 				System.out.println("Enter the bus type, 0 for sleeper, 1 for semi-sleeper");
 				int bt= scr.nextInt();
@@ -105,7 +105,7 @@ public class MyApplication {
 				double costPerSeat = scr.nextDouble();
 
 				
-				Bus bus = new Bus();
+				Bus bus = new Bus(busName, bt, bc, bs, days, source, destination, costPerSeat);
 				adm.addBusDetails(bus);
 				break;
 				
