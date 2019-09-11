@@ -123,7 +123,7 @@ public class MyApplication {
 				System.out.println("Enter the bus cost per seat");
 				double costPerSeat = scr.nextDouble();
 
-				Bus bus = new Bus(BigInteger.valueOf(c++),busName, bt, bc, bs, days, source, destination, costPerSeat);
+				Bus bus = new Bus(BigInteger.valueOf(++c),busName, bt, bc, bs, days, source, destination, costPerSeat);
 				
 				System.out.println(userServ.addBusDetails(bus));
 
@@ -205,12 +205,16 @@ public class MyApplication {
 				System.out.println("Running buses on your day of journey: ");
 				int i=0;
 				for(Bus b:busList) {
-					System.out.println(i+1+" "+b.getBusId()+" "+b.getBusName()+" "+b.getBusType()+" "+b.getBusClass()+" "+b.getCost());
+					System.out.println((i+1)+" "+b.getBusId()+" "+b.getBusName()+" "+b.getBusType()+" "+b.getBusClass()+" "+b.getCost());
 				}
 				System.out.println("Enter the bus Id of the bus you will be travelling: ");
 				BigInteger busId=scr.nextBigInteger();
+				System.out.println(busId);
+				System.out.println(busList.get(0).getBusId());
+				System.out.println(busList.get(1).getBusId());
+				
 				for(Bus b:busList) {
-					if(busId==b.getBusId()) {
+					if(busId.equals(b.getBusId())) {
 						System.out.println("Enter the number of passengers: ");
 						int passengersCount=scr.nextInt();
 						boolean bookingStatus=userServ.checkBusTransaction(date, b, passengersCount);
