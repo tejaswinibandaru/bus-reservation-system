@@ -5,26 +5,31 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.cg.busreservationsystem.dao.*;
-import com.cg.busreservationsystem.dto.*;
-import com.cg.busreservationsystem.exception.*;
-import com.cg.busreservationsystem.service.*;;
+import com.cg.busreservationsystem.dto.Booking;
+import com.cg.busreservationsystem.dto.Bus;
+import com.cg.busreservationsystem.dto.Passenger;
+import com.cg.busreservationsystem.dto.Transaction;
+import com.cg.busreservationsystem.service.UserService;
+import com.cg.busreservationsystem.service.UserServiceImpl;;
 
 public class MyApplication {
 
-	static AdminService adm;
-	static CustomerService cust;
+//	static AdminService adm;
+//	static CustomerService cust;		//static why
+	
+	static UserService userServ;
 
 	public static void main(String[] args) {
 
-		adm = new AdminServiceImpl();
-		cust = new CustomerServiceImpl();
+//		adm = new AdminServiceImpl();
+//		cust = new CustomerServiceImpl();
+		
+		userServ = new UserServiceImpl();
 
 		showType();
 	}
@@ -75,7 +80,7 @@ public class MyApplication {
 					bt= scr.nextInt();
 
 					try {
-						AdminServiceImpl.validateBusType(bt);
+						UserServiceImpl.validateBusType(bt);
 						break;
 					}catch (RuntimeException e) {
 						// TODO: handle exception
@@ -91,7 +96,7 @@ public class MyApplication {
 				while(true) {
 					System.out.println("Enter the no of bus seats");
 					try {
-						bs = AdminServiceImpl.checkNumberInput();
+						bs = UserServiceImpl.checkNumberInput();
 						break;
 					}catch (Exception e) {
 						// TODO: handle exception
@@ -123,11 +128,14 @@ public class MyApplication {
 				Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
 				days.add(DayOfWeek.of(2));
 				days.add(DayOfWeek.of(4));
+
 				Bus bus = new Bus(BigInteger.valueOf(1001),busName, 1,0,33,days,"mum", "del",45.0 );
-				System.out.println(adm.addBusDetails(bus));
+
+				System.out.println(userServ.addBusDetails(bus));
+
 				
 
-				System.out.println(adm.viewBuses());
+				System.out.println(userServ.viewBuses());
 				
 
 				break;
@@ -135,7 +143,7 @@ public class MyApplication {
 			case 2:
 				System.out.println("Enter the bus id to remove");
 				BigInteger busId = scr.nextBigInteger();
-				int removeStatus=adm.removeBusDetails(busId);
+				int removeStatus=userServ.removeBusDetails(busId);
 				if(removeStatus==1) {
 					System.out.println("Bus removed");
 				}
@@ -146,7 +154,7 @@ public class MyApplication {
 			case 3:
 				System.out.println("Enter the bus id to update details: ");
 				busId=scr.nextBigInteger();
-				for(Bus b:adm.viewBuses()) {
+				for(Bus b:userServ.viewBuses()) {
 					if(busId==b.getBusId()) {
 						System.out.println("Update the cost per seat of the bus: ");
 						double cost=scr.nextDouble();
@@ -160,7 +168,7 @@ public class MyApplication {
 				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 				LocalDate date=LocalDate.parse(dateStr,formatter);
 				System.out.println("List of transactions");
-				for(Transaction t: adm.getTransactionsByDate(date)) {
+				for(Transaction t: userServ.getTransactionsByDate(date)) {
 					System.out.println(t.getDate()+" "+t.getBus()+t.getBookings());
 				}
 				break;
@@ -201,7 +209,7 @@ public class MyApplication {
 				//for(int i=0;i<100000;i++);
 				
 				
-				List<Bus> busList=cust.getRunningBuses(date, source, destination);
+				List<Bus> busList=userServ.getRunningBuses(date, source, destination);
 				System.out.println("Running buses on your day of journey: ");
 				int i=0;
 				for(Bus b:busList) {
@@ -213,7 +221,7 @@ public class MyApplication {
 					if(busId==b.getBusId()) {
 						System.out.println("Enter the number of passengers: ");
 						int passengersCount=scr.nextInt();
-						boolean bookingStatus=cust.checkBusTransaction(date, b, passengersCount);
+						boolean bookingStatus=userServ.checkBusTransaction(date, b, passengersCount);
 						if(bookingStatus) {
 							List<Passenger> passengersList=new ArrayList<Passenger>();
 							for(int j=0;j<passengersCount;j++) {
@@ -232,7 +240,7 @@ public class MyApplication {
 							System.out.println("Enter the mode of payment(UPI/DC/CC/NB): ");
 							String paymentMode=scr.next();
 
-							Booking booking=cust.createBooking(passengersList, date, b, paymentMode);
+							Booking booking=userServ.createBooking(passengersList, date, b, paymentMode);
 							System.out.println("Booking details: ");
 							System.out.println(booking.getBookingId()+" "+booking.getDateOfJourney()+" "+booking.getModeOfPayment());
 							System.out.println("List of passengers");
@@ -252,16 +260,16 @@ public class MyApplication {
 				break;
 			case 3:
 				System.out.println("List of your bookings: ");
-				for(Booking b:cust.viewTicketList()) {
+				for(Booking b:userServ.viewTicketList()) {
 					System.out.println(b.getBookingId()+" "+b.getDateOfJourney()+" "+b.getModeOfPayment()+" "+b.getPassengers());
 				}
 				break;
 			case 4:
 				System.out.println("Enter the booking id you want to cancel the booking for: ");
 				BigInteger bookingId=scr.nextBigInteger();
-				for(Booking b:cust.viewTicketList()) {
+				for(Booking b:userServ.viewTicketList()) {
 					if(bookingId==b.getBookingId()) {
-						int cancelStatus=cust.cancelTicket(b);
+						int cancelStatus=userServ.cancelTicket(b);
 						if(cancelStatus==1) {
 							System.out.println("Booking cancelled");
 						}
