@@ -39,8 +39,6 @@ public class CustomerServiceImpl implements CustomerService{
 			9. create booking object by adding remaining details.
 			10. add to list<booking:>
 		 */
-		//DayOfWeek d = b.getDateOfJourney().getDayOfWeek();
-		//getBuses(dateOfJourney, src, dest);
 
 		List<Bus> busList = new ArrayList<Bus>();
 		Set<DayOfWeek> days;

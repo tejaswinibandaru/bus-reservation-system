@@ -45,7 +45,7 @@ public class MyApplication {
 			}
 			System.out.println("Press 1 to continue, 0 to stop");
 			n=scr.nextInt();
-			
+
 		}
 	}
 
@@ -69,23 +69,23 @@ public class MyApplication {
 				String busName = scr.next();
 				int bt=0;
 				while(true) {
-					
-				System.out.println("Enter the bus type, 0 for sleeper, 1 for semi-sleeper");
-				bt= scr.nextInt();
-				
-				try {
-					AdminServiceImpl.validateBusType(bt);
-					break;
-				}catch (RuntimeException e) {
-					// TODO: handle exception
-					System.out.println(e.getMessage());
-					continue;
+
+					System.out.println("Enter the bus type, 0 for sleeper, 1 for semi-sleeper");
+					bt= scr.nextInt();
+
+					try {
+						AdminServiceImpl.validateBusType(bt);
+						break;
+					}catch (RuntimeException e) {
+						// TODO: handle exception
+						System.out.println(e.getMessage());
+						continue;
+					}
 				}
-				}
-				
+
 				System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
 				int bc= scr.nextInt();
-				
+
 				int bs;
 				while(true) {
 					System.out.println("Enter the no of bus seats");
@@ -98,7 +98,7 @@ public class MyApplication {
 						continue;
 					}
 				}
-				
+
 				System.out.println("Enter the no of days of the week on which day the bus will run");
 				int noOfDays=scr.nextInt();
 				Set<DayOfWeek> days=new TreeSet<DayOfWeek>();
@@ -107,22 +107,22 @@ public class MyApplication {
 					int day=scr.nextInt();
 					days.add(DayOfWeek.of(day));
 				}
-				
+
 				System.out.println("Enter the bus source");
 				String source = scr.next();
-				
+
 				System.out.println("Enter the bus destination");
 				String destination = scr.next();
-				
+
 				System.out.println("Enter the bus cost per seat");
 				double costPerSeat = scr.nextDouble();
 
-				
+
 				Bus bus = new Bus(busName, bt, bc, bs, days, source, destination, costPerSeat);
 				System.out.println(adm.addBusDetails(bus));
-				
+
 				break;
-				
+
 			case 2:
 				System.out.println("Enter the bus id to remove");
 				BigInteger busId = scr.nextBigInteger();
@@ -156,7 +156,7 @@ public class MyApplication {
 			System.out.println("Press 1 to continue, 0 to exit");
 			n=scr.nextInt();
 		}
-		
+
 	}
 
 	static void custMenu() {
@@ -169,10 +169,10 @@ public class MyApplication {
 			System.out.println("Press 3 for Viewing Bookings List");
 			System.out.println("Press 4 for Cancelling a Ticket");
 			System.out.println("Press 5 for Editing Personal Details");
-			
+
 			System.out.println("Enter your choice: ");
 			choice=scr.nextInt();
-			
+
 			switch (choice) {
 			case 1:
 				System.out.println("Enter your date of journey(DD-MM-YYYY):" );
@@ -183,6 +183,7 @@ public class MyApplication {
 				String source=scr.next();
 				System.out.println("Enter your destination: ");
 				String destination=scr.next();
+				for(int i=0;i<10000;i++);
 				List<Bus> busList=cust.getRunningBuses(date, source, destination);
 				System.out.println("Running buses on your day of journey: ");
 				int i=0;
@@ -213,7 +214,7 @@ public class MyApplication {
 							}
 							System.out.println("Enter the mode of payment(UPI/DC/CC/NB): ");
 							String paymentMode=scr.next();
-							
+
 							Booking booking=cust.createBooking(passengersList, date, b, paymentMode);
 							System.out.println("Booking details: ");
 							System.out.println(booking.getBookingId()+" "+booking.getDateOfJourney()+" "+booking.getModeOfPayment());
@@ -228,7 +229,7 @@ public class MyApplication {
 						}
 					}	
 				}
-				
+
 				break;
 			case 2:
 				break;
@@ -261,7 +262,7 @@ public class MyApplication {
 			}
 			System.out.println("Press 1 to continue, 0 to exit");
 			n=scr.nextInt();
-			
+
 		}
 
 	}
