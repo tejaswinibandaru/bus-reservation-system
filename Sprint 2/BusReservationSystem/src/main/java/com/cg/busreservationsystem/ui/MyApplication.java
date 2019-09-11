@@ -190,10 +190,13 @@ public class MyApplication {
 					}
 					else {
 						System.out.println("Bus is full. Can't proceed with booking");
+						continue;
 					}
 				}
 				
 				break;
+			case 2:
+				
 
 			default:
 				break;
