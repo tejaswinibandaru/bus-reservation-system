@@ -30,23 +30,30 @@ public class MyApplication {
 	}
 
 	static void showType() {
-		System.out.println("Select 1 for Admin");
-		System.out.println("Select 2 for Customer");
-		Scanner scr = new Scanner(System.in);
-		int choice = scr.nextInt();
-		if(choice==1)
-		{
-			adminMenu();
-		}
-		else if(choice==2){
-			custMenu();
+		int n=1;
+		while(n!=0) {
+			System.out.println("Select 1 for Admin");
+			System.out.println("Select 2 for Customer");
+			Scanner scr = new Scanner(System.in);
+			int choice = scr.nextInt();
+			if(choice==1)
+			{
+				adminMenu();
+			}
+			else if(choice==2){
+				custMenu();
+			}
+			System.out.println("Press 1 to continue, 0 to stop");
+			n=scr.nextInt();
+			
 		}
 	}
 
 	static void adminMenu() {
 		Scanner scr = new Scanner(System.in);
 		int choice=0;
-		while(choice<6) {
+		int n=1;
+		while(n!=0) {
 			System.out.println("Press 1 for Adding Bus Details");
 			System.out.println("Press 2 for Removing Bus Details");
 			System.out.println("Press 3 for Modifying Bus Details");
@@ -121,14 +128,42 @@ public class MyApplication {
 				BigInteger busId = scr.nextBigInteger();
 				adm.removeBusDetails(busId);
 				break;
+			case 3:
+				System.out.println("Enter the bus id to update details: ");
+				busId=scr.nextBigInteger();
+				for(Bus b:adm.viewBuses()) {
+					if(busId==b.getBusId()) {
+						System.out.println("Update the cost per seat of the bus: ");
+						double cost=scr.nextDouble();
+						b.setCost(cost);
+					}
+				}
+				break;
+			case 4:
+				System.out.println("Enter the date(DD-MM-YYYY):" );
+				String dateStr=scr.next();
+				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date=LocalDate.parse(dateStr,formatter);
+				System.out.println("List of transactions");
+				for(Transaction t: adm.getTransactionsByDate(date)) {
+					System.out.println(t.getDate()+" "+t.getBus()+t.getBookings());
+				}
+				break;
+			case 5:
+				System.out.println("You cannot edit your personal details. System is under maintenance");
+				break;
 			}
+			System.out.println("Press 1 to continue, 0 to exit");
+			n=scr.nextInt();
 		}
+		
 	}
 
 	static void custMenu() {
 		Scanner scr=new Scanner(System.in);
 		int choice=0;
-		while(choice<6) {
+		int n=1;
+		while(n!=0) {
 			System.out.println("Press 1 to Booking a Ticket");
 			System.out.println("Press 2 for Viewing a Booking");
 			System.out.println("Press 3 for Viewing Bookings List");
@@ -142,7 +177,7 @@ public class MyApplication {
 			case 1:
 				System.out.println("Enter your date of journey(DD-MM-YYYY):" );
 				String dateStr=scr.next();
-				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("DD-MM-YYYY");
+				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 				LocalDate date=LocalDate.parse(dateStr,formatter);
 				System.out.println("Enter your source: ");
 				String source=scr.next();
@@ -224,6 +259,8 @@ public class MyApplication {
 			default:
 				break;
 			}
+			System.out.println("Press 1 to continue, 0 to exit");
+			n=scr.nextInt();
 			
 		}
 
