@@ -44,8 +44,8 @@ public class CustomerServiceImpl implements CustomerService{
 		Set<DayOfWeek> days;
 		DayOfWeek d = dateOfJourney.getDayOfWeek();
 		System.out.println(d);
-		System.out.println(((adminServ.busDao).findAllBuses()));
-		for (Bus bus : ((adminServ.busDao).findAllBuses())) {
+		System.out.println(adminServ.viewBuses());
+		for (Bus bus : (adminServ.viewBuses())) {
 			days = bus.getDayOfJourney();
 			if(days.contains(d)) {
 				if((bus.getSource().equalsIgnoreCase(src)) && bus.getDestination().equalsIgnoreCase(dest))
