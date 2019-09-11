@@ -118,8 +118,9 @@ public class UserServiceImpl implements UserService {
 			trans = new Transaction();
 			trans.setBus(bus);
 			trans.setDate(dateOfJourney);
-			System.out.println(trans.getBus());
-			
+			transactionDao.getTransactionList().add(trans);
+			//System.out.println(trans.getBus());
+
 			System.out.println(trans.getAvailableSeats()+" is num of available seats");
 			if(trans.getAvailableSeats()>=noOfPassengers)
 				return true;
@@ -137,7 +138,7 @@ public class UserServiceImpl implements UserService {
 								return true;
 				}
 			}
-			
+
 		}
 		return false;
 	}
@@ -150,7 +151,13 @@ public class UserServiceImpl implements UserService {
 		for (Transaction transaction : listTransactions) {
 			if(transaction.getDate().equals(dateOfJourney))
 			{
-				transaction.getBookings().add(b);
+				if(transaction.getBus().equals(bus))
+				{
+					int index=(transactionDao.getTransactionList().indexOf(transaction));
+					boolean booked =transactionDao.getTransactionList().get(index).getBookings().add(b);
+					System.out.println(bookingDao.saveBooking(b));
+					System.out.println(booked);
+				}
 			}
 		}
 		return b;
