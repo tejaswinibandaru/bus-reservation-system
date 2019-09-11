@@ -10,7 +10,7 @@ public class Booking {
 	private BigInteger bookingId;
 	private LocalDate dateOfJourney;
 	private Bus bus;
-	private ArrayList<Passenger> passengers;
+	private List<Passenger> passengers;
 	private String modeOfPayment;
 	private Double totalCost;
 	
@@ -20,8 +20,7 @@ public class Booking {
 		
 	}
 
-	public Booking(LocalDate dateOfJourney, Bus bus, List<Passenger> passengerList,
-			String modeOfPayment) {
+	public Booking(LocalDate dateOfJourney, Bus bus, List<Passenger> passengerList,String modeOfPayment) {
 		super();
 		idCounter.add(BigInteger.valueOf(1L));
 		
@@ -57,7 +56,7 @@ public class Booking {
 		this.bus = bus;
 	}
 
-	public ArrayList<Passenger> getPassengers() {
+	public List<Passenger> getPassengers() {
 		return passengers;
 	}
 
