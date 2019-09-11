@@ -18,9 +18,9 @@ import com.cg.busreservationsystem.exception.BusException;
 
 public class AdminServiceImpl implements AdminService{
 	
-	BusDao busDao = new BusDaoImpl();
+	public BusDao busDao = new BusDaoImpl();
 	//BookingDao bookingDao = new BookingDaoImpl();
-	TransactionDaoImpl transactionDao = new TransactionDaoImpl();	//transDao in CSI
+	public TransactionDaoImpl transactionDao = new TransactionDaoImpl();	//transDao in CSI
 
 	@Override
 	public Bus addBusDetails(Bus bus) {

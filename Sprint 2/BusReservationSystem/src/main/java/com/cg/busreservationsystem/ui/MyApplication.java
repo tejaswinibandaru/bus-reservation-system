@@ -120,13 +120,20 @@ public class MyApplication {
 				
 				Bus bus = new Bus(busName, bt, bc, bs, days, source, destination, costPerSeat);
 				System.out.println(adm.addBusDetails(bus));
+				System.out.println(adm.viewBuses());
 				
 				break;
 				
 			case 2:
 				System.out.println("Enter the bus id to remove");
 				BigInteger busId = scr.nextBigInteger();
-				adm.removeBusDetails(busId);
+				int removeStatus=adm.removeBusDetails(busId);
+				if(removeStatus==1) {
+					System.out.println("Bus removed");
+				}
+				else {
+					System.out.println("Id not found");
+				}
 				break;
 			case 3:
 				System.out.println("Enter the bus id to update details: ");
