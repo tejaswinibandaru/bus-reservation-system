@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -172,7 +173,7 @@ public class MyApplication {
 				System.out.println("Running buses on your day of journey: ");
 				int i=0;
 				for(Bus b:busList) {
-					System.out.println(i+1+" "+b.getBusId()+" "+b.getBusName()+" "+b.getBusType()+" "+b.getBusClass());
+					System.out.println(i+1+" "+b.getBusId()+" "+b.getBusName()+" "+b.getBusType()+" "+b.getBusClass()+" "+b.getCost());
 				}
 				System.out.println("Enter the bus Id of the bus you will be travelling: ");
 				BigInteger busId=scr.nextBigInteger();
@@ -182,8 +183,34 @@ public class MyApplication {
 						int passengersCount=scr.nextInt();
 						boolean bookingStatus=cust.checkBusTransaction(date, b, passengersCount);
 						if(bookingStatus) {
-							System.out.println(bookingStatus);
+							List<Passenger> passengersList=new ArrayList<Passenger>();
+							for(int j=0;j<passengersCount;j++) {
+								System.out.println("Enter Passenger "+j+1+" details: ");
+								Passenger p=new Passenger();
+								System.out.println("Name: ");
+								String passengerName=scr.next();
+								p.setPassengerName(passengerName);
+								int passengerAge=scr.nextInt();
+								p.setPassengerAge(passengerAge);
+								System.out.println("Gender(M/F)");
+								char passengerGender=scr.next().charAt(0);
+								p.setPassengerGender(passengerGender);
+								passengersList.add(p);
+							}
+							System.out.println("Enter the mode of payment(UPI/DC/CC/NB): ");
+							String paymentMode=scr.next();
+							
+							Booking booking=cust.createBooking(passengersList, date, b, paymentMode);
+							System.out.println("Booking details: ");
+							System.out.println(booking.getBookingId()+" "+booking.getDateOfJourney()+" "+booking.getModeOfPayment());
+							System.out.println("List of passengers");
+							for(Passenger p:booking.getPassengers()) {
+								System.out.println(p.getPassengerName()+" "+p.getPassengerAge()+" "+p.getPassengerGender());
+							}
 						}
+					}
+					else {
+						System.out.println("Bus is full. Can't proceed with booking");
 					}
 				}
 				
