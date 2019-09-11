@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cg.busreservationsystem.dto.Bus;
-import com.cg.busreservationsystem.exception.BusException;
 
 public class BusDaoImpl implements BusDao{
 	

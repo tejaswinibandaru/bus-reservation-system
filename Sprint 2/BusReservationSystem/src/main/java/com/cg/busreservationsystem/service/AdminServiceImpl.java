@@ -6,11 +6,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import com.cg.busreservationsystem.dao.BookingDao;
-import com.cg.busreservationsystem.dao.BookingDaoImpl;
 import com.cg.busreservationsystem.dao.BusDao;
 import com.cg.busreservationsystem.dao.BusDaoImpl;
-import com.cg.busreservationsystem.dao.TransactionDao;
 import com.cg.busreservationsystem.dao.TransactionDaoImpl;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Transaction;
