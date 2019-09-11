@@ -44,6 +44,7 @@ public class CustomerServiceImpl implements CustomerService{
 		Set<DayOfWeek> days;
 		DayOfWeek d = dateOfJourney.getDayOfWeek();
 		System.out.println(d);
+		System.out.println(((adminServ.busDao).findAllBuses()));
 		for (Bus bus : ((adminServ.busDao).findAllBuses())) {
 			days = bus.getDayOfJourney();
 			if(days.contains(d)) {

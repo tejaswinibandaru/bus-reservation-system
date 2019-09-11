@@ -68,6 +68,7 @@ public class MyApplication {
 				System.out.println("Enter the bus name");
 				String busName = scr.next();
 				int bt=0;
+				/*
 				while(true) {
 
 					System.out.println("Enter the bus type, 0 for sleeper, 1 for semi-sleeper");
@@ -117,15 +118,18 @@ public class MyApplication {
 				System.out.println("Enter the bus cost per seat");
 				double costPerSeat = scr.nextDouble();
 
-
-				Bus bus = new Bus(busName, bt, bc, bs, days, source, destination, costPerSeat);
+				*/
+				//Bus bus = new Bus(busName, bt, bc, bs, days, source, destination, costPerSeat);
+				Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
+				days.add(DayOfWeek.of(2));
+				days.add(DayOfWeek.of(4));
+				Bus bus = new Bus(busName, 1,0,33,days,"mum", "del",45.0 );
 				System.out.println(adm.addBusDetails(bus));
-<<<<<<< HEAD
+				
 
-=======
 				System.out.println(adm.viewBuses());
 				
->>>>>>> branch 'master' of https://github.com/tejaswinibandaru/bus-reservation-system
+
 				break;
 
 			case 2:
@@ -194,7 +198,9 @@ public class MyApplication {
 				String source=scr.next();
 				System.out.println("Enter your destination: ");
 				String destination=scr.next();
-				for(int i=0;i<10000;i++);
+				//for(int i=0;i<100000;i++);
+				
+				
 				List<Bus> busList=cust.getRunningBuses(date, source, destination);
 				System.out.println("Running buses on your day of journey: ");
 				int i=0;
