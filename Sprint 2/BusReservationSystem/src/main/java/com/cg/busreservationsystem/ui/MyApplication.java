@@ -140,10 +140,10 @@ public class MyApplication {
 			
 			switch (choice) {
 			case 1:
-				System.out.println("Enter your date of journey(DD/MM/YYYY):" );
+				System.out.println("Enter your date of journey(DD-MM-YYYY):" );
 				String dateStr=scr.next();
-				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("DD/MM/YYYY");
-				LocalDate date=LocalDate.parse(dateStr, formatter);
+				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("DD-MM-YYYY");
+				LocalDate date=LocalDate.parse(dateStr,formatter);
 				System.out.println("Enter your source: ");
 				String source=scr.next();
 				System.out.println("Enter your destination: ");
@@ -196,8 +196,31 @@ public class MyApplication {
 				
 				break;
 			case 2:
-				
-
+				break;
+			case 3:
+				System.out.println("List of your bookings: ");
+				for(Booking b:cust.viewTicketList()) {
+					System.out.println(b.getBookingId()+" "+b.getDateOfJourney()+" "+b.getModeOfPayment()+" "+b.getPassengers());
+				}
+				break;
+			case 4:
+				System.out.println("Enter the booking id you want to cancel the booking for: ");
+				BigInteger bookingId=scr.nextBigInteger();
+				for(Booking b:cust.viewTicketList()) {
+					if(bookingId==b.getBookingId()) {
+						int cancelStatus=cust.cancelTicket(b);
+						if(cancelStatus==1) {
+							System.out.println("Booking cancelled");
+						}
+						else {
+							System.out.println("Error in cancelling the booking");
+						}
+					}
+				}
+				break;
+			case 5:
+				System.out.println("You cannot edit your personal details. System is under maintenance");
+				break;
 			default:
 				break;
 			}
