@@ -79,10 +79,21 @@ public class MyApplication {
 						continue;
 					}
 				}
-
+				
+				int busClass=0;
+				/*while(true) {
+					
 				System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
-				int busClass = scanner.nextInt();
-
+			    busClass = scanner.nextInt();
+				try {
+					UserServiceImpl.validateBusClass(busClass);
+					break;
+				} catch (RuntimeException e) {
+					// TODO: handle exception
+					System.out.println(e.getMessage());
+					continue;
+				}
+				}*/
 				int busSeats;
 				while (true) {
 					System.out.println("Enter the no of bus seats");
@@ -104,13 +115,23 @@ public class MyApplication {
 					int day = scanner.nextInt();
 					days.add(DayOfWeek.of(day));
 				}
-
+				/*String source;
+				String destination;
+				while(true) {
 				System.out.println("Enter the bus source");
-				String source = scanner.next();
+				source = scanner.next();
 
 				System.out.println("Enter the bus destination");
-				String destination = scanner.next();
-
+				destination = scanner.next();
+				try {
+					UserServiceImpl.validateTravel(source, destination);
+					break;
+				}catch(Exception e) {
+					System.out.println(e.getMessage());
+					continue;
+				}
+				}*/
+				
 				System.out.println("Enter the bus cost per seat");
 				double costPerSeat = scanner.nextDouble();
 

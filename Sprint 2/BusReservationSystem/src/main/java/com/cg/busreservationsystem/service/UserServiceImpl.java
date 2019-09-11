@@ -61,7 +61,18 @@ public class UserServiceImpl implements UserService {
 			throw new BusException("Wrong bus type");
 		}
 	}
+	
+	public static void validateBusClass(int busClass) {
+		if(busClass < 0 || busClass > 1) {
+			throw new BusException("Wrong bus class");
+		}
+	}
 
+	public static void validateTravel(String source, String destination) throws BusException{
+		if(source.equals(destination)) {
+			throw new BusException("source and destination cannot be same");
+		}
+	}
 	public static int checkNumberInput() throws InputMismatchException{
 		Scanner sc=new Scanner(System.in);
 		try {
