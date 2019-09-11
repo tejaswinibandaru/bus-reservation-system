@@ -38,8 +38,9 @@ public class BusDaoImpl implements BusDao{
 	@Override
 	public Bus findBusById(BigInteger busId) {
 		// TODO Auto-generated method stub
+		
 		for(Bus b:busList) {
-			if(busId==b.getBusId()) {
+			if(busId.equals(b.getBusId())) {
 				return b;
 			}
 		}

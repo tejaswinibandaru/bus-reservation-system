@@ -23,6 +23,7 @@ public class MyApplication {
 //	static CustomerService cust;		//static why
 	
 	static UserService userServ;
+	static int c=0;
 
 	public static void main(String[] args) {
 
@@ -129,11 +130,9 @@ public class MyApplication {
 				days.add(DayOfWeek.of(2));
 				days.add(DayOfWeek.of(4));
 
-				Bus bus = new Bus(BigInteger.valueOf(1001),busName, 1,0,33,days,"mum", "del",45.0 );
+				Bus bus = new Bus(BigInteger.valueOf(++c),busName, 1,0,33,days,"mum", "del",45.0 );
 
 				System.out.println(userServ.addBusDetails(bus));
-
-				
 
 				System.out.println(userServ.viewBuses());
 				
@@ -155,7 +154,7 @@ public class MyApplication {
 				System.out.println("Enter the bus id to update details: ");
 				busId=scr.nextBigInteger();
 				for(Bus b:userServ.viewBuses()) {
-					if(busId==b.getBusId()) {
+					if(busId.equals(b.getBusId())) {
 						System.out.println("Update the cost per seat of the bus: ");
 						double cost=scr.nextDouble();
 						b.setCost(cost);
