@@ -33,12 +33,15 @@ public class Transaction {
 	public Integer getAvailableSeats() {
 		availableSeats=bus.getNoOfSeats();
 		int occupied=0;
+		if(bookings!=null) {
 		for (Booking booking : bookings) {
 			occupied+=booking.getPassengers().size();
 			
 		}
 		availableSeats=availableSeats-occupied;
+		}
 		return availableSeats;
+		
 	}
 
 	public void setAvailableSeats(Integer availableSeats) {
