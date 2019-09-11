@@ -21,7 +21,7 @@ import com.cg.busreservationsystem.dto.Transaction;
 import com.cg.busreservationsystem.exception.BusException;
 
 public class UserServiceImpl implements UserService {
-	
+
 	public BusDao busDao = new BusDaoImpl();
 	public BookingDao bookingDao = new BookingDaoImpl();
 	public TransactionDaoImpl transactionDao = new TransactionDaoImpl();
@@ -55,13 +55,13 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return transactionDao.findTransactionsByDate(date);
 	}
-	
+
 	public static void validateBusType(int busType) {
 		if(busType < 0 || busType > 1) {
-			 throw new BusException("Wrong bus type");
+			throw new BusException("Wrong bus type");
 		}
 	}
-	
+
 	public static int checkNumberInput() throws InputMismatchException{
 		Scanner sc=new Scanner(System.in);
 		try {
@@ -70,10 +70,10 @@ public class UserServiceImpl implements UserService {
 			// TODO: handle exception
 			throw new InputMismatchException("Wrong input type");
 		}
-		
+
 	}
-	
-	
+
+
 	public List<Bus> getRunningBuses(LocalDate dateOfJourney, String src, String dest) {	//change method [parameters
 		// TODO Auto-generated method stub
 		/*Steps :
@@ -101,31 +101,48 @@ public class UserServiceImpl implements UserService {
 				if((bus.getSource().equalsIgnoreCase(src)) && bus.getDestination().equalsIgnoreCase(dest))
 					busList.add(bus);
 			}
-			
+
 		}
 		return busList;
 	}
 
-	
+
 
 	@Override
 	public boolean checkBusTransaction(LocalDate dateOfJourney, Bus bus, Integer noOfPassengers) {
 		// TODO Auto-generated method stub
-		List<Transaction> listTransaction = (transactionDao).getTransactionList();
-		for (Transaction transaction : listTransaction) {
-			for (Booking booking : transaction.getBookings()) {
-				if(booking.getBus().equals(bus))
-					if(booking.getDateOfJourney().equals(dateOfJourney))
-						if(transaction.getAvailableSeats()>=noOfPassengers)
-							return true;
+		Transaction trans;
+		List<Transaction> listTransaction = transactionDao.getTransactionList();
+		if(listTransaction.isEmpty()) {
+			System.out.println("transaction list is empty");
+			trans = new Transaction();
+			trans.setBus(bus);
+			trans.setDate(dateOfJourney);
+			System.out.println(trans.getAvailableSeats()+" is num of available seats");
+			if(trans.getAvailableSeats()>=noOfPassengers)
+				return true;
+			else
+				return false;
+		}
+		else {
+			System.out.println("transaction list is not empty");
+			for (Transaction transaction : listTransaction) {
+				for (Booking booking : transaction.getBookings()) {
+					System.out.println("booking id is found to be"+booking.getBookingId());
+					if(booking.getBus().equals(bus))
+						if(booking.getDateOfJourney().equals(dateOfJourney))
+							if(transaction.getAvailableSeats()>=noOfPassengers)
+								return true;
+				}
 			}
+			
 		}
 		return false;
 	}
 
-	
+
 	public Booking createBooking(List<Passenger> passengerList, LocalDate dateOfJourney, Bus bus, String modeOfPayment) {
-		
+
 		Booking b = new Booking(dateOfJourney, bus, passengerList, modeOfPayment);
 		List<Transaction> listTransactions = (transactionDao).getTransactionList();
 		for (Transaction transaction : listTransactions) {
@@ -135,7 +152,7 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return b;
-		
+
 	}
 
 
@@ -146,7 +163,7 @@ public class UserServiceImpl implements UserService {
 		for (Booking booking : bookingDao.findAllBookings()) {
 			if(booking.getDateOfJourney().equals(date))
 				listBooking.add(booking);
-			
+
 		}
 		return listBooking;
 	}
@@ -165,10 +182,10 @@ public class UserServiceImpl implements UserService {
 		return bookingDao.findAllBookings();
 	}
 
-/*	@Override
+	/*	@Override
 	public Passenger addPassenger(Passenger passenger) {
 		// TODO Auto-generated method stub
-		
+
 		return null;
 	}*/
 
@@ -178,5 +195,5 @@ public class UserServiceImpl implements UserService {
 		return bookingDao.findAllPassengers();
 	}
 
-	
+
 }
