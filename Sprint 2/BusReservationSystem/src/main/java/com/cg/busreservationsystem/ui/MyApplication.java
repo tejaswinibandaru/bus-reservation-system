@@ -201,7 +201,7 @@ public class MyApplication {
 				//for(int i=0;i<100000;i++);
 				
 				
-				List<Bus> busList=cust.getRunningBuses(date, source, destination);
+				List<Bus> busList=cust.getRunningBuses(adm,date, source, destination);
 				System.out.println("Running buses on your day of journey: ");
 				int i=0;
 				for(Bus b:busList) {

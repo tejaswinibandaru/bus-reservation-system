@@ -22,9 +22,9 @@ public class CustomerServiceImpl implements CustomerService{
 	//BusDao busDao = new BusDaoImpl();
 	BookingDao bookingDao = new BookingDaoImpl();
 	//TransactionDao transactionDao = new TransactionDaoImpl();
-	AdminServiceImpl adminServ = new AdminServiceImpl();
+	AdminServiceImpl adminServ;// = new AdminServiceImpl();
 	@Override
-	public List<Bus> getRunningBuses(LocalDate dateOfJourney, String src, String dest) {	//change method [parameters
+	public List<Bus> getRunningBuses(AdminServiceImpl adm, LocalDate dateOfJourney, String src, String dest) {	//change method [parameters
 		// TODO Auto-generated method stub
 		/*Steps :
 			1. Input Date, Src, Destination
@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService{
 			9. create booking object by adding remaining details.
 			10. add to list<booking:>
 		 */
-
+		adminServ = adm;
 		List<Bus> busList = new ArrayList<Bus>();
 		Set<DayOfWeek> days;
 		DayOfWeek d = dateOfJourney.getDayOfWeek();

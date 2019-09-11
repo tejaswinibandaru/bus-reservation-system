@@ -8,7 +8,7 @@ import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
 
 public interface CustomerService {
-	public List<Bus> getRunningBuses(LocalDate dateOfJourney, String src, String dest);
+	public List<Bus> getRunningBuses(AdminServiceImpl adm,LocalDate dateOfJourney, String src, String dest);
 
 	public boolean checkBusTransaction(LocalDate dateOfJourney, Bus bus, Integer noOfPassengers);
 
