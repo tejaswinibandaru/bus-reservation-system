@@ -222,11 +222,11 @@ public class MyApplication {
 								System.out.println(p.getPassengerName()+" "+p.getPassengerAge()+" "+p.getPassengerGender());
 							}
 						}
-					}
-					else {
-						System.out.println("Bus is full. Can't proceed with booking");
-						continue;
-					}
+						else {
+							System.out.println("Bus is full. Can't proceed with booking");
+							continue;
+						}
+					}	
 				}
 				
 				break;
