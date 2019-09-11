@@ -74,7 +74,6 @@ public class MyApplication {
 				System.out.println("Enter the bus name");
 				String busName = scr.next();
 				int bt=0;
-				/*
 				while(true) {
 
 					System.out.println("Enter the bus type, 0 for sleeper, 1 for semi-sleeper");
@@ -124,14 +123,8 @@ public class MyApplication {
 				System.out.println("Enter the bus cost per seat");
 				double costPerSeat = scr.nextDouble();
 
-				*/
-				//Bus bus = new Bus(busName, bt, bc, bs, days, source, destination, costPerSeat);
-				Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
-				days.add(DayOfWeek.of(2));
-				days.add(DayOfWeek.of(4));
-
-				Bus bus = new Bus(BigInteger.valueOf(++c),busName, 1,0,33,days,"mum", "del",45.0 );
-
+				Bus bus = new Bus(BigInteger.valueOf(c++),busName, bt, bc, bs, days, source, destination, costPerSeat);
+				
 				System.out.println(userServ.addBusDetails(bus));
 
 				System.out.println(userServ.viewBuses());
