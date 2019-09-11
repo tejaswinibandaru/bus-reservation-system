@@ -123,7 +123,7 @@ public class MyApplication {
 				Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
 				days.add(DayOfWeek.of(2));
 				days.add(DayOfWeek.of(4));
-				Bus bus = new Bus(busName, 1,0,33,days,"mum", "del",45.0 );
+				Bus bus = new Bus(BigInteger.valueOf(1001),busName, 1,0,33,days,"mum", "del",45.0 );
 				System.out.println(adm.addBusDetails(bus));
 				
 

@@ -17,19 +17,17 @@ public class Bus {
 	private String destination;
 	private Double cost;
 	
-	static BigInteger idCounter= BigInteger.valueOf(1000L);
 	
 	public Bus() {
 		
 	}
 	
 	
-	public Bus(String busName, int busType, int busClass, Integer noOfSeats,
+	public Bus(BigInteger busId,String busName, int busType, int busClass, Integer noOfSeats,
 			Set<DayOfWeek> dayOfJourney, String source, String destination, Double cost) {
 		super();
-		idCounter.add(BigInteger.valueOf(1L));
 		
-		this.busId = idCounter;
+		this.busId = busId;
 		this.busName = busName;
 		this.busType = busTypeList[busType];
 		this.busClass = busClassList[busClass];

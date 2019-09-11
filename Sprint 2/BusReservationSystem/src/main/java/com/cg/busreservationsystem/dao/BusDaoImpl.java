@@ -22,13 +22,12 @@ public class BusDaoImpl implements BusDao{
 	@Override
 	public Integer removeBus(BigInteger busId) {
 		// TODO Auto-generated method stub
-		for(Bus b:busList) {
-			if(busId==b.getBusId()) {
-				busList.remove(b);
-				return 1;
-			}
+		Bus b=this.findBusById(busId);
+		if(b==null) {
+			return 0;
 		}
-		return 0;
+		busList.remove(b);
+		return 1;
 	}
 
 	@Override
