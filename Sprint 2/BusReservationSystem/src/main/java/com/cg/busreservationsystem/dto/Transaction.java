@@ -31,6 +31,11 @@ public class Transaction {
 	}
 
 	public Integer getAvailableSeats() {
+		availableSeats=0;
+		for (Booking booking : bookings) {
+			availableSeats+=booking.getPassengers().size();
+			
+		}
 		return availableSeats;
 	}
 
