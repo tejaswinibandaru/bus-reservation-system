@@ -15,24 +15,19 @@ public class BookingDaoImpl implements BookingDao{
 	@Override
 	public Booking saveBooking(Booking booking) {
 		// TODO Auto-generated method stub
-		for(Booking book:bookingsList) {
-			if(book.getBookingId()==booking.getBookingId()) {
-				bookingsList.set(bookingsList.indexOf(book), booking);
-			}
-		}
+		bookingsList.add(booking);
 		return booking;
 	}
 
 	@Override
 	public Integer removeBooking(BigInteger bookingId) {
 		// TODO Auto-generated method stub
-		for(Booking book:bookingsList) {
-			if(bookingId==book.getBookingId()) {
-				bookingsList.remove(book);
-				return 1;
-			}
+		Booking b=this.findBookingById(bookingId);
+		if(b==null) {
+			return 0;
 		}
-		return 0;
+		bookingsList.remove(b);
+		return 1;
 	}
 
 	@Override
@@ -45,7 +40,7 @@ public class BookingDaoImpl implements BookingDao{
 	public Booking findBookingById(BigInteger bookingId) {
 		// TODO Auto-generated method stub
 		for(Booking book:bookingsList) {
-			if(bookingId==book.getBookingId()) {
+			if(book.getBookingId().equals(bookingId)) {
 				return book;
 			}
 		}
