@@ -118,6 +118,8 @@ public class UserServiceImpl implements UserService {
 			trans = new Transaction();
 			trans.setBus(bus);
 			trans.setDate(dateOfJourney);
+			System.out.println(trans.getBus());
+			
 			System.out.println(trans.getAvailableSeats()+" is num of available seats");
 			if(trans.getAvailableSeats()>=noOfPassengers)
 				return true;

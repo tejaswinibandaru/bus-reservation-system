@@ -31,11 +31,13 @@ public class Transaction {
 	}
 
 	public Integer getAvailableSeats() {
-		availableSeats=0;
+		availableSeats=bus.getNoOfSeats();
+		int occupied=0;
 		for (Booking booking : bookings) {
-			availableSeats+=booking.getPassengers().size();
+			occupied+=booking.getPassengers().size();
 			
 		}
+		availableSeats=availableSeats-occupied;
 		return availableSeats;
 	}
 
