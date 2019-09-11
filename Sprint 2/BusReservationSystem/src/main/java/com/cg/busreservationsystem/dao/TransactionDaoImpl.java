@@ -23,14 +23,7 @@ public class TransactionDaoImpl implements TransactionDao{
 	@Override
 	public Transaction saveTransaction(Transaction transaction) {
 		// TODO Auto-generated method stub
-		for(Transaction t: transactionList) {
-			if(t.getDate()==transaction.getDate() && t.getBus()==transaction.getBus()) {
-				transactionList.set(transactionList.indexOf(t), transaction);
-			}
-		}
-		if(!transactionList.contains(transaction)) {
-			transactionList.add(transaction);
-		}
+		transactionList.add(transaction);
 		return transaction;
 	}
 
@@ -38,8 +31,8 @@ public class TransactionDaoImpl implements TransactionDao{
 	public Integer removeTransaction(Bus bus) {
 		// TODO Auto-generated method stub
 		for(Transaction t:transactionList) {
-			if(t.getBus()==bus) {
-				transactionList.remove(bus);
+			if(bus.equals(t.getBus())) {
+				transactionList.remove(t);
 				return 1;
 			}
 		}
