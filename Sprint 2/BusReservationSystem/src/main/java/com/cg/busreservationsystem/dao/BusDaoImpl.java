@@ -15,14 +15,7 @@ public class BusDaoImpl implements BusDao{
 	@Override
 	public Bus saveBus(Bus bus){
 		// TODO Auto-generated method stub
-		for(Bus b:busList) {
-			if(bus.getBusId()==b.getBusId()) {
-				busList.set(busList.indexOf(b), bus);
-			}
-		}
-		if(!busList.contains(bus)) {
-			busList.add(bus);
-		}
+		busList.add(bus);
 		return bus;
 	}
 
