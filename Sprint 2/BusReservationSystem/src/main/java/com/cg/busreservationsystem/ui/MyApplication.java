@@ -50,6 +50,7 @@ public class MyApplication {
 	}
 
 	static void adminMenu() {
+		validation=new Validation();
 		Scanner scanner = new Scanner(System.in);
 		int choice = 0;
 		int runLoop = 1;
@@ -106,13 +107,25 @@ public class MyApplication {
 					int day = scanner.nextInt();
 					days.add(DayOfWeek.of(day));
 				}
-
+				
+				String source ;
+				String destination;
+				while(true) {
+					
 				System.out.println("Enter the bus source");
-				String source = scanner.next();
+				source = scanner.next();
 
 				System.out.println("Enter the bus destination");
-				String destination = scanner.next();
-
+			    destination = scanner.next();
+				try {
+					validation.validateTravel(source,destination);
+					break;
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("Exception occured:" +e.getMessage());
+					continue;
+				}
+				}
 				System.out.println("Enter the bus cost per seat");
 				double costPerSeat = scanner.nextDouble();
 
