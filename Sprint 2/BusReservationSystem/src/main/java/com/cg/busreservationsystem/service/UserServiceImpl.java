@@ -92,12 +92,12 @@ public class UserServiceImpl implements UserService {
 		//adminServ = (AdminServiceImpl) adm;
 		List<Bus> busList = new ArrayList<Bus>();
 		Set<DayOfWeek> days;
-		DayOfWeek d = dateOfJourney.getDayOfWeek();
-		System.out.println(d);
+		DayOfWeek dayOfWeek = dateOfJourney.getDayOfWeek();
+		System.out.println(dayOfWeek);
 		System.out.println(viewBuses());
 		for (Bus bus : viewBuses()){
 			days = bus.getDayOfJourney();
-			if(days.contains(d)) {
+			if(days.contains(dayOfWeek)) {
 				if((bus.getSource().equalsIgnoreCase(src)) && bus.getDestination().equalsIgnoreCase(dest))
 					busList.add(bus);
 			}
@@ -162,9 +162,9 @@ public class UserServiceImpl implements UserService {
 					int index=(transactionDao.getTransactionList().indexOf(transaction));
 					Transaction t = transactionDao.getTransactionList().get(index);
 					 
-					ArrayList<Booking> b1 =t.getBookings();
-					boolean booked= b1.add(b);
-					System.out.println(b1);
+					ArrayList<Booking> currentBooking =t.getBookings();
+					boolean booked= currentBooking.add(b);
+					System.out.println(currentBooking);
 					System.out.println(bookingDao.saveBooking(b));
 					System.out.println(booked);
 				}
