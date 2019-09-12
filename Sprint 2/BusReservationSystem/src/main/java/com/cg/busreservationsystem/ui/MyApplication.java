@@ -15,12 +15,14 @@ import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
 import com.cg.busreservationsystem.dto.Transaction;
 import com.cg.busreservationsystem.service.UserService;
-import com.cg.busreservationsystem.service.UserServiceImpl;;
+import com.cg.busreservationsystem.service.UserServiceImpl;
+import com.cg.busreservationsystem.service.Validation;;
 
 public class MyApplication {
 
 	static UserService userService;
 	static int counter = 0;
+	static Validation validation;
 
 	public static void main(String[] args) {
 
@@ -48,6 +50,7 @@ public class MyApplication {
 	}
 
 	static void adminMenu() {
+		validation=new Validation();
 		Scanner scanner = new Scanner(System.in);
 		int choice = 0;
 		int runLoop = 1;
@@ -58,7 +61,7 @@ public class MyApplication {
 			System.out.println("Press 4 for Viewing Transaction Details");
 			System.out.println("Press 5 for Editing Personal Details");
 			System.out.println("Enter your choice:");
-			choice = scanner.nextInt();
+			choice = scanner.nextInt();					//INputMismatchExcp
 			switch (choice) {
 			case 1:
 				// fetch details here
@@ -79,21 +82,25 @@ public class MyApplication {
 						continue;
 					}
 				}
-				
+
 				int busClass=0;
-				/*while(true) {
-					
-				System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
-			    busClass = scanner.nextInt();
-				try {
-					UserServiceImpl.validateBusClass(busClass);
-					break;
-				} catch (RuntimeException e) {
-					// TODO: handle exception
-					System.out.println(e.getMessage());
-					continue;
+
+
+
+				while (true) {
+
+					System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
+					busClass = scanner.nextInt();
+					try {
+						validation.validateBusClass(busClass);
+						break;
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
 				}
-				}*/
+
 				int busSeats;
 				while (true) {
 					System.out.println("Enter the no of bus seats");
@@ -115,26 +122,44 @@ public class MyApplication {
 					int day = scanner.nextInt();
 					days.add(DayOfWeek.of(day));
 				}
-				/*String source;
+
+
+				String source ;
 				String destination;
 				while(true) {
-				System.out.println("Enter the bus source");
-				source = scanner.next();
 
-				System.out.println("Enter the bus destination");
-				destination = scanner.next();
-				try {
-					UserServiceImpl.validateTravel(source, destination);
-					break;
-				}catch(Exception e) {
-					System.out.println(e.getMessage());
-					continue;
+
+					source = scanner.next();
+
+					System.out.println("Enter the bus destination");
+
+					destination = scanner.next();
+
+					try {
+						validation.validateTravel(source,destination);
+						break;
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
 				}
-				}*/
-				
-				System.out.println("Enter the bus cost per seat");
-				double costPerSeat = scanner.nextDouble();
 
+
+				double costPerSeat;
+				while(true) {
+
+					System.out.println("Enter the bus cost per seat");
+
+					try {
+						costPerSeat = Validation.validateCost();
+						break;
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
+				}
 				Bus bus = new Bus(BigInteger.valueOf(++counter), busName, busType, busClass, busSeats, days, source,
 						destination, costPerSeat);
 
@@ -177,7 +202,7 @@ public class MyApplication {
 				}
 				break;
 			case 4:
-				System.out.println("Enter the date(DD-MM-YYYY):");
+				System.out.println("Enter the date(DD-MM-YYYY): ");
 				String dateStr = scanner.next();
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 				LocalDate date = LocalDate.parse(dateStr, formatter);
@@ -196,9 +221,11 @@ public class MyApplication {
 	}
 
 	static void customerMenu() {
+		validation=new Validation();
 		Scanner scanner=new Scanner(System.in);
 		int choice=0;
 		int runLoop=1;
+		
 		while(runLoop!=0) {
 			System.out.println("Press 1 to Booking a Ticket");
 			System.out.println("Press 2 for Viewing a Booking");
@@ -211,16 +238,28 @@ public class MyApplication {
 
 			switch (choice) {
 			case 1:
-				System.out.println("Enter your date of journey(DD-MM-YYYY):" );
-				String dateStr=scanner.next();
-				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				LocalDate date=LocalDate.parse(dateStr,formatter);
+				LocalDate date;
+				while(true) {
+					System.out.println("Enter your date of journey(DD-MM-YYYY):" );
+					String dateStr=scanner.next();
+					DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					date=LocalDate.parse(dateStr,formatter);
+					try {
+						validation.validateDate(date);
+						break;
+					}catch (Exception e) {
+						System.out.println("Exception occurred: "+e.getMessage());
+						continue;
+
+					}
+				}
+
 				System.out.println("Enter your source: ");
 				String source=scanner.next();
 				System.out.println("Enter your destination: ");
 				String destination=scanner.next();
-				
-				
+
+
 				List<Bus> busList=userService.getRunningBuses(date, source, destination);
 				System.out.println("Running buses on your day of journey: ");
 				int i=0;
@@ -230,12 +269,24 @@ public class MyApplication {
 				System.out.println("Enter the bus Id of the bus you will be travelling: ");
 
 				BigInteger busId=scanner.nextBigInteger();
-				
+
 				for(Bus busObj:busList) {
 					if(busId.equals(busObj.getBusId())) {
-
-						System.out.println("Enter the number of passengers: ");
-						int passengersCount=scanner.nextInt();
+						int passengersCount;
+						while(true) {
+							System.out.println("Enter the number of passengers: ");
+							passengersCount=scanner.nextInt();
+							try {
+								validation.validatePassengersCount(passengersCount);
+								break;
+							}catch (Exception e) {
+								// TODO: handle exception
+								System.out.println("Exception occurred: "+e.getMessage());
+								continue;
+							}
+						}
+						//						System.out.println("Enter the number of passengers: ");
+						//						passengersCount=scanner.nextInt();
 						boolean bookingStatus=userService.checkBusTransaction(date, busObj, passengersCount);
 						if(bookingStatus) {
 							List<Passenger> passengersList=new ArrayList<Passenger>();
