@@ -82,10 +82,22 @@ public class MyApplication {
 						continue;
 					}
 				}
-
-				System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
-				int busClass = scanner.nextInt();
-
+				
+				int busClass=0;
+				while (true) {
+				
+					System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
+				busClass = scanner.nextInt();
+				try {
+					validation.validateBusClass(busClass);
+					break;
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("Exception occured:" +e.getMessage());
+					continue;
+				}
+			}
+				
 				int busSeats;
 				while (true) {
 					System.out.println("Enter the no of bus seats");
@@ -126,9 +138,21 @@ public class MyApplication {
 					continue;
 				}
 				}
-				System.out.println("Enter the bus cost per seat");
-				double costPerSeat = scanner.nextDouble();
-
+				
+				double costPerSeat;
+				while(true) {
+				
+					System.out.println("Enter the bus cost per seat");
+			       
+			        try {
+			        	 costPerSeat = Validation.validateCost();
+			        	break;
+			        } catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
+				}
 				Bus bus = new Bus(BigInteger.valueOf(++counter), busName, busType, busClass, busSeats, days, source,
 						destination, costPerSeat);
 
