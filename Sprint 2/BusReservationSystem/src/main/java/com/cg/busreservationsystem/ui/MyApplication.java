@@ -15,12 +15,14 @@ import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
 import com.cg.busreservationsystem.dto.Transaction;
 import com.cg.busreservationsystem.service.UserService;
-import com.cg.busreservationsystem.service.UserServiceImpl;;
+import com.cg.busreservationsystem.service.UserServiceImpl;
+import com.cg.busreservationsystem.service.Validation;;
 
 public class MyApplication {
 
 	static UserService userService;
 	static int counter = 0;
+	static Validation validation;
 
 	public static void main(String[] args) {
 
@@ -175,6 +177,7 @@ public class MyApplication {
 	}
 
 	static void customerMenu() {
+		validation=new Validation();
 		Scanner scanner=new Scanner(System.in);
 		int choice=0;
 		int runLoop=1;
@@ -190,10 +193,22 @@ public class MyApplication {
 
 			switch (choice) {
 			case 1:
-				System.out.println("Enter your date of journey(DD-MM-YYYY):" );
-				String dateStr=scanner.next();
-				DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				LocalDate date=LocalDate.parse(dateStr,formatter);
+				LocalDate date;
+				while(true) {
+					System.out.println("Enter your date of journey(DD-MM-YYYY):" );
+					String dateStr=scanner.next();
+					DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					date=LocalDate.parse(dateStr,formatter);
+					try {
+						validation.validateDate(date);
+						break;
+					}catch (Exception e) {
+						System.out.println("Exception occurred: "+e.getMessage());
+						continue;
+						
+					}
+				}
+				
 				System.out.println("Enter your source: ");
 				String source=scanner.next();
 				System.out.println("Enter your destination: ");
