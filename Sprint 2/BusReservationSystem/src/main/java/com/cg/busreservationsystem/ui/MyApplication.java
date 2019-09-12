@@ -227,9 +227,21 @@ public class MyApplication {
 				
 				for(Bus busObj:busList) {
 					if(busId.equals(busObj.getBusId())) {
-
-						System.out.println("Enter the number of passengers: ");
-						int passengersCount=scanner.nextInt();
+						int passengersCount;
+						while(true) {
+							System.out.println("Enter the number of passengers: ");
+							passengersCount=scanner.nextInt();
+							try {
+								validation.validatePassengersCount(passengersCount);
+								break;
+							}catch (Exception e) {
+								// TODO: handle exception
+								System.out.println("Exception occurred: "+e.getMessage());
+								continue;
+							}
+						}
+//						System.out.println("Enter the number of passengers: ");
+//						passengersCount=scanner.nextInt();
 						boolean bookingStatus=userService.checkBusTransaction(date, busObj, passengersCount);
 						if(bookingStatus) {
 							List<Passenger> passengersList=new ArrayList<Passenger>();
