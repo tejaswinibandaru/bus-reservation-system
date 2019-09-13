@@ -140,8 +140,7 @@ public class MyApplication {
 				String source ;
 				String destination;
 				while(true) {
-
-
+					System.out.println("Enter the bus source: ");
 					source = scanner.next();
 
 					System.out.println("Enter the bus destination");
