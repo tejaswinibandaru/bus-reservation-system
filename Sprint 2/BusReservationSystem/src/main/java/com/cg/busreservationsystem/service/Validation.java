@@ -141,9 +141,20 @@ public class Validation {
 		  if(!isValidNumeric(input)) 
 			throw new BusException("Integer choice to be entered");
 		  return Integer.parseInt(input);
-		
+		}
+	public int validateChoice2(String input) {
+		// TODO Auto-generated method stub
+		int choice = 0;
+		if(isValidNumeric(input)) {
+			choice = Integer.parseInt(input);
+			if(choice < 1 ||choice > 7) {
+				throw new BusException("Week has only seven days");
+			}
+		}
+		else
+			throw new BusException("Integer choice to be entered");
+		return choice;
 	}
-	
 	
 
 	}

@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class User {
 	private BigInteger userId;
-	private String userName;
+	private String username;
 	private String password;
 	private Character userType;
 	private String email;
@@ -21,11 +21,11 @@ public class User {
 		
 	}
 
-	public User(BigInteger userId, String userName, String password, Character userType, String email,
+	public User(BigInteger userId, String username, String password, Character userType, String email,
 			BigInteger phoneNumber, Set<Booking> bookingsList, Set<Bus> busList, Set<Transaction> transactionsList) {
 		super();
 		this.userId = userId;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.userType = userType;
 		this.email = email;
@@ -43,12 +43,12 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String userName) {
+		this.username = userName;
 	}
 
 	public String getPassword() {
@@ -118,7 +118,7 @@ public class User {
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((transactionsList == null) ? 0 : transactionsList.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
 		return result;
 	}
@@ -167,10 +167,10 @@ public class User {
 				return false;
 		} else if (!userId.equals(other.userId))
 			return false;
-		if (userName == null) {
-			if (other.userName != null)
+		if (username == null) {
+			if (other.username != null)
 				return false;
-		} else if (!userName.equals(other.userName))
+		} else if (!username.equals(other.username))
 			return false;
 		if (userType == null) {
 			if (other.userType != null)
@@ -182,7 +182,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", userType=" + userType
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", userType=" + userType
 				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", bookingsList=" + bookingsList + ", busList="
 				+ busList + ", transactionsList=" + transactionsList + "]";
 	}

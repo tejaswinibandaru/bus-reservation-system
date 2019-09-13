@@ -140,13 +140,35 @@ public class MyApplication {
 						continue;
 					}
 				}
-
+				int noOfDays=0; ;
+				while(true) {
 				System.out.println("Enter the no of days of the week on which day the bus will run");
-				int noOfDays = scanner.nextInt();
+				input = scanner.next();
+				try { 
+					noOfDays=validation.validateChoice2(input);
+				     break;      
+				}catch (RuntimeException e) {
+					// TODO: handle exception
+					System.out.println("Exception occured:" +e.getMessage());
+					continue;
+				}
+				}
 				Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
 				for (int i = 0; i < noOfDays; i++) {
+					int day=0;
+					while(true) {
 					System.out.println("Enter the day number starting from 1(Monday) to 7(Sunday): ");
-					int day = scanner.nextInt();
+					input = scanner.next();
+					//int day = scanner.nextInt();
+					try { 
+						day=validation.validateChoice2(input);
+					     break;      
+					}catch (RuntimeException e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
+					}
 					days.add(DayOfWeek.of(day));
 				}
 
