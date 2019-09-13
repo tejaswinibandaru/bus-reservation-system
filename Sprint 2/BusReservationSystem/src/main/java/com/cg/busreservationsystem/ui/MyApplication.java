@@ -62,22 +62,36 @@ public class MyApplication {
 			System.out.println("Press 1 to continue, 0 to stop");
 			runLoop = scanner.nextInt();
 
-		}
+		} scanner.close();
 	}
 
 	static void adminMenu() {
 		validation=new Validation();
 		Scanner scanner = new Scanner(System.in);
-		int choice = 0;
+		
 		int runLoop = 1;
+		String input;
 		while (runLoop != 0) {
+			int choice = 0;
+			while(true) {
 			System.out.println("Press 1 for Adding Bus Details");
 			System.out.println("Press 2 for Removing Bus Details");
 			System.out.println("Press 3 for Modifying Bus Details");
 			System.out.println("Press 4 for Viewing Transaction Details");
 			System.out.println("Press 5 for Editing Personal Details");
 			System.out.println("Enter your choice:");
-			choice = scanner.nextInt();					//INputMismatchExcp
+			input = scanner.next(); //INputMismatchExcp
+			try { 
+			choice=validation.validateChoice1(input);
+			break;
+			} catch (RuntimeException e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
+			}
+		
+	
 			switch (choice) {
 			case 1:
 				// fetch details here
@@ -226,28 +240,41 @@ public class MyApplication {
 			case 5:
 				System.out.println("You cannot edit your personal details. System is under maintenance");
 				break;
+				default:
+					System.out.println("Wrong choice : Enter a valid Integer input");
+					break;
 			}
 			System.out.println("Press 1 to continue, 0 to exit");
 			runLoop = scanner.nextInt();
-		}
+		} scanner.close();
+		
 	}
 
 	static void customerMenu() {
 		validation=new Validation();
 		Scanner scanner=new Scanner(System.in);
-		int choice=0;
 		int runLoop=1;
-		
+		String input;
 		while(runLoop!=0) {
+			int choice=0;
+			while(true) {
 			System.out.println("Press 1 to Booking a Ticket");
 			System.out.println("Press 2 for Viewing a Booking");
 			System.out.println("Press 3 for Viewing Bookings List");
 			System.out.println("Press 4 for Cancelling a Ticket");
 			System.out.println("Press 5 for Editing Personal Details");
-
 			System.out.println("Enter your choice: ");
-			choice=scanner.nextInt();
-
+			input = scanner.next(); //INputMismatchExcp
+			try { 
+			choice=validation.validateChoice1(input);
+			break;
+			} catch (RuntimeException e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
+			}
+			
 			switch (choice) {
 			case 1:
 				LocalDate date;
@@ -360,13 +387,14 @@ public class MyApplication {
 				System.out.println("You cannot edit your personal details. System is under maintenance");
 				break;
 			default:
+				System.out.println("Wrong choice : Enter a valid Integer input");
 				break;
 			}
 			System.out.println("Press 1 to continue, 0 to exit");
 			runLoop=scanner.nextInt();
 
-		}
-
+		} scanner.close();
+		
 	}
 }
 

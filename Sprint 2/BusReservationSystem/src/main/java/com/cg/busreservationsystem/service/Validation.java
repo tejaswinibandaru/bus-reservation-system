@@ -137,6 +137,13 @@ public class Validation {
 		return choice;
 	}
 	
+	public int validateChoice1(String input) {
+		  if(!isValidNumeric(input)) 
+			throw new BusException("Integer choice to be entered");
+		  return Integer.parseInt(input);
+		
+	}
+	
 	
 
 	}
