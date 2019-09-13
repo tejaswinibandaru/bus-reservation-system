@@ -32,16 +32,32 @@ public class MyApplication {
 	}
 
 	static void showType() {
+		validation= new Validation();
+		Scanner scanner = new Scanner(System.in);
 		int runLoop = 1;
+		String input;
 		while (runLoop != 0) {
+			int choice=0;
+			while(true) {
+			
 			System.out.println("Select 1 for Admin");
 			System.out.println("Select 2 for Customer");
-			Scanner scanner = new Scanner(System.in);
-			int choice = scanner.nextInt();
+			input = scanner.next();
+			try { 
+				choice=validation.validateChoice(input);
+			
 			if (choice == 1) {
 				adminMenu();
 			} else if (choice == 2) {
 				customerMenu();
+			}
+			
+				break;
+			} catch (RuntimeException e) {
+				// TODO: handle exception
+				System.out.println("Exception occured:" +e.getMessage());
+				continue;
+			}
 			}
 			System.out.println("Press 1 to continue, 0 to stop");
 			runLoop = scanner.nextInt();
@@ -78,16 +94,13 @@ public class MyApplication {
 						break;
 					} catch (RuntimeException e) {
 						// TODO: handle exception
-						System.out.println(e.getMessage());
+						System.out.println("Exception occured:" +e.getMessage());
 						continue;
 					}
 				}
 
 				int busClass=0;
-
-
-
-				while (true) {
+					while (true) {
 
 					System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
 					busClass = scanner.nextInt();
