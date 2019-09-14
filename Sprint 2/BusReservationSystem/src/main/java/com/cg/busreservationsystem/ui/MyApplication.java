@@ -59,10 +59,12 @@ public class MyApplication {
 				continue;
 			}
 			}
-			System.out.println("Press 1 to continue, 0 to stop");
+				
+			 System.out.println("Press 1 to continue, 0 to exit");
 			runLoop = scanner.nextInt();
-
-		} scanner.close();
+			
+			
+		} 
 	}
 
 	static void adminMenu() {
@@ -159,7 +161,7 @@ public class MyApplication {
 					while(true) {
 					System.out.println("Enter the day number starting from 1(Monday) to 7(Sunday): ");
 					input = scanner.next();
-					//int day = scanner.nextInt();
+				
 					try { 
 						day=validation.validateChoice2(input);
 					     break;      
@@ -229,8 +231,12 @@ public class MyApplication {
 				break;
 
 			case 2:
+				BigInteger busId ;
+				while(true) {
 				System.out.println("Enter the bus id to remove");
-				BigInteger busId = scanner.nextBigInteger();
+				input = scanner.next(); //INputMismatchExcp
+				try { 
+				busId=validation.validateChoice3(input);
 				int removeStatus = userService.removeBusDetails(busId);
 				if (removeStatus == 1) {
 					System.out.println("Bus removed");
@@ -238,15 +244,51 @@ public class MyApplication {
 					System.out.println("Id not found");
 				}
 				break;
+				} catch (RuntimeException e) {
+							
+					System.out.println("Exception occured:" +e.getMessage());
+					continue;
+						}
+				}
+				
+				
+				break;
 			case 3:
+				//BigInteger busId ;
+				while(true) {
 				System.out.println("Enter the bus id to update details: ");
-				busId = scanner.nextBigInteger();
+				input=scanner.next();
+				try {
+				busId =validation.validateChoice3(input);
+				
 				for (Bus busObj : userService.viewBuses()) {
 					if (busId.equals(busObj.getBusId())) {
+						double cost;
+						while(true) {
 						System.out.println("Update the cost per seat of the bus: ");
-						double cost = scanner.nextDouble();
-						busObj.setCost(cost);
-					}
+						try {
+							cost = Validation.validateCost();
+							//cost = scanner.nextDouble();
+							busObj.setCost(cost);
+							System.out.println("cost per seat of the bus updated");
+							break;
+						} catch (Exception e) {
+							// TODO: handle exception
+							System.out.println("Exception occured:" +e.getMessage());
+							continue;
+						}
+						}
+						
+					} else {
+						System.out.println("Id not found");
+					} 
+				}
+				break;
+				} catch (RuntimeException e) {
+					
+					System.out.println("Exception occured:" +e.getMessage());
+					continue;
+						}
 				}
 				break;
 			case 4:
@@ -268,7 +310,7 @@ public class MyApplication {
 			}
 			System.out.println("Press 1 to continue, 0 to exit");
 			runLoop = scanner.nextInt();
-		} scanner.close();
+		}
 		
 	}
 

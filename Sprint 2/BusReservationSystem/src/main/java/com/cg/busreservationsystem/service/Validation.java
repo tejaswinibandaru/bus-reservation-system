@@ -1,5 +1,6 @@
 package com.cg.busreservationsystem.service;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -136,6 +137,19 @@ public class Validation {
 			throw new BusException("Integer choice to be entered");
 		return choice;
 	}
+	public int validateRunloopChoice(String input) {
+		// TODO Auto-generated method stub
+		int choice = 0;
+		if(isValidNumeric(input)) {
+			choice = Integer.parseInt(input);
+			if(choice < 0 ||choice> 1) {
+				throw new BusException("Wrong choice entered");
+			}
+		}
+		else
+			throw new BusException("Integer choice to be entered");
+		return choice;
+	}
 	
 	public int validateChoice1(String input) {
 		  if(!isValidNumeric(input)) 
@@ -156,7 +170,11 @@ public class Validation {
 		return choice;
 	}
 	
-
+	public BigInteger validateChoice3(String input) {
+		  if(!isValidNumeric(input)) 
+			throw new BusException("Integer choice to be entered");
+		  return BigInteger.valueOf(Integer.parseInt(input));
+		}
 	}
 
 
