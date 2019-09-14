@@ -157,31 +157,35 @@ public class UserServiceImpl implements UserService {
 
 	public Booking createBooking(List<Passenger> passengerList, LocalDate dateOfJourney, Bus bus, String modeOfPayment) {
 
-		Booking b = new Booking(dateOfJourney, bus, passengerList, modeOfPayment);
-		List<Transaction> listTransactions = (transactionDao).getTransactionList();
+		Booking booking = new Booking(dateOfJourney, bus, passengerList, modeOfPayment);
+		List<Transaction> listTransactions = transactionDao.getTransactionList();
 		for (Transaction transaction : listTransactions) {
 			if(transaction.getDate().equals(dateOfJourney))
 			{
 				if(transaction.getBus().equals(bus))
 				{
 					
-					
 					System.out.println(listTransactions);
-					
 					
 					System.out.println(listTransactions.indexOf(transaction));
 					int index=(transactionDao.getTransactionList().indexOf(transaction));
-					Transaction t = transactionDao.getTransactionList().get(index);
+					Transaction currentTransaction = listTransactions.get(index);
 					 
-					ArrayList<Booking> currentBooking =t.getBookings();
-					boolean booked= currentBooking.add(b);
+					List<Booking> currentBooking =currentTransaction.getBookings();
+					if(currentBooking==null) {
+						currentBooking=new ArrayList<Booking>();
+						currentBooking.add(booking);
+					}
+					else {
+						currentBooking.add(booking);
+					}
 					System.out.println(currentBooking);
-					System.out.println(bookingDao.saveBooking(b));
-					System.out.println(booked);
+					System.out.println(bookingDao.saveBooking(booking));
+					//System.out.println(booked);
 				}
 			}
 		}
-		return b;
+		return booking;
 
 	}
 

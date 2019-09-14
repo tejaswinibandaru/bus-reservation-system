@@ -17,7 +17,9 @@ public class Bus {
 	private String destination;
 	private Double cost;
 	
-	
+	static {
+		
+	}
 	public Bus() {
 		
 	}
