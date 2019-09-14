@@ -9,11 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.cg.busreservationsystem.dao.BookingDao;
-import com.cg.busreservationsystem.dao.BookingDaoImpl;
-import com.cg.busreservationsystem.dao.BusDao;
-import com.cg.busreservationsystem.dao.BusDaoImpl;
-import com.cg.busreservationsystem.dao.TransactionDaoImpl;
+import com.cg.busreservationsystem.dao.UserDao;
+import com.cg.busreservationsystem.dao.UserDaoImpl;
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
@@ -21,39 +18,43 @@ import com.cg.busreservationsystem.dto.Transaction;
 import com.cg.busreservationsystem.exception.BusException;
 
 public class UserServiceImpl implements UserService {
+	
+	public UserDao userDao = new UserDaoImpl();
 
-	public BusDao busDao = new BusDaoImpl();
-	public BookingDao bookingDao = new BookingDaoImpl();
-	public TransactionDaoImpl transactionDao = new TransactionDaoImpl();
+	/*
+	 * public BusDao userDao = new BusDaoImpl(); public BookingDao userDao = new
+	 * BookingDaoImpl(); public TransactionDaoImpl userDao = new
+	 * TransactionDaoImpl();
+	 */
 
 	@Override
 	public Bus addBusDetails(Bus bus) {
 		// TODO Auto-generated method stub
-		return busDao.saveBus(bus);
+		return userDao.saveBus(bus);
 	}
 
 	@Override
 	public Integer removeBusDetails(BigInteger busId) {
 		// TODO Auto-generated method stub
-		return busDao.removeBus(busId);
+		return userDao.removeBus(busId);
 	}
 
 	@Override
 	public Bus searchBus(BigInteger busId) {
 		// TODO Auto-generated method stub
-		return busDao.findBusById(busId);
+		return userDao.findBusById(busId);
 	}
 
 	@Override
 	public List<Bus> viewBuses() {
 		// TODO Auto-generated method stub
-		return busDao.findAllBuses();
+		return userDao.findAllBuses();
 	}
 
 	@Override
 	public List<Transaction> getTransactionsByDate(LocalDate date) {
 		// TODO Auto-generated method stub
-		return transactionDao.findTransactionsByDate(date);
+		return userDao.findTransactionsByDate(date);
 	}
 
 	public static void validateBusType(int busType) {
@@ -123,13 +124,13 @@ public class UserServiceImpl implements UserService {
 	public boolean checkBusTransaction(LocalDate dateOfJourney, Bus bus, Integer noOfPassengers) {
 		// TODO Auto-generated method stub
 		Transaction trans;
-		List<Transaction> listTransaction = transactionDao.getTransactionList();
+		List<Transaction> listTransaction = userDao.getTransactionList();
 		if(listTransaction.isEmpty()) {
 			System.out.println("transaction list is empty");
 			trans = new Transaction();
 			trans.setBus(bus);
 			trans.setDate(dateOfJourney);
-			transactionDao.getTransactionList().add(trans);
+			userDao.getTransactionList().add(trans);
 			//System.out.println(trans.getBus());
 
 			System.out.println(trans.getAvailableSeats()+" is num of available seats");
@@ -158,7 +159,7 @@ public class UserServiceImpl implements UserService {
 	public Booking createBooking(List<Passenger> passengerList, LocalDate dateOfJourney, Bus bus, String modeOfPayment) {
 
 		Booking booking = new Booking(dateOfJourney, bus, passengerList, modeOfPayment);
-		List<Transaction> listTransactions = transactionDao.getTransactionList();
+		List<Transaction> listTransactions = userDao.getTransactionList();
 		for (Transaction transaction : listTransactions) {
 			if(transaction.getDate().equals(dateOfJourney))
 			{
@@ -168,7 +169,7 @@ public class UserServiceImpl implements UserService {
 					System.out.println(listTransactions);
 					
 					System.out.println(listTransactions.indexOf(transaction));
-					int index=(transactionDao.getTransactionList().indexOf(transaction));
+					int index=(userDao.getTransactionList().indexOf(transaction));
 					Transaction currentTransaction = listTransactions.get(index);
 					 
 					List<Booking> currentBooking =currentTransaction.getBookings();
@@ -180,7 +181,7 @@ public class UserServiceImpl implements UserService {
 						currentBooking.add(booking);
 					}
 					System.out.println(currentBooking);
-					System.out.println(bookingDao.saveBooking(booking));
+					System.out.println(userDao.saveBooking(booking));
 					//System.out.println(booked);
 				}
 			}
@@ -194,7 +195,7 @@ public class UserServiceImpl implements UserService {
 	public List<Booking> viewTicketsByDate(LocalDate date) {
 		// TODO Auto-generated method stub
 		List<Booking> listBooking = new ArrayList<Booking>();
-		for (Booking booking : bookingDao.findAllBookings()) {
+		for (Booking booking : userDao.findAllBookings()) {
 			if(booking.getDateOfJourney().equals(date))
 				listBooking.add(booking);
 
@@ -205,7 +206,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Integer cancelTicket(Booking b) {
 		// TODO Auto-generated method stub
-		boolean cancel =bookingDao.findAllBookings().remove(b);
+		boolean cancel =userDao.findAllBookings().remove(b);
 		if(cancel) return 1;
 		else return 0;
 	}
@@ -213,7 +214,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<Booking> viewTicketList() {
 		// TODO Auto-generated method stub
-		return bookingDao.findAllBookings();
+		return userDao.findAllBookings();
 	}
 
 	/*	@Override
@@ -226,7 +227,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<Passenger> viewPassengers() {
 		// TODO Auto-generated method stub
-		return bookingDao.findAllPassengers();
+		return userDao.findAllPassengers();
 	}
 
 

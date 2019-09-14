@@ -140,11 +140,11 @@ public class UserDaoImpl implements UserDao {
 		return 0;
 	}
 
-	@Override
-	public List<Transaction> findAllTransactions() {
-		// TODO Auto-generated method stub
-		return transactionList;
-	}
+	
+	/*@Override
+	 * public List<Transaction> findAllTransactions() { // TODO Auto-generated
+	 * method stub return transactionList; }
+	 */
 
 	@Override
 	public List<Transaction> findTransactionsByDate(LocalDate date) {

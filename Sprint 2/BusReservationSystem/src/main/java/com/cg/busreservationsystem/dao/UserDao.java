@@ -26,7 +26,8 @@ public interface UserDao {
 	
 	public Transaction saveTransaction(Transaction transaction);
 	public Integer removeTransaction(Bus bus);
-	public List<Transaction> findAllTransactions();
+	//public List<Transaction> findAllTransactions();
 	public List<Transaction> findTransactionsByDate(LocalDate date);
+	public List<Transaction> getTransactionList();
 
 }
