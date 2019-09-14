@@ -1,4 +1,4 @@
-package com.cg.busreservationsystem.dto;
+ package com.cg.busreservationsystem.dto;
 
 import java.math.BigInteger;
 import java.time.DayOfWeek;
