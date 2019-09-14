@@ -25,43 +25,73 @@ public class MyApplication {
 	static Validation validation;
 
 	public static void main(String[] args) {
-
+		System.out.println("Hi");
 		userService = new UserServiceImpl();
 
 		showType();
 	}
 
 	static void showType() {
+		validation= new Validation();
+		Scanner scanner = new Scanner(System.in);
 		int runLoop = 1;
+		String input;
 		while (runLoop != 0) {
+			int choice=0;
+			while(true) {
+			
 			System.out.println("Select 1 for Admin");
 			System.out.println("Select 2 for Customer");
-			Scanner scanner = new Scanner(System.in);
-			int choice = scanner.nextInt();
+			input = scanner.next();
+			try { 
+				choice=validation.validateChoice(input);
+			
 			if (choice == 1) {
 				adminMenu();
 			} else if (choice == 2) {
 				customerMenu();
 			}
+			
+				break;
+			} catch (RuntimeException e) {
+				// TODO: handle exception
+				System.out.println("Exception occured:" +e.getMessage());
+				continue;
+			}
+			}
 			System.out.println("Press 1 to continue, 0 to stop");
 			runLoop = scanner.nextInt();
 
-		}
+		} scanner.close();
 	}
 
 	static void adminMenu() {
 		validation=new Validation();
 		Scanner scanner = new Scanner(System.in);
-		int choice = 0;
+		
 		int runLoop = 1;
+		String input;
 		while (runLoop != 0) {
+			int choice = 0;
+			while(true) {
 			System.out.println("Press 1 for Adding Bus Details");
 			System.out.println("Press 2 for Removing Bus Details");
 			System.out.println("Press 3 for Modifying Bus Details");
 			System.out.println("Press 4 for Viewing Transaction Details");
 			System.out.println("Press 5 for Editing Personal Details");
 			System.out.println("Enter your choice:");
-			choice = scanner.nextInt();					//INputMismatchExcp
+			input = scanner.next(); //INputMismatchExcp
+			try { 
+			choice=validation.validateChoice1(input);
+			break;
+			} catch (RuntimeException e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
+			}
+		
+	
 			switch (choice) {
 			case 1:
 				// fetch details here
@@ -78,16 +108,13 @@ public class MyApplication {
 						break;
 					} catch (RuntimeException e) {
 						// TODO: handle exception
-						System.out.println(e.getMessage());
+						System.out.println("Exception occured:" +e.getMessage());
 						continue;
 					}
 				}
 
 				int busClass=0;
-
-
-
-				while (true) {
+					while (true) {
 
 					System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
 					busClass = scanner.nextInt();
@@ -113,13 +140,35 @@ public class MyApplication {
 						continue;
 					}
 				}
-
+				int noOfDays=0; ;
+				while(true) {
 				System.out.println("Enter the no of days of the week on which day the bus will run");
-				int noOfDays = scanner.nextInt();
+				input = scanner.next();
+				try { 
+					noOfDays=validation.validateChoice2(input);
+				     break;      
+				}catch (RuntimeException e) {
+					// TODO: handle exception
+					System.out.println("Exception occured:" +e.getMessage());
+					continue;
+				}
+				}
 				Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
 				for (int i = 0; i < noOfDays; i++) {
+					int day=0;
+					while(true) {
 					System.out.println("Enter the day number starting from 1(Monday) to 7(Sunday): ");
-					int day = scanner.nextInt();
+					input = scanner.next();
+					//int day = scanner.nextInt();
+					try { 
+						day=validation.validateChoice2(input);
+					     break;      
+					}catch (RuntimeException e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
+					}
 					days.add(DayOfWeek.of(day));
 				}
 
@@ -213,28 +262,41 @@ public class MyApplication {
 			case 5:
 				System.out.println("You cannot edit your personal details. System is under maintenance");
 				break;
+				default:
+					System.out.println("Wrong choice : Enter a valid Integer input");
+					break;
 			}
 			System.out.println("Press 1 to continue, 0 to exit");
 			runLoop = scanner.nextInt();
-		}
+		} scanner.close();
+		
 	}
 
 	static void customerMenu() {
 		validation=new Validation();
 		Scanner scanner=new Scanner(System.in);
-		int choice=0;
 		int runLoop=1;
-		
+		String input;
 		while(runLoop!=0) {
+			int choice=0;
+			while(true) {
 			System.out.println("Press 1 to Booking a Ticket");
 			System.out.println("Press 2 for Viewing a Booking");
 			System.out.println("Press 3 for Viewing Bookings List");
 			System.out.println("Press 4 for Cancelling a Ticket");
 			System.out.println("Press 5 for Editing Personal Details");
-
 			System.out.println("Enter your choice: ");
-			choice=scanner.nextInt();
-
+			input = scanner.next(); //INputMismatchExcp
+			try { 
+			choice=validation.validateChoice1(input);
+			break;
+			} catch (RuntimeException e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
+			}
+			
 			switch (choice) {
 			case 1:
 				LocalDate date;
@@ -347,13 +409,14 @@ public class MyApplication {
 				System.out.println("You cannot edit your personal details. System is under maintenance");
 				break;
 			default:
+				System.out.println("Wrong choice : Enter a valid Integer input");
 				break;
 			}
 			System.out.println("Press 1 to continue, 0 to exit");
 			runLoop=scanner.nextInt();
 
-		}
-
+		} scanner.close();
+		
 	}
 }
 
