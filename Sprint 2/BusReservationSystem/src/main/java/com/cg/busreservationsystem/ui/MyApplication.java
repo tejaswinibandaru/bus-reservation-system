@@ -268,7 +268,7 @@ public class MyApplication {
 						System.out.println("Update the cost per seat of the bus: ");
 						try {
 							cost = Validation.validateCost();
-							//cost = scanner.nextDouble();
+							
 							busObj.setCost(cost);
 							System.out.println("cost per seat of the bus updated");
 							break;
@@ -292,10 +292,21 @@ public class MyApplication {
 				}
 				break;
 			case 4:
+				LocalDate date;
+				while(true) {
 				System.out.println("Enter the date(DD-MM-YYYY): ");
 				String dateStr = scanner.next();
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				LocalDate date = LocalDate.parse(dateStr, formatter);
+				date = LocalDate.parse(dateStr, formatter);
+				try {
+					validation.validateDate(date);
+					break;
+				}catch (Exception e) {
+					System.out.println("Exception occurred: "+e.getMessage());
+					continue;
+
+				}
+				}
 				System.out.println("List of transactions");
 				for (Transaction transaction : userService.getTransactionsByDate(date)) {
 					System.out.println(transaction.getDate() + " " + transaction.getBus() + transaction.getBookings());
@@ -357,11 +368,26 @@ public class MyApplication {
 					}
 				}
 
-				System.out.println("Enter your source: ");
-				String source=scanner.next();
-				System.out.println("Enter your destination: ");
-				String destination=scanner.next();
+				String source ;
+				String destination;
+				while(true) {
+					System.out.println("Enter the bus source: ");
+					source = scanner.next();
 
+					System.out.println("Enter the bus destination");
+
+					destination = scanner.next();
+
+					try {
+						validation.validateTravel(source,destination);
+						break;
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" +e.getMessage());
+						continue;
+					}
+				}
+				
 
 				List<Bus> busList=userService.getRunningBuses(date, source, destination);
 				System.out.println("Running buses on your day of journey: ");
@@ -369,10 +395,21 @@ public class MyApplication {
 				for(Bus b:busList) {
 					System.out.println((i+1)+" "+b.getBusId()+" "+b.getBusName()+" "+b.getBusType()+" "+b.getBusClass()+" "+b.getCost());
 				}
+				BigInteger busId;
+				while(true) {
 				System.out.println("Enter the bus Id of the bus you will be travelling: ");
-
-				BigInteger busId=scanner.nextBigInteger();
-
+				input=scanner.next();
+				try {
+				busId =validation.validateChoice3(input);
+				//BigInteger busId=scanner.nextBigInteger();
+				break;
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("Exception occured:" +e.getMessage());
+					continue;
+				}
+				}
+			
 				for(Bus busObj:busList) {
 					if(busId.equals(busObj.getBusId())) {
 						int passengersCount;
@@ -406,8 +443,19 @@ public class MyApplication {
 								passenger.setPassengerGender(passengerGender);
 								passengersList.add(passenger);
 							}
+							String paymentMode;
+							while(true) {
 							System.out.println("Enter the mode of payment(UPI/DC/CC/NB): ");
-							String paymentMode=scanner.next();
+							 paymentMode=scanner.next();
+							 try {
+									validation.validatePaymentMode(paymentMode);
+									break;
+								} catch (Exception e) {
+									// TODO: handle exception
+									System.out.println("Exception occured:" +e.getMessage());
+									continue;
+								}
+							}
 
 							Booking booking=userService.createBooking(passengersList, date, busObj, paymentMode);
 							System.out.println("Booking details: ");
@@ -433,8 +481,13 @@ public class MyApplication {
 				}
 				break;
 			case 4:
+				BigInteger bookingId;
+				while(true) {
 				System.out.println("Enter the booking id you want to cancel the booking for: ");
-				BigInteger bookingId=scanner.nextBigInteger();
+				input = scanner.next(); //INputMismatchExcp
+				try { 
+				bookingId=validation.validateChoice3(input);
+				
 				for(Booking booking:userService.viewTicketList()) {
 					if(booking.getBookingId().equals(bookingId)) {
 						int cancelStatus=userService.cancelTicket(booking);
@@ -447,6 +500,14 @@ public class MyApplication {
 					}
 				}
 				break;
+				}  catch (RuntimeException e) {
+					
+					System.out.println("Exception occured:" +e.getMessage());
+					continue;
+				}
+		}
+				break;
+		
 			case 5:
 				System.out.println("You cannot edit your personal details. System is under maintenance");
 				break;

@@ -30,6 +30,12 @@ public class Validation {
 		}
 	}
 	
+	public void validatePaymentMode(String paymentMode) {
+		if(! paymentMode.equals("UPI")||! paymentMode.equals("DC")||! paymentMode.equals("CC")||! paymentMode.equals("NB")) {
+			throw new PassengerException("Mode of payment should be UPI,DC,CC or NB");
+		}
+	}
+	
 	public void validateTravel(String busSource, String busDestination) {
 		if(busSource.equals(busDestination)) {
 			throw new BusException("Source and Destination cant be same");
