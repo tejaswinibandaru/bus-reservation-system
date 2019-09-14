@@ -25,7 +25,7 @@ public class MyApplication {
 	static Validation validation;
 
 	public static void main(String[] args) {
-		System.out.println("Hi");
+		System.out.println("bye");
 		userService = new UserServiceImpl();
 
 		showType();
