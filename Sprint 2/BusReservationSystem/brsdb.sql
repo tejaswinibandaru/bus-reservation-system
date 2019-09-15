@@ -54,3 +54,23 @@ bus_id bigint FOREIGN KEY AUTO_INCREMENT NOT NULL,
 available_seats int NOT NULL,
 status varchar NOT NULL,
 delete_flag int  NOT NULL);
+
+#saveBooking
+INSERT INTO booking(user_id,transaction_id,bus_id,date_of_journey,mode_of_payment,total_cost) values(?,?,?,?,?,?);
+
+#if required use this,after booking
+UPDATE booking SET status=? AND delete_flag=? WHERE booking_id=?;
+
+#removeBooking
+DELETE FROM booking WHERE booking_id=?;
+
+#list all bookings
+SELECT * FROM booking;
+
+#list bookings by booking id
+SELECT b.booking_id,b.date_of_journey,p.passenger_name,p.passenger_age,p.passenger_gender,b.mode_of_payment,b.total_cost,b.status FROM
+booking b JOIN passenger p ON b.booking_id=p.booking_id WHERE b.booking_id=?;
+
+
+#savePassenger
+INSERT INTO passenger 
