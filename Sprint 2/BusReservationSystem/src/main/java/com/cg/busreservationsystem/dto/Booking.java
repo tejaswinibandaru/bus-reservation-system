@@ -8,13 +8,15 @@ import java.util.List;
 public class Booking {
 	
 	private BigInteger bookingId;
+	private BigInteger userId;
+	private BigInteger transactionId;
 	private LocalDate dateOfJourney;
 	private Bus bus;
 	private List<Passenger> passengers;
 	private String modeOfPayment;
 	private Double totalCost;
 	private String bookingStatus;
-	private Integer deleteFlag;
+	//private Integer deleteFlag;				//object shouldnt contain flag unnecessarily. it is just for DB
 	
 	public String getBookingStatus() {
 		return bookingStatus;
@@ -24,17 +26,13 @@ public class Booking {
 		this.bookingStatus = bookingStatus;
 	}
 
-	public Integer getDeleteFlag() {
-		return deleteFlag;
-	}
+	/*
+	 * public Integer getDeleteFlag() { return deleteFlag; }
+	 * 
+	 * public void setDeleteFlag(Integer deleteFlag) { this.deleteFlag = deleteFlag;
+	 * }
+	 */
 
-	public void setDeleteFlag(Integer deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
-
-	public void setPassengers(List<Passenger> passengers) {
-		this.passengers = passengers;
-	}
 
 	static BigInteger idCounter= BigInteger.valueOf(1000L);
 	
@@ -62,6 +60,22 @@ public class Booking {
 		this.bookingId = bookingId;
 	}
 
+	public BigInteger getUserId() {
+		return userId;
+	}
+
+	public void setUserId(BigInteger userId) {
+		this.userId = userId;
+	}
+
+	public BigInteger getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(BigInteger transactionId) {
+		this.transactionId = transactionId;
+	}
+
 	public LocalDate getDateOfJourney() {
 		return dateOfJourney;
 	}
@@ -82,7 +96,7 @@ public class Booking {
 		return passengers;
 	}
 
-	public void setPassengers(ArrayList<Passenger> passengers) {
+	public void setPassengers(List<Passenger> passengers) {
 		this.passengers = passengers;
 	}
 
@@ -110,7 +124,7 @@ public class Booking {
 		result = prime * result + ((bookingStatus == null) ? 0 : bookingStatus.hashCode());
 		result = prime * result + ((bus == null) ? 0 : bus.hashCode());
 		result = prime * result + ((dateOfJourney == null) ? 0 : dateOfJourney.hashCode());
-		result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
+		//result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
 		result = prime * result + ((modeOfPayment == null) ? 0 : modeOfPayment.hashCode());
 		result = prime * result + ((passengers == null) ? 0 : passengers.hashCode());
 		result = prime * result + ((totalCost == null) ? 0 : totalCost.hashCode());
@@ -146,11 +160,10 @@ public class Booking {
 				return false;
 		} else if (!dateOfJourney.equals(other.dateOfJourney))
 			return false;
-		if (deleteFlag == null) {
-			if (other.deleteFlag != null)
-				return false;
-		} else if (!deleteFlag.equals(other.deleteFlag))
-			return false;
+		/*
+		 * if (deleteFlag == null) { if (other.deleteFlag != null) return false; } else
+		 * if (!deleteFlag.equals(other.deleteFlag)) return false;
+		 */
 		if (modeOfPayment == null) {
 			if (other.modeOfPayment != null)
 				return false;
@@ -178,7 +191,7 @@ public class Booking {
 	public String toString() {
 		return "Booking [bookingId=" + bookingId + ", dateOfJourney=" + dateOfJourney + ", bus=" + bus + ", passengers="
 				+ passengers + ", modeOfPayment=" + modeOfPayment + ", totalCost=" + totalCost + ", bookingStatus="
-				+ bookingStatus + ", deleteFlag=" + deleteFlag + "]";
+				+ bookingStatus + "]";
 	}
 	
 	

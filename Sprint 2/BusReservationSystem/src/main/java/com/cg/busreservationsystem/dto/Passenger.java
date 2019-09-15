@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 public class Passenger {
 	private BigInteger passengerId;
+	private BigInteger bookingId;
 	private String passengerName;
 	private Integer passengerAge;
 	private Character passengerGender;
@@ -114,6 +115,14 @@ public class Passenger {
 	public String toString() {
 		return "Passenger [passengerId=" + passengerId + ", passengerName=" + passengerName + ", passengerAge="
 				+ passengerAge + ", passengerGender=" + passengerGender + ", deleteFlag=" + deleteFlag + "]";
+	}
+
+	public BigInteger getBookingId() {
+		return bookingId;
+	}
+
+	public void setBookingId(BigInteger bookingId) {
+		this.bookingId = bookingId;
 	}
 
 	

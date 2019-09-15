@@ -25,28 +25,26 @@ import com.cg.busreservationsystem.util.DBUtil;;
 public class UserDaoImpl implements UserDao {
 	// db code starts here
 	//prep -work 1- Connection
-		private static Connection connection;
-		private PreparedStatement ps;
-		private Statement st;
-		private ResultSet rs;
-		private static Logger myLogger;
-	     static{   	
-	   	  Properties props = System.getProperties();
-	   	  String userDir= props.getProperty("user.dir")+"/src/main/resources/";
-	   	  System.out.println("Current working directory is " +userDir);
-	   	  PropertyConfigurator.configure(userDir+"log4j.properties");
-	 		myLogger=Logger.getLogger("DBUtil.class");
-	 		}
-		static {
-			try {
-				connection= DBUtil.getConnection();
-				myLogger.info("connection Obtained!!");
-			} catch (BookingException e) {  //MyException e
-				myLogger.error("Connection Not Obtained at EmployeeDao : "+e);
-				//System.out.print("Connection Not Obtained at EmployeeDao");
-			}
+	private static Connection connection;
+	private PreparedStatement preparedStatement;
+	private Statement statement;
+	private ResultSet resultSet;
+	private static Logger myLogger;
+	static{   	
+		Properties props = System.getProperties();
+		String userDir= props.getProperty("user.dir")+"/src/main/resources/";
+		System.out.println("Current working directory is " +userDir);
+		PropertyConfigurator.configure(userDir+"log4j.properties");
+		myLogger=Logger.getLogger("DBUtil.class");
+		try {
+			connection= DBUtil.getConnection();
+			myLogger.info("connection Obtained!!");
+		} catch (BookingException e) {  //MyException e
+			myLogger.error("Connection Not Obtained at EmployeeDao : "+e);
+			//System.out.print("Connection Not Obtained at EmployeeDao");
 		}
-	
+	}
+
 	private List<BusTransaction> transactionList=new ArrayList<BusTransaction>();
 	private List<Bus> busList=new ArrayList<Bus>();
 
@@ -57,31 +55,35 @@ public class UserDaoImpl implements UserDao {
 	public Booking saveBooking(Booking booking) {
 		// TODO Auto-generated method stub
 		//added to AL
-		String sql ="insert into booking(booking_id,total_cost) values(?,?)";		
+		String sql ="INSERT INTO booking(user_id,transaction_id,bus_id,date_of_journey,mode_of_payment,total_cost) values(?,?,?,?,?,?);";		
 		try {
-		//step1 : obtain ps 
-			ps= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-		//step 2: set the ps placeholder values
-			//ps.setBigInteger(1, booking.getBookingId());
-			ps.setDouble(2, booking.getTotalCost());			
-		//step 3: execute Query (for DML we have executeUpdate method )
-			int noOfRec = ps.executeUpdate();
-		//getting the auto-generated value
+			//step1 : obtain ps 
+			preparedStatement= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			//step 2: set the ps placeholder values
+			
+			preparedStatement.setLong(2, booking.getTransactionId().longValue());								//getTrsansactionId
+			preparedStatement.setLong(3, booking.getBus().getBusId().longValue());
+			//preparedStatement.setTimestamp(4, booking.getDateOfJourney().);				//to timestamp
+			preparedStatement.setString(5, booking.getModeOfPayment());
+			preparedStatement.setDouble(6, booking.getTotalCost());
+			//step 3: execute Query (for DML we have executeUpdate method )
+			int noOfRec = preparedStatement.executeUpdate();
+			//getting the auto-generated value
 			BigInteger generatedId = BigInteger.valueOf(0L);
-			rs = ps.getGeneratedKeys();
-			if (rs.next()) {
-				generatedId = BigInteger.valueOf(rs.getLong(1));
+			resultSet = preparedStatement.getGeneratedKeys();
+			if (resultSet.next()) {
+				generatedId = BigInteger.valueOf(resultSet.getLong("booking_id"));
 				myLogger.info("Auto generated Id " + generatedId);
 			}
-		//setting the auto-generated Id to current booking obj
+			//setting the auto-generated Id to current booking obj
 			booking.setBookingId(generatedId);
 		} catch (SQLException e) {
 			myLogger.error(" Error at saveBooking Dao method : "+e);
 			throw new BookingException(" Error at saveBooking Dao method : "+e);
 		}finally {
-			if(ps!=null) {
+			if(preparedStatement!=null) {
 				try {
-					ps.close();
+					preparedStatement.close();
 				} catch (SQLException e) {
 					System.out.println(" Error at saveBooking Dao method : "+e);
 				}
@@ -95,27 +97,27 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Integer removeBooking(BigInteger bookingId) {
 		// TODO Auto-generated method stub
-		String sql ="delete from booking where emp_id=?";
+		String sql ="UPDATE booking SET delete_flag=1 WHERE booking_id=?;";				
 		int noOfRec=0;
 		try {
-			ps=connection.prepareStatement(sql);
-			ps.setLong(1, bookingId.longValue());
-			
-			noOfRec=ps.executeUpdate();
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setLong(1, bookingId.longValue());
+
+			noOfRec=preparedStatement.executeUpdate();
 		}catch (SQLException e) {
 			System.out.println(" Error at remove booking Dao method : "+e);
 		}finally {
-			if(ps!=null) {
+			if(preparedStatement!=null) {
 				try {
-					ps.close();
+					preparedStatement.close();
 				} catch (SQLException e) {
 					System.out.println(" Error at remove booking Dao method : "+e);
 				}
 			}
 		}
-return noOfRec;
+		return noOfRec;
 	}
-		/*Booking b=this.findBookingById(bookingId);
+	/*Booking b=this.findBookingById(bookingId);
 		if(b==null) {
 			return 0;
 		}
@@ -126,29 +128,37 @@ return noOfRec;
 	@Override
 	public List<Booking> findAllBookings() {
 		// TODO Auto-generated method stub
-		String sql ="select * from my_emp";
+		String sql ="select * from booking where delete_flag=0";
 		List<Booking> bookingList = new ArrayList<Booking>();	
 		try {
-			ps= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			//for select queries we have executeQuery method which returns ResultSet
-			rs= ps.executeQuery();
-			while (rs.next()) {
+			resultSet= preparedStatement.executeQuery();
+			while (resultSet.next()) {
 				//create booking object
 				Booking booking = new Booking();
 				//get the value from rs and set to booking obj
-				booking.setBookingId(BigInteger.valueOf(rs.getLong(1)));
-				//booking.setBus(rs.get);
-				booking.setTotalCost(rs.getDouble(4));				
+				booking.setBookingId(BigInteger.valueOf(resultSet.getLong("booking_id")));
+				booking.setUserId(BigInteger.valueOf(resultSet.getLong("user_id")));
+				booking.setTransactionId(BigInteger.valueOf(resultSet.getLong("transaction_id")));
+				//booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey").toLocalDate());		//converting from timestamp to localdate
+				BigInteger busId = BigInteger.valueOf(resultSet.getLong("bus_id"));
+				booking.setBus(findBusById(busId));
+				//findPassengerListById();						find passengerListById
+				//booking.setPassengers(resultSet);
+				booking.setTotalCost(resultSet.getDouble(4));
+				booking.setModeOfPayment(resultSet.getString("mode_of_payment"));
+				booking.setBookingStatus(resultSet.getString("booking_status"));
 				//add the booking obj to bookingList
 				bookingList.add(booking);
-				
+
 			}
 		} catch (SQLException e) {
 			System.out.println(" Error at findAllBookings Dao method : "+e);
 		}finally {
-			if(ps!=null) {
+			if(preparedStatement!=null) {
 				try {
-					ps.close();
+					preparedStatement.close();
 				} catch (SQLException e) {
 					System.out.println(" Error at findAllBookings Dao method : "+e);
 				}
@@ -157,11 +167,35 @@ return noOfRec;
 		return bookingList;
 	}
 
-	
+
 
 	@Override
 	public Booking findBookingById(BigInteger bookingId) {
+		
+		String sql ="SELECT * FROM booking WHERE delete_flag=0 AND booking_id=?";
 		// TODO Auto-generated method stub
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setLong(1, bookingId.longValue());
+			Booking booking=  new Booking();
+			
+			resultSet= preparedStatement.executeQuery();
+			while(resultSet.next())
+			{
+				booking.setBookingId(bookingId);
+				//booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey"));		//timestamp to localdate
+			}
+		}catch (SQLException e) {
+			System.out.println(" Error at findAllBookings Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at findAllBookings Dao method : "+e);
+				}
+			}
+		}
 		for(Booking book:bookingsList) {
 			if(book.getBookingId().equals(bookingId)) {
 				return book;
@@ -221,7 +255,7 @@ return noOfRec;
 	@Override
 	public Bus findBusById(BigInteger busId) {
 		// TODO Auto-generated method stub
-		
+
 		for(Bus b:busList) {
 			if(busId.equals(b.getBusId())) {
 				return b;
@@ -257,7 +291,7 @@ return noOfRec;
 		return 0;
 	}
 
-	
+
 	/*@Override
 	 * public List<BusTransaction> findAllTransactions() { // TODO Auto-generated
 	 * method stub return transactionList; }
@@ -272,7 +306,7 @@ return noOfRec;
 				transactionsByDate.add(t);
 			}
 		}
-		
+
 		return transactionsByDate; 
 	} 
 

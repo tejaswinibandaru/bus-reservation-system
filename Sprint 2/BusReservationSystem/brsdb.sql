@@ -36,7 +36,7 @@ bus_id bigint  FOREIGN KEY NOT NULL,
 date_of_journey TIMESTAMP NOT NULL,
 mode_of_payment varchar(30)  NOT NULL,
 total_cost decimal  NOT NULL ,
-status varchar  NOT NULL,
+booking_status varchar  NOT NULL,
 delete_flag int  NOT NULL);
 
 CREATE table passenger(
@@ -52,20 +52,20 @@ transaction_id bigint PRIMARY KEY auto_increment  NOT NULL,
 date TIMESTAMP NOT NULL,
 bus_id bigint FOREIGN KEY AUTO_INCREMENT NOT NULL,
 available_seats int NOT NULL,
-status varchar NOT NULL,
+transaction_status varchar NOT NULL,
 delete_flag int  NOT NULL);
 
 #saveBooking
 INSERT INTO booking(user_id,transaction_id,bus_id,date_of_journey,mode_of_payment,total_cost) values(?,?,?,?,?,?);
 
 #if required use this,after booking
-UPDATE booking SET status=? AND delete_flag=? WHERE booking_id=?;
+UPDATE booking SET delete_flag=1 WHERE booking_id=?;
 
 #removeBooking
-DELETE FROM booking WHERE booking_id=?;
+#DELETE FROM booking WHERE booking_id=?;
 
 #list all bookings
-SELECT * FROM booking;
+SELECT * FROM booking WHERE delete_flag=0 AND booking_id=?;
 
 #list bookings by booking id
 SELECT b.booking_id,b.date_of_journey,p.passenger_name,p.passenger_age,p.passenger_gender,b.mode_of_payment,b.total_cost,b.status FROM
