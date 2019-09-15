@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.cg.busreservationsystem.dto.Bus;
-import com.cg.busreservationsystem.dto.Transaction;
+import com.cg.busreservationsystem.dto.BusTransaction;
 
 public interface TransactionDao {
 	
-	public Transaction saveTransaction(Transaction transaction);
+	public BusTransaction saveTransaction(BusTransaction busTransaction);
 	public Integer removeTransaction(Bus bus);
-	public List<Transaction> findAllTransactions();
-	public List<Transaction> findTransactionsByDate(LocalDate date);
+	public List<BusTransaction> findAllTransactions();
+	public List<BusTransaction> findTransactionsByDate(LocalDate date);
 
 }

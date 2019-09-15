@@ -1,4 +1,4 @@
-package com.cg.busreservationsystem.dto;
+ package com.cg.busreservationsystem.dto;
 
 import java.math.BigInteger;
 import java.time.DayOfWeek;
@@ -16,7 +16,7 @@ public class Bus {
 	private String source;
 	private String destination;
 	private Double cost;
-	
+	private Integer deleteFlag;
 	
 	public Bus() {
 		
@@ -109,6 +109,17 @@ public class Bus {
 		this.cost = cost;
 	}
 
+
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+
+
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -119,11 +130,13 @@ public class Bus {
 		result = prime * result + ((busType == null) ? 0 : busType.hashCode());
 		result = prime * result + ((cost == null) ? 0 : cost.hashCode());
 		result = prime * result + ((dayOfJourney == null) ? 0 : dayOfJourney.hashCode());
+		result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
 		result = prime * result + ((destination == null) ? 0 : destination.hashCode());
 		result = prime * result + ((noOfSeats == null) ? 0 : noOfSeats.hashCode());
 		result = prime * result + ((source == null) ? 0 : source.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -164,6 +177,11 @@ public class Bus {
 				return false;
 		} else if (!dayOfJourney.equals(other.dayOfJourney))
 			return false;
+		if (deleteFlag == null) {
+			if (other.deleteFlag != null)
+				return false;
+		} else if (!deleteFlag.equals(other.deleteFlag))
+			return false;
 		if (destination == null) {
 			if (other.destination != null)
 				return false;
@@ -182,12 +200,13 @@ public class Bus {
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Bus [busId=" + busId + ", busName=" + busName + ", busType=" + busType + ", busClass=" + busClass
 				+ ", noOfSeats=" + noOfSeats + ", dayOfJourney=" + dayOfJourney + ", source=" + source
-				+ ", destination=" + destination + ", cost=" + cost + "]";
+				+ ", destination=" + destination + ", cost=" + cost + ", deleteFlag=" + deleteFlag + "]";
 	}
-	
+
 	
 }

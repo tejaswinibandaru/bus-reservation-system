@@ -1,25 +1,41 @@
 package com.cg.busreservationsystem.dto;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Transaction {
+public class BusTransaction {
 	
+	private BigInteger transactionId;
 	private LocalDate date;
 	private Integer availableSeats;
 	private ArrayList<Booking> bookings;
+	private String ticketStatus;
 	private Bus bus;
+	private Integer deleteFlag;
 	
-	public Transaction() {
+	public BusTransaction() {
 		
 	}
 
-	public Transaction(LocalDate date, Integer availableSeats, ArrayList<Booking> bookings, Bus bus) {
+	public BusTransaction(BigInteger transactionId, LocalDate date, Integer availableSeats, ArrayList<Booking> bookings,
+			String ticketStatus, Bus bus, Integer deleteFlag) {
 		super();
+		this.transactionId = transactionId;
 		this.date = date;
 		this.availableSeats = availableSeats;
 		this.bookings = bookings;
+		this.ticketStatus = ticketStatus;
 		this.bus = bus;
+		this.deleteFlag = deleteFlag;
+	}
+
+	public BigInteger getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(BigInteger transactionId) {
+		this.transactionId = transactionId;
 	}
 
 	public LocalDate getDate() {
@@ -31,17 +47,7 @@ public class Transaction {
 	}
 
 	public Integer getAvailableSeats() {
-		availableSeats=bus.getNoOfSeats();
-		int occupied=0;
-		if(bookings!=null) {
-		for (Booking booking : bookings) {
-			occupied+=booking.getPassengers().size();
-			
-		}
-		availableSeats=availableSeats-occupied;
-		}
 		return availableSeats;
-		
 	}
 
 	public void setAvailableSeats(Integer availableSeats) {
@@ -56,12 +62,28 @@ public class Transaction {
 		this.bookings = bookings;
 	}
 
+	public String getTicketStatus() {
+		return ticketStatus;
+	}
+
+	public void setTicketStatus(String ticketStatus) {
+		this.ticketStatus = ticketStatus;
+	}
+
 	public Bus getBus() {
 		return bus;
 	}
 
 	public void setBus(Bus bus) {
 		this.bus = bus;
+	}
+
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDelete_flag(Integer delete_flag) {
+		this.deleteFlag = delete_flag;
 	}
 
 	@Override
@@ -72,6 +94,9 @@ public class Transaction {
 		result = prime * result + ((bookings == null) ? 0 : bookings.hashCode());
 		result = prime * result + ((bus == null) ? 0 : bus.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
+		result = prime * result + ((ticketStatus == null) ? 0 : ticketStatus.hashCode());
+		result = prime * result + ((transactionId == null) ? 0 : transactionId.hashCode());
 		return result;
 	}
 
@@ -83,7 +108,7 @@ public class Transaction {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Transaction other = (Transaction) obj;
+		BusTransaction other = (BusTransaction) obj;
 		if (availableSeats == null) {
 			if (other.availableSeats != null)
 				return false;
@@ -104,15 +129,31 @@ public class Transaction {
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
+		if (deleteFlag == null) {
+			if (other.deleteFlag != null)
+				return false;
+		} else if (!deleteFlag.equals(other.deleteFlag))
+			return false;
+		if (ticketStatus == null) {
+			if (other.ticketStatus != null)
+				return false;
+		} else if (!ticketStatus.equals(other.ticketStatus))
+			return false;
+		if (transactionId == null) {
+			if (other.transactionId != null)
+				return false;
+		} else if (!transactionId.equals(other.transactionId))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Transaction [date=" + date + ", availableSeats=" + availableSeats + ", bookings=" + bookings + ", bus="
-				+ bus + "]";
+		return "BusTransaction [transactionId=" + transactionId + ", date=" + date + ", availableSeats="
+				+ availableSeats + ", bookings=" + bookings + ", ticketStatus=" + ticketStatus + ", bus=" + bus
+				+ ", delete_flag=" + deleteFlag + "]";
 	}
 	
 	
-
+	
 }

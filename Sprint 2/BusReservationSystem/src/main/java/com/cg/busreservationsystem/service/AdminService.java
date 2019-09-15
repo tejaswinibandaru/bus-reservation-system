@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.cg.busreservationsystem.dto.Bus;
-import com.cg.busreservationsystem.dto.Transaction;
+import com.cg.busreservationsystem.dto.BusTransaction;
 
 public interface AdminService {
 	
@@ -13,6 +13,6 @@ public interface AdminService {
 	public Integer removeBusDetails(BigInteger busId);
 	public Bus searchBus(BigInteger busId);
 	public List<Bus> viewBuses();
-	public List<Transaction> getTransactionsByDate(LocalDate date);
+	public List<BusTransaction> getTransactionsByDate(LocalDate date);
 
 }

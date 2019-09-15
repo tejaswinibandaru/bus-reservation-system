@@ -8,24 +8,25 @@ import java.util.Set;
 
 public class User {
 	private BigInteger userId;
-	private String userName;
+	private String username;
 	private String password;
 	private Character userType;
 	private String email;
 	private BigInteger phoneNumber;
 	private Set<Booking> bookingsList;
 	private Set<Bus> busList;
-	private Set<Transaction> transactionsList;
+	private Set<BusTransaction> transactionsList;
+	private Integer deleteFlag;
 	
 	public User() {
 		
 	}
 
-	public User(BigInteger userId, String userName, String password, Character userType, String email,
-			BigInteger phoneNumber, Set<Booking> bookingsList, Set<Bus> busList, Set<Transaction> transactionsList) {
+	public User(BigInteger userId, String username, String password, Character userType, String email,
+			BigInteger phoneNumber, Set<Booking> bookingsList, Set<Bus> busList, Set<BusTransaction> transactionsList) {
 		super();
 		this.userId = userId;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.userType = userType;
 		this.email = email;
@@ -43,12 +44,12 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String userName) {
+		this.username = userName;
 	}
 
 	public String getPassword() {
@@ -99,12 +100,21 @@ public class User {
 		this.busList = busList;
 	}
 
-	public Set<Transaction> getTransactionsList() {
+	public Set<BusTransaction> getTransactionsList() {
 		return transactionsList;
 	}
 
-	public void setTransactionsList(Set<Transaction> transactionsList) {
+	public void setTransactionsList(Set<BusTransaction> transactionsList) {
 		this.transactionsList = transactionsList;
+	}
+	
+
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 
 	@Override
@@ -113,13 +123,14 @@ public class User {
 		int result = 1;
 		result = prime * result + ((bookingsList == null) ? 0 : bookingsList.hashCode());
 		result = prime * result + ((busList == null) ? 0 : busList.hashCode());
+		result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((transactionsList == null) ? 0 : transactionsList.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -141,6 +152,11 @@ public class User {
 			if (other.busList != null)
 				return false;
 		} else if (!busList.equals(other.busList))
+			return false;
+		if (deleteFlag == null) {
+			if (other.deleteFlag != null)
+				return false;
+		} else if (!deleteFlag.equals(other.deleteFlag))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -167,25 +183,28 @@ public class User {
 				return false;
 		} else if (!userId.equals(other.userId))
 			return false;
-		if (userName == null) {
-			if (other.userName != null)
-				return false;
-		} else if (!userName.equals(other.userName))
-			return false;
 		if (userType == null) {
 			if (other.userType != null)
 				return false;
 		} else if (!userType.equals(other.userType))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", userType=" + userType
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", userType=" + userType
 				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", bookingsList=" + bookingsList + ", busList="
-				+ busList + ", transactionsList=" + transactionsList + "]";
+				+ busList + ", transactionsList=" + transactionsList + ", deleteFlag=" + deleteFlag + "]";
 	}
+
+	
+	
 	
 	
 }
