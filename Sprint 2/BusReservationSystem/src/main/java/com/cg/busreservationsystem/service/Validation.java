@@ -157,12 +157,12 @@ public class Validation {
 		return choice;
 	}
 	
-	public int validateChoice1(String input) {
+	public int validateIntegerChoice(String input) {
 		  if(!isValidNumeric(input)) 
 			throw new BusException("Integer choice to be entered");
 		  return Integer.parseInt(input);
 		}
-	public int validateChoice2(String input) {
+	public int validateDayChoice(String input) {
 		// TODO Auto-generated method stub
 		int choice = 0;
 		if(isValidNumeric(input)) {
@@ -176,7 +176,7 @@ public class Validation {
 		return choice;
 	}
 	
-	public BigInteger validateChoice3(String input) {
+	public BigInteger validateBigIntegerChoice(String input) {
 		  if(!isValidNumeric(input)) 
 			throw new BusException("Integer choice to be entered");
 		  return BigInteger.valueOf(Integer.parseInt(input));
