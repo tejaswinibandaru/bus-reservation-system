@@ -164,6 +164,13 @@ public class UserServiceImpl implements UserService {
 			{
 				if(busTransaction.getBus().equals(bus))
 				{
+					/*
+					 * int index=(transactionDao.getTransactionList().indexOf(transaction)); boolean
+					 * booked
+					 * =(((transactionDao.getTransactionList()).get(index)).getBookings()).add(b);
+					 * System.out.println(bookingDao.saveBooking(b)); System.out.println(booked);
+					 */
+
 					
 					System.out.println(listTransactions);
 					
@@ -182,6 +189,7 @@ public class UserServiceImpl implements UserService {
 					System.out.println(currentBooking);
 					System.out.println(userDao.saveBooking(booking));
 					//System.out.println(booked);
+
 				}
 			}
 		}
