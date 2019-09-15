@@ -21,12 +21,6 @@ public class UserServiceImpl implements UserService {
 	
 	public UserDao userDao = new UserDaoImpl();
 
-	/*
-	 * public BusDao userDao = new BusDaoImpl(); public BookingDao userDao = new
-	 * BookingDaoImpl(); public TransactionDaoImpl userDao = new
-	 * TransactionDaoImpl();
-	 */
-
 	@Override
 	public Bus addBusDetails(Bus bus) {
 		// TODO Auto-generated method stub
@@ -84,8 +78,6 @@ public class UserServiceImpl implements UserService {
 		}
 
 	}
-
-
 	public List<Bus> getRunningBuses(LocalDate dateOfJourney, String src, String dest) {	//change method [parameters
 		// TODO Auto-generated method stub
 		/*Steps :
@@ -142,12 +134,19 @@ public class UserServiceImpl implements UserService {
 		else {
 			System.out.println("transaction list is not empty");
 			for (BusTransaction busTransaction : listTransaction) {
-				for (Booking booking : busTransaction.getBookings()) {
-					System.out.println("booking id is found to be"+booking.getBookingId());
-					if(booking.getBus().equals(bus))
-						if(booking.getDateOfJourney().equals(dateOfJourney))
-							if(busTransaction.getAvailableSeats()>=noOfPassengers)
-								return true;
+				/*
+				 * for (Booking booking : busTransaction.getBookings()) {
+				 * System.out.println("booking id is found to be"+booking.getBookingId());
+				 * if(booking.getBus().equals(bus))
+				 * if(booking.getDateOfJourney().equals(dateOfJourney))
+				 * if(busTransaction.getAvailableSeats()>=noOfPassengers) return true; }
+				 */
+				if(busTransaction.getDate().equals(dateOfJourney)) {
+					if(busTransaction.getBus().equals(bus)) {
+						if(busTransaction.getAvailableSeats()>=noOfPassengers) {
+							return true;
+						}
+					}
 				}
 			}
 

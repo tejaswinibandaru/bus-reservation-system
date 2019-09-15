@@ -25,75 +25,69 @@ public class MyApplication {
 	static Validation validation;
 
 	public static void main(String[] args) {
-		System.out.println("bye");
 		userService = new UserServiceImpl();
-
-		showType();
+		showUserMenu();
 	}
 
-	static void showType() {
-		validation= new Validation();
+	static void showUserMenu() {
+		validation = new Validation();
 		Scanner scanner = new Scanner(System.in);
-		int runLoop = 1;
-		String input;
-		while (runLoop != 0) {
-			int choice=0;
-			while(true) {
-			
-			System.out.println("Select 1 for Admin");
-			System.out.println("Select 2 for Customer");
-			input = scanner.next();
-			try { 
-				choice=validation.validateChoice(input);
-			
-			if (choice == 1) {
-				adminMenu();
-			} else if (choice == 2) {
-				customerMenu();
-			}
-			
-				break;
-			} catch (RuntimeException e) {
-				// TODO: handle exception
-				System.out.println("Exception occured:" +e.getMessage());
-				continue;
-			}
-			}
-				
-			 System.out.println("Press 1 to continue, 0 to exit");
-			runLoop = scanner.nextInt();
-			
-			
-		} 
-	}
-
-	static void adminMenu() {
-		validation=new Validation();
-		Scanner scanner = new Scanner(System.in);
-		
 		int runLoop = 1;
 		String input;
 		while (runLoop != 0) {
 			int choice = 0;
-			while(true) {
-			System.out.println("Press 1 for Adding Bus Details");
-			System.out.println("Press 2 for Removing Bus Details");
-			System.out.println("Press 3 for Modifying Bus Details");
-			System.out.println("Press 4 for Viewing BusTransaction Details");
-			System.out.println("Press 5 for Editing Personal Details");
-			System.out.println("Enter your choice:");
-			input = scanner.next(); //INputMismatchExcp
-			try { 
-			choice=validation.validateChoice1(input);
-			break;
-			} catch (RuntimeException e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" +e.getMessage());
-						continue;
+			while (true) {
+
+				System.out.println("Select 1 for Admin");
+				System.out.println("Select 2 for Customer");
+				input = scanner.next();
+				try {
+					choice = validation.validateChoice(input);
+					if (choice == 1) {
+						adminMenu();
+					} else if (choice == 2) {
+						customerMenu();
 					}
+					break;
+				} catch (RuntimeException e) {
+					// TODO: handle exception
+					System.out.println("Exception occured:" + e.getMessage());
+					continue;
+				}
 			}
-		
-	
+
+			System.out.println("Press 1 to continue, 0 to exit to the application");
+			runLoop = scanner.nextInt();
+
+		}
+	}
+
+	static void adminMenu() {
+		validation = new Validation();
+		Scanner scanner = new Scanner(System.in);
+
+		int runLoop = 1;
+		String input;
+		while (runLoop != 0) {
+			int choice = 0;
+			while (true) {
+				System.out.println("Press 1 for Adding Bus Details");
+				System.out.println("Press 2 for Removing Bus Details");
+				System.out.println("Press 3 for Modifying Bus Details");
+				System.out.println("Press 4 for Viewing BusTransaction Details");
+				System.out.println("Press 5 for Editing Personal Details");
+				System.out.println("Enter your choice:");
+				input = scanner.next(); // INputMismatchExcp
+				try {
+					choice = validation.validateChoice(input);
+					break;
+				} catch (RuntimeException e) {
+					// TODO: handle exception
+					System.out.println("Exception occured:" + e.getMessage());
+					continue;
+				}
+			}
+
 			switch (choice) {
 			case 1:
 				// fetch details here
@@ -110,13 +104,13 @@ public class MyApplication {
 						break;
 					} catch (RuntimeException e) {
 						// TODO: handle exception
-						System.out.println("Exception occured:" +e.getMessage());
+						System.out.println("Exception occured:" + e.getMessage());
 						continue;
 					}
 				}
 
-				int busClass=0;
-					while (true) {
+				int busClass = 0;
+				while (true) {
 
 					System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
 					busClass = scanner.nextInt();
@@ -125,7 +119,7 @@ public class MyApplication {
 						break;
 					} catch (Exception e) {
 						// TODO: handle exception
-						System.out.println("Exception occured:" +e.getMessage());
+						System.out.println("Exception occured:" + e.getMessage());
 						continue;
 					}
 				}
@@ -142,42 +136,41 @@ public class MyApplication {
 						continue;
 					}
 				}
-				int noOfDays=0; ;
-				while(true) {
-				System.out.println("Enter the no of days of the week on which day the bus will run");
-				input = scanner.next();
-				try { 
-					noOfDays=validation.validateChoice2(input);
-				     break;      
-				}catch (RuntimeException e) {
-					// TODO: handle exception
-					System.out.println("Exception occured:" +e.getMessage());
-					continue;
-				}
+				int noOfDays = 0;
+				while (true) {
+					System.out.println("Enter the no of days of the week on which day the bus will run");
+					input = scanner.next();
+					try {
+						noOfDays = validation.validateChoice(input);
+						break;
+					} catch (RuntimeException e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" + e.getMessage());
+						continue;
+					}
 				}
 				Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
 				for (int i = 0; i < noOfDays; i++) {
-					int day=0;
-					while(true) {
-					System.out.println("Enter the day number starting from 1(Monday) to 7(Sunday): ");
-					input = scanner.next();
-				
-					try { 
-						day=validation.validateChoice2(input);
-					     break;      
-					}catch (RuntimeException e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" +e.getMessage());
-						continue;
-					}
+					int day = 0;
+					while (true) {
+						System.out.println("Enter the day number starting from 1(Monday) to 7(Sunday): ");
+						input = scanner.next();
+
+						try {
+							day = validation.validateChoice(input);
+							break;
+						} catch (RuntimeException e) {
+							// TODO: handle exception
+							System.out.println("Exception occured:" + e.getMessage());
+							continue;
+						}
 					}
 					days.add(DayOfWeek.of(day));
 				}
 
-
-				String source ;
+				String source;
 				String destination;
-				while(true) {
+				while (true) {
 					System.out.println("Enter the bus source: ");
 					source = scanner.next();
 
@@ -186,18 +179,17 @@ public class MyApplication {
 					destination = scanner.next();
 
 					try {
-						validation.validateTravel(source,destination);
+						validation.validateTravel(source, destination);
 						break;
 					} catch (Exception e) {
 						// TODO: handle exception
-						System.out.println("Exception occured:" +e.getMessage());
+						System.out.println("Exception occured:" + e.getMessage());
 						continue;
 					}
 				}
 
-
 				double costPerSeat;
-				while(true) {
+				while (true) {
 
 					System.out.println("Enter the bus cost per seat");
 
@@ -206,7 +198,7 @@ public class MyApplication {
 						break;
 					} catch (Exception e) {
 						// TODO: handle exception
-						System.out.println("Exception occured:" +e.getMessage());
+						System.out.println("Exception occured:" + e.getMessage());
 						continue;
 					}
 				}
@@ -231,283 +223,87 @@ public class MyApplication {
 				break;
 
 			case 2:
-				BigInteger busId ;
-				while(true) {
-				System.out.println("Enter the bus id to remove");
-				input = scanner.next(); //INputMismatchExcp
-				try { 
-				busId=validation.validateChoice3(input);
-				int removeStatus = userService.removeBusDetails(busId);
-				if (removeStatus == 1) {
-					System.out.println("Bus removed");
-				} else {
-					System.out.println("Id not found");
-				}
-				break;
-				} catch (RuntimeException e) {
-							
-					System.out.println("Exception occured:" +e.getMessage());
-					continue;
+				BigInteger busId;
+				while (true) {
+					System.out.println("Enter the bus id to remove");
+					input = scanner.next(); // INputMismatchExcp
+					try {
+						busId = validation.validateBigIntegerChoice(input);
+						int removeStatus = userService.removeBusDetails(busId);
+						if (removeStatus == 1) {
+							System.out.println("Bus removed");
+						} else {
+							System.out.println("Id not found");
 						}
+						break;
+					} catch (RuntimeException e) {
+
+						System.out.println("Exception occured:" + e.getMessage());
+						continue;
+					}
 				}
-				
-				
+
 				break;
 			case 3:
-				//BigInteger busId ;
-				while(true) {
-				System.out.println("Enter the bus id to update details: ");
-				input=scanner.next();
-				try {
-				busId =validation.validateChoice3(input);
-				
-				for (Bus busObj : userService.viewBuses()) {
-					if (busId.equals(busObj.getBusId())) {
-						double cost;
-						while(true) {
-						System.out.println("Update the cost per seat of the bus: ");
-						try {
-							cost = Validation.validateCost();
-							
-							busObj.setCost(cost);
-							System.out.println("cost per seat of the bus updated");
-							break;
-						} catch (Exception e) {
-							// TODO: handle exception
-							System.out.println("Exception occured:" +e.getMessage());
-							continue;
+				// BigInteger busId ;
+				while (true) {
+					System.out.println("Enter the bus id to update details: ");
+					input = scanner.next();
+					try {
+						busId = validation.validateBigIntegerChoice(input);
+
+						for (Bus busObj : userService.viewBuses()) {
+							if (busId.equals(busObj.getBusId())) {
+								double cost;
+								while (true) {
+									System.out.println("Update the cost per seat of the bus: ");
+									try {
+										cost = Validation.validateCost();
+
+										busObj.setCost(cost);
+										System.out.println("cost per seat of the bus updated");
+										break;
+									} catch (Exception e) {
+										// TODO: handle exception
+										System.out.println("Exception occured:" + e.getMessage());
+										continue;
+									}
+								}
+
+							} else {
+								System.out.println("Id not found");
+							}
 						}
-						}
-						
-					} else {
-						System.out.println("Id not found");
-					} 
-				}
-				break;
-				} catch (RuntimeException e) {
-					
-					System.out.println("Exception occured:" +e.getMessage());
-					continue;
-						}
+						break;
+					} catch (RuntimeException e) {
+
+						System.out.println("Exception occured:" + e.getMessage());
+						continue;
+					}
 				}
 				break;
 			case 4:
 				LocalDate date;
-				while(true) {
-				System.out.println("Enter the date(DD-MM-YYYY): ");
-				String dateStr = scanner.next();
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				date = LocalDate.parse(dateStr, formatter);
-				try {
-					validation.validateDate(date);
-					break;
-				}catch (Exception e) {
-					System.out.println("Exception occurred: "+e.getMessage());
-					continue;
-
-				}
-				}
-				System.out.println("List of transactions");
-				for (BusTransaction busTransaction : userService.getTransactionsByDate(date)) {
-					System.out.println(busTransaction.getDate() + " " + busTransaction.getBus() + busTransaction.getBookings());
-				}
-				break;
-			case 5:
-				System.out.println("You cannot edit your personal details. System is under maintenance");
-				break;
-				default:
-					System.out.println("Wrong choice : Enter a valid Integer input");
-					break;
-			}
-			System.out.println("Press 1 to continue, 0 to exit");
-			runLoop = scanner.nextInt();
-		}
-		
-	}
-
-	static void customerMenu() {
-		validation=new Validation();
-		Scanner scanner=new Scanner(System.in);
-		int runLoop=1;
-		String input;
-		while(runLoop!=0) {
-			int choice=0;
-			while(true) {
-			System.out.println("Press 1 to Booking a Ticket");
-			System.out.println("Press 2 for Viewing a Booking");
-			System.out.println("Press 3 for Viewing Bookings List");
-			System.out.println("Press 4 for Cancelling a Ticket");
-			System.out.println("Press 5 for Editing Personal Details");
-			System.out.println("Enter your choice: ");
-			input = scanner.next(); //INputMismatchExcp
-			try { 
-			choice=validation.validateChoice1(input);
-			break;
-			} catch (RuntimeException e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" +e.getMessage());
-						continue;
-					}
-			}
-			
-			switch (choice) {
-			case 1:
-				LocalDate date;
-				while(true) {
-					System.out.println("Enter your date of journey(DD-MM-YYYY):" );
-					String dateStr=scanner.next();
-					DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-					date=LocalDate.parse(dateStr,formatter);
+				while (true) {
+					System.out.println("Enter the date(DD-MM-YYYY): ");
+					String dateStr = scanner.next();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					date = LocalDate.parse(dateStr, formatter);
 					try {
 						validation.validateDate(date);
 						break;
-					}catch (Exception e) {
-						System.out.println("Exception occurred: "+e.getMessage());
-						continue;
-
-					}
-				}
-
-				String source ;
-				String destination;
-				while(true) {
-					System.out.println("Enter the bus source: ");
-					source = scanner.next();
-
-					System.out.println("Enter the bus destination");
-
-					destination = scanner.next();
-
-					try {
-						validation.validateTravel(source,destination);
-						break;
 					} catch (Exception e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" +e.getMessage());
+						System.out.println("Exception occurred: " + e.getMessage());
 						continue;
+
 					}
 				}
-				
-
-				List<Bus> busList=userService.getRunningBuses(date, source, destination);
-				System.out.println("Running buses on your day of journey: ");
-				int i=0;
-				for(Bus b:busList) {
-					System.out.println((i+1)+" "+b.getBusId()+" "+b.getBusName()+" "+b.getBusType()+" "+b.getBusClass()+" "+b.getCost());
-				}
-				BigInteger busId;
-				while(true) {
-				System.out.println("Enter the bus Id of the bus you will be travelling: ");
-				input=scanner.next();
-				try {
-				busId =validation.validateChoice3(input);
-				//BigInteger busId=scanner.nextBigInteger();
-				break;
-				} catch (Exception e) {
-					// TODO: handle exception
-					System.out.println("Exception occured:" +e.getMessage());
-					continue;
-				}
-				}
-			
-				for(Bus busObj:busList) {
-					if(busId.equals(busObj.getBusId())) {
-						int passengersCount;
-						while(true) {
-							System.out.println("Enter the number of passengers: ");
-							passengersCount=scanner.nextInt();
-							try {
-								validation.validatePassengersCount(passengersCount);
-								break;
-							}catch (Exception e) {
-								// TODO: handle exception
-								System.out.println("Exception occurred: "+e.getMessage());
-								continue;
-							}
-						}
-						//						System.out.println("Enter the number of passengers: ");
-						//						passengersCount=scanner.nextInt();
-						boolean bookingStatus=userService.checkBusTransaction(date, busObj, passengersCount);
-						if(bookingStatus) {
-							List<Passenger> passengersList=new ArrayList<Passenger>();
-							for(int j=0;j<passengersCount;j++) {
-								System.out.println("Enter Passenger "+j+1+" details: ");
-								Passenger passenger=new Passenger();
-								System.out.println("Name: ");
-								String passengerName=scanner.next();
-								passenger.setPassengerName(passengerName);
-								int passengerAge=scanner.nextInt();
-								passenger.setPassengerAge(passengerAge);
-								System.out.println("Gender(M/F)");
-								char passengerGender=scanner.next().charAt(0);
-								passenger.setPassengerGender(passengerGender);
-								passengersList.add(passenger);
-							}
-							String paymentMode;
-							while(true) {
-							System.out.println("Enter the mode of payment(UPI/DC/CC/NB): ");
-							 paymentMode=scanner.next();
-							 try {
-									validation.validatePaymentMode(paymentMode);
-									break;
-								} catch (Exception e) {
-									// TODO: handle exception
-									System.out.println("Exception occured:" +e.getMessage());
-									continue;
-								}
-							}
-
-							Booking booking=userService.createBooking(passengersList, date, busObj, paymentMode);
-							System.out.println("Booking details: ");
-							System.out.println(booking.getBookingId()+" "+booking.getDateOfJourney()+" "+booking.getModeOfPayment());
-							System.out.println("List of passengers");
-							for(Passenger p:booking.getPassengers()) {
-								System.out.println(p.getPassengerName()+" "+p.getPassengerAge()+" "+p.getPassengerGender());
-							}
-						}
-						else {
-							System.out.println("Bus is full. Can't proceed with booking");
-							continue;
-						}
-					}	
+				System.out.println("List of transactions");
+				for (BusTransaction busTransaction : userService.getTransactionsByDate(date)) {
+					System.out.println(
+							busTransaction.getDate() + " " + busTransaction.getBus() + busTransaction.getBookings());
 				}
 				break;
-			case 2:
-				break;
-			case 3:
-				System.out.println("List of your bookings: ");
-				for(Booking booking:userService.viewTicketList()) {
-					System.out.println(booking.getBookingId()+" "+booking.getDateOfJourney()+" "+booking.getModeOfPayment()+" "+booking.getPassengers());
-				}
-				break;
-			case 4:
-				BigInteger bookingId;
-				while(true) {
-				System.out.println("Enter the booking id you want to cancel the booking for: ");
-				input = scanner.next(); //INputMismatchExcp
-				try { 
-				bookingId=validation.validateChoice3(input);
-				
-				for(Booking booking:userService.viewTicketList()) {
-					if(booking.getBookingId().equals(bookingId)) {
-						int cancelStatus=userService.cancelTicket(booking);
-						if(cancelStatus==1) {
-							System.out.println("Booking cancelled");
-						}
-						else {
-							System.out.println("Error in cancelling the booking");
-						}
-					}
-				}
-				break;
-				}  catch (RuntimeException e) {
-					
-					System.out.println("Exception occured:" +e.getMessage());
-					continue;
-				}
-		}
-				break;
-		
 			case 5:
 				System.out.println("You cannot edit your personal details. System is under maintenance");
 				break;
@@ -516,10 +312,207 @@ public class MyApplication {
 				break;
 			}
 			System.out.println("Press 1 to continue, 0 to exit");
-			runLoop=scanner.nextInt();
+			runLoop = scanner.nextInt();
+		}
 
-		} scanner.close();
-		
+	}
+
+	static void customerMenu() {
+		validation = new Validation();
+		Scanner scanner = new Scanner(System.in);
+		int runLoop = 1;
+		String input;
+		while (runLoop != 0) {
+			int choice = 0;
+			while (true) {
+				System.out.println("Press 1 to Booking a Ticket");
+				System.out.println("Press 2 for Viewing a Booking");
+				System.out.println("Press 3 for Viewing Bookings List");
+				System.out.println("Press 4 for Cancelling a Ticket");
+				System.out.println("Press 5 for Editing Personal Details");
+				System.out.println("Enter your choice: ");
+				input = scanner.next(); // INputMismatchExcp
+				try {
+					choice = validation.validateIntegerChoice(input);
+					break;
+				} catch (RuntimeException e) {
+					// TODO: handle exception
+					System.out.println("Exception occured:" + e.getMessage());
+					continue;
+				}
+			}
+
+			switch (choice) {
+			case 1:
+				LocalDate date;
+				while (true) {
+					System.out.println("Enter your date of journey(DD-MM-YYYY):");
+					String dateStr = scanner.next();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					date = LocalDate.parse(dateStr, formatter);
+					try {
+						validation.validateDate(date);
+						break;
+					} catch (Exception e) {
+						System.out.println("Exception occurred: " + e.getMessage());
+						continue;
+
+					}
+				}
+
+				String source;
+				String destination;
+				while (true) {
+					System.out.println("Enter the bus source: ");
+					source = scanner.next();
+
+					System.out.println("Enter the bus destination");
+
+					destination = scanner.next();
+
+					try {
+						validation.validateTravel(source, destination);
+						break;
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" + e.getMessage());
+						continue;
+					}
+				}
+
+				List<Bus> busList = userService.getRunningBuses(date, source, destination);
+				System.out.println("Running buses on your day of journey: ");
+				int i = 0;
+				for (Bus b : busList) {
+					System.out.println((i + 1) + " " + b.getBusId() + " " + b.getBusName() + " " + b.getBusType() + " "
+							+ b.getBusClass() + " " + b.getCost());
+				}
+				BigInteger busId;
+				while (true) {
+					System.out.println("Enter the bus Id of the bus you will be travelling: ");
+					input = scanner.next();
+					try {
+						busId = validation.validateBigIntegerChoice(input);
+						// BigInteger busId=scanner.nextBigInteger();
+						break;
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Exception occured:" + e.getMessage());
+						continue;
+					}
+				}
+
+				for (Bus busObj : busList) {
+					if (busId.equals(busObj.getBusId())) {
+						int passengersCount;
+						while (true) {
+							System.out.println("Enter the number of passengers: ");
+							passengersCount = scanner.nextInt();
+							try {
+								validation.validatePassengersCount(passengersCount);
+								break;
+							} catch (Exception e) {
+								// TODO: handle exception
+								System.out.println("Exception occurred: " + e.getMessage());
+								continue;
+							}
+						}
+						// System.out.println("Enter the number of passengers: ");
+						// passengersCount=scanner.nextInt();
+						boolean bookingStatus = userService.checkBusTransaction(date, busObj, passengersCount);
+						if (bookingStatus) {
+							List<Passenger> passengersList = new ArrayList<Passenger>();
+							for (int j = 0; j < passengersCount; j++) {
+								System.out.println("Enter Passenger " + j + 1 + " details: ");
+								Passenger passenger = new Passenger();
+								System.out.println("Name: ");
+								String passengerName = scanner.next();
+								passenger.setPassengerName(passengerName);
+								int passengerAge = scanner.nextInt();
+								passenger.setPassengerAge(passengerAge);
+								System.out.println("Gender(M/F)");
+								char passengerGender = scanner.next().charAt(0);
+								passenger.setPassengerGender(passengerGender);
+								passengersList.add(passenger);
+							}
+							String paymentMode;
+							while (true) {
+								System.out.println("Enter the mode of payment(UPI/DC/CC/NB): ");
+								paymentMode = scanner.next();
+								try {
+									validation.validatePaymentMode(paymentMode);
+									break;
+								} catch (Exception e) {
+									// TODO: handle exception
+									System.out.println("Exception occured:" + e.getMessage());
+									continue;
+								}
+							}
+
+							Booking booking = userService.createBooking(passengersList, date, busObj, paymentMode);
+							System.out.println("Booking details: ");
+							System.out.println(booking.getBookingId() + " " + booking.getDateOfJourney() + " "
+									+ booking.getModeOfPayment());
+							System.out.println("List of passengers");
+							for (Passenger p : booking.getPassengers()) {
+								System.out.println(p.getPassengerName() + " " + p.getPassengerAge() + " "
+										+ p.getPassengerGender());
+							}
+						} else {
+							System.out.println("Bus is full. Can't proceed with booking");
+							continue;
+						}
+					}
+				}
+				break;
+			case 2:
+				break;
+			case 3:
+				System.out.println("List of your bookings: ");
+				for (Booking booking : userService.viewTicketList()) {
+					System.out.println(booking.getBookingId() + " " + booking.getDateOfJourney() + " "
+							+ booking.getModeOfPayment() + " " + booking.getPassengers());
+				}
+				break;
+			case 4:
+				BigInteger bookingId;
+				while (true) {
+					System.out.println("Enter the booking id you want to cancel the booking for: ");
+					input = scanner.next(); // INputMismatchExcp
+					try {
+						bookingId = validation.validateBigIntegerChoice(input);
+
+						for (Booking booking : userService.viewTicketList()) {
+							if (booking.getBookingId().equals(bookingId)) {
+								int cancelStatus = userService.cancelTicket(booking);
+								if (cancelStatus == 1) {
+									System.out.println("Booking cancelled");
+								} else {
+									System.out.println("Error in cancelling the booking");
+								}
+							}
+						}
+						break;
+					} catch (RuntimeException e) {
+
+						System.out.println("Exception occured:" + e.getMessage());
+						continue;
+					}
+				}
+				break;
+
+			case 5:
+				System.out.println("You cannot edit your personal details. System is under maintenance");
+				break;
+			default:
+				System.out.println("Wrong choice : Enter a valid Integer input");
+				break;
+			}
+			System.out.println("Press 1 to continue, 0 to exit to the main menu");
+			runLoop = scanner.nextInt();
+
+		}
+		scanner.close();
+
 	}
 }
-
