@@ -1,10 +1,12 @@
 package com.cg.busreservationsystem.dto;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BusTransaction {
 	
+	private BigInteger transactionId;
 	private LocalDate date;
 	private Integer availableSeats;
 	private ArrayList<Booking> bookings;
@@ -14,12 +16,22 @@ public class BusTransaction {
 		
 	}
 
-	public BusTransaction(LocalDate date, Integer availableSeats, ArrayList<Booking> bookings, Bus bus) {
+	public BusTransaction(BigInteger transactionId, LocalDate date, Integer availableSeats, ArrayList<Booking> bookings,
+			Bus bus) {
 		super();
+		this.transactionId = transactionId;
 		this.date = date;
 		this.availableSeats = availableSeats;
 		this.bookings = bookings;
 		this.bus = bus;
+	}
+
+	public BigInteger getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(BigInteger transactionId) {
+		this.transactionId = transactionId;
 	}
 
 	public LocalDate getDate() {
@@ -31,17 +43,7 @@ public class BusTransaction {
 	}
 
 	public Integer getAvailableSeats() {
-		availableSeats=bus.getNoOfSeats();
-		int occupied=0;
-		if(bookings!=null) {
-		for (Booking booking : bookings) {
-			occupied+=booking.getPassengers().size();
-			
-		}
-		availableSeats=availableSeats-occupied;
-		}
 		return availableSeats;
-		
 	}
 
 	public void setAvailableSeats(Integer availableSeats) {
@@ -72,6 +74,7 @@ public class BusTransaction {
 		result = prime * result + ((bookings == null) ? 0 : bookings.hashCode());
 		result = prime * result + ((bus == null) ? 0 : bus.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((transactionId == null) ? 0 : transactionId.hashCode());
 		return result;
 	}
 
@@ -104,15 +107,19 @@ public class BusTransaction {
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
+		if (transactionId == null) {
+			if (other.transactionId != null)
+				return false;
+		} else if (!transactionId.equals(other.transactionId))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "BusTransaction [date=" + date + ", availableSeats=" + availableSeats + ", bookings=" + bookings + ", bus="
-				+ bus + "]";
+		return "BusTransaction [transactionId=" + transactionId + ", date=" + date + ", availableSeats="
+				+ availableSeats + ", bookings=" + bookings + ", bus=" + bus + "]";
 	}
 	
 	
-
 }
