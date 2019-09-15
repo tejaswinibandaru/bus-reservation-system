@@ -17,16 +17,14 @@ import org.apache.log4j.PropertyConfigurator;
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
-<<<<<<< HEAD
-import com.cg.busreservationsystem.dto.Transaction;
+
+import com.cg.busreservationsystem.dto.BusTransaction;
 import com.cg.busreservationsystem.exception.BookingException;
 
-//import com.cg.jdbc.ems.util.DBUtil;
+
 import com.cg.busreservationsystem.exception.*;
 import com.cg.busreservationsystem.dto.*;;
-=======
-import com.cg.busreservationsystem.dto.BusTransaction;
->>>>>>> branch 'master' of https://github.com/tejaswinibandaru/bus-reservation-system.git
+
 
 public class UserDaoImpl implements UserDao {
 	// db code starts here
@@ -68,7 +66,7 @@ public class UserDaoImpl implements UserDao {
 		//step1 : obtain ps 
 			ps= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		//step 2: set the ps placeholder values
-			ps.setBigInteger(1, booking.getBookingId());
+			//ps.setBigInteger(1, booking.getBookingId());
 			ps.setDouble(2, booking.getTotalCost());			
 		//step 3: execute Query (for DML we have executeUpdate method )
 			int noOfRec = ps.executeUpdate();
