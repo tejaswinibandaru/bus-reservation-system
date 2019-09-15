@@ -74,3 +74,18 @@ booking b JOIN passenger p ON b.booking_id=p.booking_id WHERE b.booking_id=?;
 
 #savePassenger
 INSERT INTO passenger 
+____________________
+		String sql ="insert into booking(booking_id,user_id,transaction_id,bus_id,date_of_journey,mode_of_payment,total_cost,status,delete_flag) values(?,?,?,?,?,?,?,?,?)";		
+	String sql ="delete from booking where booking_id=?";
+String sql ="select * from booking";
+		String sql= "select * from booking where booking_id=?";
+		String sql="insert into passenger (passenger_id,booking_id,passenger_name,passenger_age,passenger_gender,delete_flag) values(?,?,?,?,?,?) ";
+		String sql="select * from passenger";
+		String sql="select * from passenger where passenger_name=?";
+
+		String sql="insert into bus(bus_id,bus_name,bus_type,bus_class,no_of_seats,source,destination,cost,delete_flag) values(?,?,?,?,?,?,?,?,?)";
+		String sql="delete from bus where bus_id=?";
+		String sql="select * from bus";
+		String sql="select * from bus where bus_id=?";
+		String sql="select * from transaction where (transaction.bus_id= bus.bus_id";
+		String sql="select * from transaction where date=?";
