@@ -16,14 +16,10 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
-import com.cg.busreservationsystem.dto.Passenger;
-
 import com.cg.busreservationsystem.dto.BusTransaction;
+import com.cg.busreservationsystem.dto.Passenger;
 import com.cg.busreservationsystem.exception.BookingException;
-
-
-import com.cg.busreservationsystem.exception.*;
-import com.cg.busreservationsystem.dto.*;;
+import com.cg.busreservationsystem.util.DBUtil;;
 
 
 public class UserDaoImpl implements UserDao {
@@ -137,11 +133,11 @@ return noOfRec;
 			//for select queries we have executeQuery method which returns ResultSet
 			rs= ps.executeQuery();
 			while (rs.next()) {
-				//create booking obj
+				//create booking object
 				Booking booking = new Booking();
 				//get the value from rs and set to booking obj
 				booking.setBookingId(BigInteger.valueOf(rs.getLong(1)));
-				booking.setBus(rs.get);
+				//booking.setBus(rs.get);
 				booking.setTotalCost(rs.getDouble(4));				
 				//add the booking obj to bookingList
 				bookingList.add(booking);

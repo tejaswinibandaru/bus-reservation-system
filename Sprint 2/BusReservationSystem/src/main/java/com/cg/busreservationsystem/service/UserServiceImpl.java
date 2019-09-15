@@ -13,8 +13,8 @@ import com.cg.busreservationsystem.dao.UserDao;
 import com.cg.busreservationsystem.dao.UserDaoImpl;
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
-import com.cg.busreservationsystem.dto.Passenger;
 import com.cg.busreservationsystem.dto.BusTransaction;
+import com.cg.busreservationsystem.dto.Passenger;
 import com.cg.busreservationsystem.exception.BusException;
 
 public class UserServiceImpl implements UserService {

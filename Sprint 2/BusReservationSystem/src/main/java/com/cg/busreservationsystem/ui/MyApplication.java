@@ -12,8 +12,8 @@ import java.util.TreeSet;
 
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
-import com.cg.busreservationsystem.dto.Passenger;
 import com.cg.busreservationsystem.dto.BusTransaction;
+import com.cg.busreservationsystem.dto.Passenger;
 import com.cg.busreservationsystem.service.UserService;
 import com.cg.busreservationsystem.service.UserServiceImpl;
 import com.cg.busreservationsystem.service.Validation;;
