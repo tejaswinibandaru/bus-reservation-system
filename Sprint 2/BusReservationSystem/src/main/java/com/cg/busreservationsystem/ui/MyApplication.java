@@ -13,7 +13,7 @@ import java.util.TreeSet;
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
-import com.cg.busreservationsystem.dto.Transaction;
+import com.cg.busreservationsystem.dto.BusTransaction;
 import com.cg.busreservationsystem.service.UserService;
 import com.cg.busreservationsystem.service.UserServiceImpl;
 import com.cg.busreservationsystem.service.Validation;;
@@ -79,7 +79,7 @@ public class MyApplication {
 			System.out.println("Press 1 for Adding Bus Details");
 			System.out.println("Press 2 for Removing Bus Details");
 			System.out.println("Press 3 for Modifying Bus Details");
-			System.out.println("Press 4 for Viewing Transaction Details");
+			System.out.println("Press 4 for Viewing BusTransaction Details");
 			System.out.println("Press 5 for Editing Personal Details");
 			System.out.println("Enter your choice:");
 			input = scanner.next(); //INputMismatchExcp
@@ -308,8 +308,8 @@ public class MyApplication {
 				}
 				}
 				System.out.println("List of transactions");
-				for (Transaction transaction : userService.getTransactionsByDate(date)) {
-					System.out.println(transaction.getDate() + " " + transaction.getBus() + transaction.getBookings());
+				for (BusTransaction busTransaction : userService.getTransactionsByDate(date)) {
+					System.out.println(busTransaction.getDate() + " " + busTransaction.getBus() + busTransaction.getBookings());
 				}
 				break;
 			case 5:

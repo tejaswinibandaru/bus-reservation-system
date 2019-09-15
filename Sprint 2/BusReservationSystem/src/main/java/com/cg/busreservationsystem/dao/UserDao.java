@@ -7,7 +7,7 @@ import java.util.List;
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
-import com.cg.busreservationsystem.dto.Transaction;
+import com.cg.busreservationsystem.dto.BusTransaction;
 
 public interface UserDao {
 	
@@ -24,10 +24,10 @@ public interface UserDao {
 	public List<Bus> findAllBuses();
 	public Bus findBusById(BigInteger busId);
 	
-	public Transaction saveTransaction(Transaction transaction);
+	public BusTransaction saveTransaction(BusTransaction busTransaction);
 	public Integer removeTransaction(Bus bus);
-	//public List<Transaction> findAllTransactions();
-	public List<Transaction> findTransactionsByDate(LocalDate date);
-	public List<Transaction> getTransactionList();
+	//public List<BusTransaction> findAllTransactions();
+	public List<BusTransaction> findTransactionsByDate(LocalDate date);
+	public List<BusTransaction> getTransactionList();
 
 }

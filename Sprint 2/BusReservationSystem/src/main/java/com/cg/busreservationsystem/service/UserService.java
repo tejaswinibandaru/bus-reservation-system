@@ -7,7 +7,7 @@ import java.util.List;
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
-import com.cg.busreservationsystem.dto.Transaction;
+import com.cg.busreservationsystem.dto.BusTransaction;
 
 public interface UserService {
 	
@@ -15,7 +15,7 @@ public interface UserService {
 	public Integer removeBusDetails(BigInteger busId);
 	public Bus searchBus(BigInteger busId);
 	public List<Bus> viewBuses();
-	public List<Transaction> getTransactionsByDate(LocalDate date);
+	public List<BusTransaction> getTransactionsByDate(LocalDate date);
 	
 	public List<Bus> getRunningBuses(LocalDate dateOfJourney, String src, String dest);
 

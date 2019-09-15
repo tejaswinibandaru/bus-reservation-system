@@ -17,12 +17,16 @@ import org.apache.log4j.PropertyConfigurator;
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
+<<<<<<< HEAD
 import com.cg.busreservationsystem.dto.Transaction;
 import com.cg.busreservationsystem.exception.BookingException;
 
 //import com.cg.jdbc.ems.util.DBUtil;
 import com.cg.busreservationsystem.exception.*;
 import com.cg.busreservationsystem.dto.*;;
+=======
+import com.cg.busreservationsystem.dto.BusTransaction;
+>>>>>>> branch 'master' of https://github.com/tejaswinibandaru/bus-reservation-system.git
 
 public class UserDaoImpl implements UserDao {
 	// db code starts here
@@ -49,7 +53,7 @@ public class UserDaoImpl implements UserDao {
 			}
 		}
 	
-	private List<Transaction> transactionList=new ArrayList<Transaction>();
+	private List<BusTransaction> transactionList=new ArrayList<BusTransaction>();
 	private List<Bus> busList=new ArrayList<Bus>();
 
 	List<Booking> bookingsList=new ArrayList<Booking>();
@@ -232,25 +236,25 @@ return noOfRec;
 		return null;
 	}
 
-	public List<Transaction> getTransactionList() {
+	public List<BusTransaction> getTransactionList() {
 		return transactionList;
 	}
 
-	public void setTransactionList(List<Transaction> transactionList) {
+	public void setTransactionList(List<BusTransaction> transactionList) {
 		this.transactionList = transactionList;
 	}
 
 	@Override
-	public Transaction saveTransaction(Transaction transaction) {
+	public BusTransaction saveTransaction(BusTransaction busTransaction) {
 		// TODO Auto-generated method stub
-		transactionList.add(transaction);
-		return transaction;
+		transactionList.add(busTransaction);
+		return busTransaction;
 	}
 
 	@Override
 	public Integer removeTransaction(Bus bus) {
 		// TODO Auto-generated method stub
-		for(Transaction t:transactionList) {
+		for(BusTransaction t:transactionList) {
 			if(bus.equals(t.getBus())) {
 				transactionList.remove(t);
 				return 1;
@@ -261,15 +265,15 @@ return noOfRec;
 
 	
 	/*@Override
-	 * public List<Transaction> findAllTransactions() { // TODO Auto-generated
+	 * public List<BusTransaction> findAllTransactions() { // TODO Auto-generated
 	 * method stub return transactionList; }
 	 */
 
 	@Override
-	public List<Transaction> findTransactionsByDate(LocalDate date) {
+	public List<BusTransaction> findTransactionsByDate(LocalDate date) {
 		// TODO Auto-generated method stub
-		List<Transaction> transactionsByDate=new ArrayList<Transaction>();
-		for(Transaction t:transactionList) {
+		List<BusTransaction> transactionsByDate=new ArrayList<BusTransaction>();
+		for(BusTransaction t:transactionList) {
 			if(date.equals(t.getDate())) {
 				transactionsByDate.add(t);
 			}

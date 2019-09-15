@@ -14,7 +14,7 @@ import com.cg.busreservationsystem.dao.UserDaoImpl;
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.Passenger;
-import com.cg.busreservationsystem.dto.Transaction;
+import com.cg.busreservationsystem.dto.BusTransaction;
 import com.cg.busreservationsystem.exception.BusException;
 
 public class UserServiceImpl implements UserService {
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Transaction> getTransactionsByDate(LocalDate date) {
+	public List<BusTransaction> getTransactionsByDate(LocalDate date) {
 		// TODO Auto-generated method stub
 		return userDao.findTransactionsByDate(date);
 	}
@@ -123,11 +123,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean checkBusTransaction(LocalDate dateOfJourney, Bus bus, Integer noOfPassengers) {
 		// TODO Auto-generated method stub
-		Transaction trans;
-		List<Transaction> listTransaction = userDao.getTransactionList();
+		BusTransaction trans;
+		List<BusTransaction> listTransaction = userDao.getTransactionList();
 		if(listTransaction.isEmpty()) {
 			System.out.println("transaction list is empty");
-			trans = new Transaction();
+			trans = new BusTransaction();
 			trans.setBus(bus);
 			trans.setDate(dateOfJourney);
 			userDao.getTransactionList().add(trans);
@@ -141,12 +141,12 @@ public class UserServiceImpl implements UserService {
 		}
 		else {
 			System.out.println("transaction list is not empty");
-			for (Transaction transaction : listTransaction) {
-				for (Booking booking : transaction.getBookings()) {
+			for (BusTransaction busTransaction : listTransaction) {
+				for (Booking booking : busTransaction.getBookings()) {
 					System.out.println("booking id is found to be"+booking.getBookingId());
 					if(booking.getBus().equals(bus))
 						if(booking.getDateOfJourney().equals(dateOfJourney))
-							if(transaction.getAvailableSeats()>=noOfPassengers)
+							if(busTransaction.getAvailableSeats()>=noOfPassengers)
 								return true;
 				}
 			}
@@ -159,18 +159,18 @@ public class UserServiceImpl implements UserService {
 	public Booking createBooking(List<Passenger> passengerList, LocalDate dateOfJourney, Bus bus, String modeOfPayment) {
 
 		Booking booking = new Booking(dateOfJourney, bus, passengerList, modeOfPayment);
-		List<Transaction> listTransactions = userDao.getTransactionList();
-		for (Transaction transaction : listTransactions) {
-			if(transaction.getDate().equals(dateOfJourney))
+		List<BusTransaction> listTransactions = userDao.getTransactionList();
+		for (BusTransaction busTransaction : listTransactions) {
+			if(busTransaction.getDate().equals(dateOfJourney))
 			{
-				if(transaction.getBus().equals(bus))
+				if(busTransaction.getBus().equals(bus))
 				{
 					
 					System.out.println(listTransactions);
 					
-					System.out.println(listTransactions.indexOf(transaction));
-					int index=(userDao.getTransactionList().indexOf(transaction));
-					Transaction currentTransaction = listTransactions.get(index);
+					System.out.println(listTransactions.indexOf(busTransaction));
+					int index=(userDao.getTransactionList().indexOf(busTransaction));
+					BusTransaction currentTransaction = listTransactions.get(index);
 					 
 					List<Booking> currentBooking =currentTransaction.getBookings();
 					if(currentBooking==null) {

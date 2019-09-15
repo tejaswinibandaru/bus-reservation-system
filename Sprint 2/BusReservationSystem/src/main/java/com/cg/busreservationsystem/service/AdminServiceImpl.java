@@ -10,7 +10,7 @@ import com.cg.busreservationsystem.dao.BusDao;
 import com.cg.busreservationsystem.dao.BusDaoImpl;
 import com.cg.busreservationsystem.dao.TransactionDaoImpl;
 import com.cg.busreservationsystem.dto.Bus;
-import com.cg.busreservationsystem.dto.Transaction;
+import com.cg.busreservationsystem.dto.BusTransaction;
 import com.cg.busreservationsystem.exception.BusException;
 
 public class AdminServiceImpl implements AdminService{
@@ -44,7 +44,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Transaction> getTransactionsByDate(LocalDate date) {
+	public List<BusTransaction> getTransactionsByDate(LocalDate date) {
 		// TODO Auto-generated method stub
 		return transactionDao.findTransactionsByDate(date);
 	}
