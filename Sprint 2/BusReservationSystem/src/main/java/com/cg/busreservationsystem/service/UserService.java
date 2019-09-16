@@ -27,6 +27,6 @@ public interface UserService {
 	public Integer cancelTicket(Booking b);
 	public List<Booking> viewTicketList();
 	//public Passenger addPassenger(Passenger passenger);
-	public List<Passenger> viewPassengers();
+	//public List<Passenger> viewPassengers();
 
 }

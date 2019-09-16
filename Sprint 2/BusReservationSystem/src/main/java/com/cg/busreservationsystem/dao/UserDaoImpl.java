@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -198,7 +199,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setLong(1, bookingId.longValue());
-			
+
 
 			resultSet= preparedStatement.executeQuery();
 			while(resultSet.next())
@@ -255,24 +256,24 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Passenger savePassenger(Passenger passenger) {
 		// TODO Auto-generated method stub
-		passengersList.add(passenger);
-		
+		//passengersList.add(passenger);
+
 		String sql = "INSERT INTO passenger(booking_id, passenger_name, passenger_age, passenger_gender,delete_flag) VALUES (?,?,?,?,0)";
-		
+
 		try {
 			preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-			
+
 			preparedStatement.setLong(1, passenger.getBookingId().longValue());
 			preparedStatement.setString(1, passenger.getPassengerName());
 			preparedStatement.setInt(1, passenger.getPassengerAge());
 			preparedStatement.setString(1, passenger.getPassengerGender().toString());
-			
+
 			resultSet= preparedStatement.executeQuery();
 			while (resultSet.next())
-					{
+			{
 				passenger.setPassengerId(BigInteger.valueOf(resultSet.getLong("passenger_id")));
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println(" Error at findAllBookings Dao method : "+e);
 			myLogger.error(" Error at saveBooking Dao method : "+e);
@@ -286,33 +287,168 @@ public class UserDaoImpl implements UserDao {
 				}
 			}
 		}
-		
-		
+
+
 		return passenger;
 	}
 
 	@Override
-	public List<Passenger> findAllPassengers() {
+	public List<Passenger> findPassengersByBookingId(BigInteger bookingId) {
 		// TODO Auto-generated method stub
+		//return passengersList;
+		String sql2 = "select * from passenger where booking_id=? AND delete_flag=0";
+		try {
+
+			PreparedStatement preparedStatement2 =connection.prepareStatement(sql2);
+			preparedStatement2.setLong(1, bookingId.longValue());
+
+			ResultSet resultSet2 =preparedStatement2.executeQuery();
+			while(resultSet2.next())
+			{
+				Passenger passenger= new Passenger();
+				passenger.setBookingId(BigInteger.valueOf(resultSet2.getLong("booking_id")));
+				passenger.setPassengerName(resultSet2.getString("passenger_name"));
+				passenger.setPassengerId(BigInteger.valueOf(resultSet2.getLong("passenger_id")));
+				passenger.setPassengerAge(resultSet2.getInt("passenger_age"));
+				passenger.setPassengerGender(resultSet2.getString("passenger_gender").charAt(0));
+				passengersList.add(passenger);
+			}
+		}catch (SQLException e) {
+			System.out.println(" Error at findAllBookings Dao method : "+e);
+			myLogger.error(" Error at saveBooking Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at findAllBookings Dao method : "+e);
+					myLogger.error(" Error at saveBooking Dao method : "+e);
+				}
+			}
+		}
 		return passengersList;
+
 	}
 
 	@Override
 	public Passenger findPassengerByName(String pname) {
 		// TODO Auto-generated method stub
-		for(Passenger p:passengersList) {
-			if(pname.equalsIgnoreCase(p.getPassengerName())) {
-				return p;
+		/*
+		 * for(Passenger p:passengersList) {
+		 * if(pname.equalsIgnoreCase(p.getPassengerName())) { return p; } } return null;
+		 */
+		String sql2 = "select * from passenger where passenger_name=? AND delete_flag=0";
+		Passenger passenger= new Passenger();
+		try {
+
+			PreparedStatement preparedStatement2 =connection.prepareStatement(sql2);
+			preparedStatement2.setString(1, pname);
+
+			ResultSet resultSet2 =preparedStatement2.executeQuery();
+			while(resultSet2.next())
+			{
+
+				passenger.setBookingId(BigInteger.valueOf(resultSet2.getLong("booking_id")));
+				passenger.setPassengerName(resultSet2.getString("passenger_name"));
+				passenger.setPassengerId(BigInteger.valueOf(resultSet2.getLong("passenger_id")));
+				passenger.setPassengerAge(resultSet2.getInt("passenger_age"));
+				passenger.setPassengerGender(resultSet2.getString("passenger_gender").charAt(0));
+			}
+		}catch (SQLException e) {
+			System.out.println(" Error at findAllBookings Dao method : "+e);
+			myLogger.error(" Error at saveBooking Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at findAllBookings Dao method : "+e);
+					myLogger.error(" Error at saveBooking Dao method : "+e);
+				}
 			}
 		}
-		return null;
+		return passenger;
+
 	}
 
 	@Override
 	public Bus saveBus(Bus bus){
 		// TODO Auto-generated method stub
-		busList.add(bus);
+		//busList.add(bus);
+		String sql = "INSERT INTO bus(bus_name, bus_type, bus_class, no_of_seats,source, destination,cost,delete_flag) VALUES (?,?,?,?,?,?,?,0)";
+
+		try {
+			preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+
+			preparedStatement.setString(1, bus.getBusName());
+			preparedStatement.setString(2, bus.getBusType());
+			preparedStatement.setString(3, bus.getBusClass());
+			preparedStatement.setInt(4, bus.getNoOfSeats());
+			preparedStatement.setString(5, bus.getSource());
+			preparedStatement.setString(6, bus.getDestination());
+			preparedStatement.setDouble(7, bus.getCost());
+
+			//int returnedVal =saveBusDay(bus.getDayOfJourney(),bus.getBusId());
+
+			resultSet= preparedStatement.executeQuery();
+			while (resultSet.next())
+			{
+				bus.setBusId(BigInteger.valueOf(resultSet.getLong("bus_id")));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(" Error at findAllBookings Dao method : "+e);
+			myLogger.error(" Error at saveBooking Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at findAllBookings Dao method : "+e);
+					myLogger.error(" Error at saveBooking Dao method : "+e);
+				}
+			}
+		}
+
+
+		//return passenger;
 		return bus;
+	}
+
+	@Override
+	public int saveBusDay(List<DayOfWeek> dayOfWeek, BigInteger busId) {
+		// TODO Auto-generated method stub
+		String sql = "INSERT INTO bus_day(bus_id,day,delete_flag) VALUES (?,?,0)";
+		int noOfRecs = 0;
+		try {
+			preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+
+			
+			for(int i=0;i<dayOfWeek.size();i++)
+			{
+				preparedStatement.setLong(1, busId.longValue());
+				preparedStatement.setString(2, dayOfWeek.get(i).toString());
+				noOfRecs=preparedStatement.executeUpdate();
+				
+			}
+
+		} catch (SQLException e) {
+			System.out.println(" Error at findAllBookings Dao method : "+e);
+			myLogger.error(" Error at saveBooking Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at findAllBookings Dao method : "+e);
+					myLogger.error(" Error at saveBooking Dao method : "+e);
+				}
+			}
+		}
+
+
+		//return passenger;
+		return noOfRecs;
 	}
 
 	@Override
@@ -345,7 +481,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public List<BusTransaction> getTransactionList() {
-		
+
 		return transactionList;
 	}
 

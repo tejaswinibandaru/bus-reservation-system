@@ -231,11 +231,10 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}*/
 
-	@Override
-	public List<Passenger> viewPassengers() {
-		// TODO Auto-generated method stub
-		return userDao.findAllPassengers();
-	}
-
+	/*
+	 * @Override public List<Passenger> viewPassengers() { // TODO Auto-generated
+	 * method stub return userDao.findAllPassengers();								 //viewpassenger by bookingId
+	 * }
+	 */
 
 }

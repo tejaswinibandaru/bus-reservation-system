@@ -1,6 +1,7 @@
 package com.cg.busreservationsystem.dao;
 
 import java.math.BigInteger;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,10 +17,11 @@ public interface UserDao {
 	public List<Booking> findAllBookings();
 	public Booking findBookingById(BigInteger bookingId);
 	public Passenger savePassenger(Passenger passenger);
-	public List<Passenger> findAllPassengers();
+	public List<Passenger> findPassengersByBookingId(BigInteger bookingId);
 	public Passenger findPassengerByName(String pname);
 	
 	public Bus saveBus(Bus bus);
+	public int saveBusDay(List<DayOfWeek> dayOfWeek, BigInteger busId);
 	public Integer removeBus(BigInteger busId);
 	public List<Bus> findAllBuses();
 	public Bus findBusById(BigInteger busId);
@@ -29,5 +31,6 @@ public interface UserDao {
 	//public List<BusTransaction> findAllTransactions();
 	public List<BusTransaction> findTransactionsByDate(LocalDate date);
 	public List<BusTransaction> getTransactionList();
+	
 
 }
