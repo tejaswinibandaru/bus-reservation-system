@@ -2,7 +2,7 @@ create database brsdb;
 
 use brsdb;
 
-CREATE TABLE user(
+CREATE TABLE IF NOT EXISTS user(
 user_id BIGINT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
 user_name VARCHAR(30) NOT NULL,
 password VARCHAR(30) NOT NULL,
@@ -12,7 +12,7 @@ phone_number BIGINT  NOT NULL,
 delete_flag INT  NOT NULL);
 
 
-CREATE TABLE bus(
+CREATE TABLE IF NOT EXISTS bus(
 bus_id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 bus_name VARCHAR(30) NOT NULL,
 bus_type VARCHAR(30) NOT NULL,
@@ -23,14 +23,14 @@ destination VARCHAR(30)  NOT NULL,
 cost decimal  NOT NULL, 
 delete_flag INT  NOT NULL);
 
-CREATE TABLE bus_day(
+CREATE TABLE IF NOT EXISTS bus_day(
 bus_day_id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 bus_id BIGINT NOT NULL,
 day VARCHAR(30)  NOT NULL,
 delete_flag INT  NOT NULL,
 FOREIGN KEY (bus_id) REFERENCES bus(bus_id) );
 
-CREATE TABLE booking(
+CREATE TABLE IF NOT EXISTS booking(
 booking_id BIGINT PRIMARY KEY AUTO_INCREMENT,
 user_id BIGINT NOT NULL,
 transaction_id BIGINT NOT NULL,
@@ -46,7 +46,7 @@ FOREIGN KEY (bus_id) REFERENCES bus(bus_id)
 );
 
 
-CREATE table passenger(
+CREATE TABLE IF NOT EXISTS passenger(
 passenger_id BIGINT PRIMARY KEY auto_increment  NOT NULL,
 booking_id BIGINT NOT NULL,
 passenger_name VARCHAR(30)  NOT NULL,
@@ -55,7 +55,7 @@ passenger_gender CHAR NOT NULL,
 delete_flag INT NOT NULL,
 FOREIGN KEY (booking_id) REFERENCES booking(booking_id));
 
-CREATE TABLE bus_transaction(
+CREATE TABLE IF NOT EXISTS bus_transaction(
 transaction_id BIGINT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
 date TIMESTAMP NOT NULL,
 bus_id BIGINT  NOT NULL,
