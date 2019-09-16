@@ -91,6 +91,7 @@ public class TestBusBooking {
 		book.setDateOfJourney(LocalDate.now());
 		List<Passenger> passList=new ArrayList<Passenger>();
 		Passenger p=new Passenger();
+		p.setBookingId(book.getBookingId());
 		p.setPassengerName("rtueo");
 		p.setPassengerAge(20);
 		p.setPassengerGender('F');
