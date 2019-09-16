@@ -60,7 +60,7 @@ public class UserDaoImpl implements UserDao {
 			// step1 : obtain ps
 			preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			// step 2: set the ps placeholder values
-
+			preparedStatement.setLong(1, booking.getUserId().longValue());
 			preparedStatement.setLong(2, booking.getTransactionId().longValue()); // getTrsansactionId
 			preparedStatement.setLong(3, booking.getBus().getBusId().longValue());
 			preparedStatement.setTimestamp(4, Timestamp.valueOf(booking.getDateOfJourney().atStartOfDay())); // to
@@ -314,9 +314,9 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			preparedStatement.setLong(1, passenger.getBookingId().longValue());
-			preparedStatement.setString(1, passenger.getPassengerName());
-			preparedStatement.setInt(1, passenger.getPassengerAge());
-			preparedStatement.setString(1, passenger.getPassengerGender().toString());
+			preparedStatement.setString(2, passenger.getPassengerName());
+			preparedStatement.setInt(3, passenger.getPassengerAge());
+			preparedStatement.setString(4, passenger.getPassengerGender().toString());
 
 			noOfRecs = preparedStatement.executeUpdate();
 			resultSet = preparedStatement.getGeneratedKeys();
@@ -649,15 +649,15 @@ public class UserDaoImpl implements UserDao {
 
 			}
 		} catch (SQLException e) {
-			System.out.println(" Error at findAllBuses Dao method : " + e);
-			myLogger.error(" Error at findAllBuses Dao method : " + e);
+			System.out.println(" Error at findBusById Dao method : " + e);
+			myLogger.error(" Error at findBusById Dao method : " + e);
 		} finally {
 			if (preparedStatement != null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBuses Dao method : " + e);
-					myLogger.error(" Error at findAllBuses  Dao method : " + e);
+					System.out.println(" Error at findBusById Dao method : " + e);
+					myLogger.error(" Error at findBusById  Dao method : " + e);
 				}
 			}
 		}
@@ -698,15 +698,15 @@ public class UserDaoImpl implements UserDao {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(" Error at findAllBuses Dao method : " + e);
-			myLogger.error(" Error at findAllBuses Dao method : " + e);
+			System.out.println(" Error at saveTransaction Dao method : " + e);
+			myLogger.error(" Error at saveTransaction Dao method : " + e);
 		} finally {
 			if (preparedStatement != null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBuses Dao method : " + e);
-					myLogger.error(" Error at findAllBuses  Dao method : " + e);
+					System.out.println(" Error at saveTransaction Dao method : " + e);
+					myLogger.error(" Error at saveTransaction  Dao method : " + e);
 				}
 			}
 		}
@@ -729,15 +729,15 @@ public class UserDaoImpl implements UserDao {
 
 			noOfRec = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(" Error at findAllBuses Dao method : " + e);
-			myLogger.error(" Error at findAllBuses Dao method : " + e);
+			System.out.println(" Error at removeTransaction Dao method : " + e);
+			myLogger.error(" Error at removeTransaction Dao method : " + e);
 		} finally {
 			if (preparedStatement != null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBuses Dao method : " + e);
-					myLogger.error(" Error at findAllBuses  Dao method : " + e);
+					System.out.println(" Error at removeTransaction Dao method : " + e);
+					myLogger.error(" Error at removeTransaction  Dao method : " + e);
 				}
 			}
 		}
@@ -766,15 +766,15 @@ public class UserDaoImpl implements UserDao {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(" Error at findAllBuses Dao method : " + e);
-			myLogger.error(" Error at findAllBuses Dao method : " + e);
+			System.out.println(" Error at findAllTransactions Dao method : " + e);
+			myLogger.error(" Error at findAllTransactions Dao method : " + e);
 		} finally {
 			if (preparedStatement != null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBuses Dao method : " + e);
-					myLogger.error(" Error at findAllBuses  Dao method : " + e);
+					System.out.println(" Error at findAllTransactions Dao method : " + e);
+					myLogger.error(" Error at findAllTransactions  Dao method : " + e);
 				}
 			}
 		}
@@ -810,15 +810,15 @@ public class UserDaoImpl implements UserDao {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(" Error at findAllBuses Dao method : " + e);
-			myLogger.error(" Error at findAllBuses Dao method : " + e);
+			System.out.println(" Error at findTransactionsByDate Dao method : " + e);
+			myLogger.error(" Error at findTransactionsByDate Dao method : " + e);
 		} finally {
 			if (preparedStatement != null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBuses Dao method : " + e);
-					myLogger.error(" Error at findAllBuses  Dao method : " + e);
+					System.out.println(" Error at findTransactionsByDate Dao method : " + e);
+					myLogger.error(" Error at findTransactionsByDate  Dao method : " + e);
 				}
 			}
 		}
