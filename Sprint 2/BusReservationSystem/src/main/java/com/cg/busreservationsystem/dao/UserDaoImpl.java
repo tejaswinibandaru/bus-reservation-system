@@ -258,6 +258,38 @@ public class UserDaoImpl implements UserDao {
 	public Passenger savePassenger(Passenger passenger) {
 		// TODO Auto-generated method stub
 		passengersList.add(passenger);
+		
+		String sql = "INSERT INTO passenger(booking_id, passenger_name, passenger_age, passenger_gender,delete_flag) VALUES (?,?,?,?,0)";
+		
+		try {
+			preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			
+			preparedStatement.setLong(1, passenger.getBookingId().longValue());
+			preparedStatement.setString(1, passenger.getPassengerName());
+			preparedStatement.setInt(1, passenger.getPassengerAge());
+			preparedStatement.setString(1, passenger.getPassengerGender().toString());
+			
+			resultSet= preparedStatement.executeQuery();
+			while (resultSet.next())
+					{
+				passenger.setPassengerId(BigInteger.valueOf(resultSet.getLong("passenger_id")));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(" Error at findAllBookings Dao method : "+e);
+			myLogger.error(" Error at saveBooking Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at findAllBookings Dao method : "+e);
+					myLogger.error(" Error at saveBooking Dao method : "+e);
+				}
+			}
+		}
+		
+		
 		return passenger;
 	}
 
