@@ -487,7 +487,7 @@ public class UserDaoImpl implements UserDao {
 			}
 		}
 		
-		return null;
+		return days;
 	}
 
 	@Override
