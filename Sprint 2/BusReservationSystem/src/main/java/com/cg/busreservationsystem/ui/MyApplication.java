@@ -30,7 +30,7 @@ public class MyApplication {
 		userService = new UserServiceImpl();
 		showUserMenu();
 	}
-
+	
 	static void showUserMenu() {
 		validation = new Validation();
 		Scanner scanner = new Scanner(System.in);
@@ -68,7 +68,7 @@ public class MyApplication {
 	static void adminMenu() {
 		validation = new Validation();
 		Scanner scanner = new Scanner(System.in);
-
+		
 		int runLoop = 1;
 		String input;
 		while (runLoop != 0) {

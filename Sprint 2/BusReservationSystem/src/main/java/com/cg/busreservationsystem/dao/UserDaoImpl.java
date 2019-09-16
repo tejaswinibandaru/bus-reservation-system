@@ -536,7 +536,11 @@ public class UserDaoImpl implements UserDao {
 			while (resultSet.next()) {
 				days.add(DayOfWeek.valueOf(resultSet.getString(3)));
 			}
-
+			for(Bus bus:findAllBuses()) {
+				if(bus.getBusId().equals(busId)) {
+					bus.setDayOfJourney(days);
+				}
+			}
 		} catch (SQLException e) {
 			System.out.println(" Error at findBusDay Dao method : " + e);
 			myLogger.error(" Error at findBusDay Dao method : " + e);
@@ -616,6 +620,7 @@ public class UserDaoImpl implements UserDao {
 				bus.setSource(resultSet.getString("source"));
 				bus.setDestination(resultSet.getString("destination"));
 				bus.setNoOfSeats(resultSet.getInt("no_of_seats"));
+				
 
 				/*
 				 * List<DayOfWeek> days = new ArrayList<DayOfWeek>();
