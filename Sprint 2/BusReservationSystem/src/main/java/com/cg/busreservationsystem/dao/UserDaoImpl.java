@@ -453,6 +453,37 @@ public class UserDaoImpl implements UserDao {
 		//return passenger;
 		return noOfRecs;
 	}
+	
+	public List<DayOfWeek> findDayOfWeekByBus(BigInteger busId){
+		List<DayOfWeek> days = new ArrayList<DayOfWeek>();
+		String sql = "SELECT * FROM bus_day WHERE bus_id=? AND delete_flag=0";
+		
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setLong(1,busId.longValue());
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next())
+			{
+				days.add((DayOfWeek)resultSet.getObject(3));
+			}
+		} catch (SQLException e) {
+			System.out.println(" Error at findBusDay Dao method : "+e);
+			myLogger.error(" Error at findBusDay Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at findBusDay Dao method : "+e);
+					myLogger.error(" Error at findBusDay Dao method : "+e);
+				}
+			}
+		}
+		
+		return null;
+	}
 
 	@Override
 	public Integer removeBus(BigInteger busId) {
@@ -488,7 +519,74 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<Bus> findAllBuses() {
 		// TODO Auto-generated method stub
+		/*
+		 * return busList;
+		 */
 		
+		String sql ="select * from bus where delete_flag=0";
+		//String sql2 = "select * from passenger where booking_id=? AND delete_flag=0";
+		List<Bus> busList = new ArrayList<Bus>();	
+		Bus bus= new Bus();
+		try {
+			preparedStatement= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			//for select queries we have executeQuery method which returns ResultSet
+			resultSet= preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				//create booking object
+				
+				//get the value from rs and set to booking obj
+				bus.setBusId(BigInteger.valueOf(resultSet.getLong(1)));
+				//
+				/*
+				 * PreparedStatement preparedStatement2 =connection.prepareStatement(sql);
+				 * preparedStatement2.setLong(1, booking.getBookingId().longValue()); ResultSet
+				 * resultSet2 =preparedStatement2.executeQuery(); while(resultSet2.next()) {
+				 * Passenger passenger= new Passenger();
+				 * passenger.setBookingId(BigInteger.valueOf(resultSet2.getLong("booking_id")));
+				 * passenger.setPassengerName(resultSet2.getString("passenger_name"));
+				 * passenger.setPassengerId(BigInteger.valueOf(resultSet2.getLong("passenger_id"
+				 * ))); passenger.setPassengerAge(resultSet2.getInt("passenger_age"));
+				 * passenger.setPassengerGender(resultSet2.getString("passenger_gender").charAt(
+				 * 0)); passengersList.add(passenger); }
+				 */
+				//
+				bus.setBusName(resultSet.getString("user_id"));
+				bus.setCost(resultSet.getDouble("cost"));
+				//bus.setBusClass(resultSet.getString("bus_class"));							//ENUMERATION	x2
+				bus.setSource(resultSet.getString("source"));
+				bus.setDestination(resultSet.getString("destination"));
+				bus.setNoOfSeats(resultSet.getInt("no_of_seats"));
+				
+				List<DayOfWeek> days = new ArrayList<DayOfWeek>();
+				days =  findDayOfWeekByBus(bus.getBusId());
+				bus.setDayOfJourney(days);
+				
+				busList.add(bus);
+				/*
+				 * booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey").
+				 * toLocalDateTime().toLocalDate()); //converting from timestamp to localdate
+				 * BigInteger busId = BigInteger.valueOf(resultSet.getLong("bus_id"));
+				 * booking.setBus(findBusById(busId)); booking.setPassengers(passengersList);
+				 * booking.setTotalCost(resultSet.getDouble("total_cost"));
+				 * booking.setModeOfPayment(resultSet.getString("mode_of_payment"));
+				 * booking.setBookingStatus(resultSet.getString("booking_status")); //add the
+				 * booking obj to bookingList bookingList.add(booking);
+				 */
+
+			}
+		} catch (SQLException e) {
+			System.out.println(" Error at findAllBuses Dao method : "+e);
+			myLogger.error(" Error at findAllBuses Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at findAllBuses Dao method : "+e);
+					myLogger.error(" Error at findAllBuses  Dao method : "+e);
+				}
+			}
+		}
 		return busList;
 	}
 
