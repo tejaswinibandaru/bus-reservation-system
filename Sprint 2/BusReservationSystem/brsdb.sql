@@ -54,7 +54,7 @@ passenger_gender CHAR NOT NULL,
 delete_flag INT NOT NULL,
 FOREIGN KEY (booking_id) REFERENCES booking(booking_id));
 
-CREATE TABLE transaction(
+CREATE TABLE bus_transaction(
 transaction_id BIGINT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
 date TIMESTAMP NOT NULL,
 bus_id BIGINT  NOT NULL,

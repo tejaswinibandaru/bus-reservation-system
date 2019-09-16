@@ -3,6 +3,7 @@ package com.cg.busreservationsystem.dto;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BusTransaction {
 	
@@ -54,12 +55,12 @@ public class BusTransaction {
 		this.availableSeats = availableSeats;
 	}
 
-	public ArrayList<Booking> getBookings() {
+	public List<Booking> getBookings() {
 		return bookings;
 	}
 
-	public void setBookings(ArrayList<Booking> bookings) {
-		this.bookings = bookings;
+	public void setBookings(List<Booking> list) {
+		this.bookings = list;
 	}
 
 	public String getTicketStatus() {

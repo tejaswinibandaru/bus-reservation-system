@@ -16,6 +16,7 @@ public interface UserDao {
 	public Integer removeBooking(BigInteger bookingId);
 	public List<Booking> findAllBookings();
 	public Booking findBookingById(BigInteger bookingId);
+	public List<Booking> findBookingByTransactionId(BigInteger transactionId);
 	public Passenger savePassenger(Passenger passenger);
 	public List<Passenger> findPassengersByBookingId(BigInteger bookingId);
 	public Passenger findPassengerByName(String pname);
@@ -29,7 +30,7 @@ public interface UserDao {
 	
 	public BusTransaction saveTransaction(BusTransaction busTransaction);
 	public Integer removeTransaction(Bus bus);
-	//public List<BusTransaction> findAllTransactions();
+	public List<BusTransaction> findAllTransactions();
 	public List<BusTransaction> findTransactionsByDate(LocalDate date);
 	public List<BusTransaction> getTransactionList();
 	
