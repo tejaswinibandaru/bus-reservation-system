@@ -8,8 +8,8 @@ import java.util.Set;
 public class Bus {
 	private BigInteger busId;
 	private String busName;
-	private enum busTypeList{SLEEPER,SEMI_SLEEPER;}
-	private enum busClassList{AC,NON_AC};
+	public enum busTypeList{SLEEPER,SEMI_SLEEPER;}
+	public enum busClassList{AC,NON_AC};
 	private busTypeList busType;
 	private busClassList busClass;
 	private Integer noOfSeats;
@@ -55,6 +55,17 @@ public class Bus {
 		this.busName = busName;
 	}
 	
+	
+	public void setBusType(String busType) {
+		this.busType = busTypeList.valueOf(busType.toUpperCase());
+	}
+
+
+	public void setBusClass(String busClass) {
+		this.busClass = busClassList.valueOf(busClass.toUpperCase());
+	}
+
+
 	public busTypeList getBusType() {
 		return this.busType;
 	}

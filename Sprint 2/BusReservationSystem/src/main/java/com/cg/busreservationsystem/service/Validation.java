@@ -42,10 +42,21 @@ public class Validation {
 		}
 	}
 
-	public void validateBusClass(int busClass) {
-		// TODO Auto-generated method stub
-		if(busClass < 0 || busClass> 1) {
-			throw new BusException("Wrong bus class");
+	
+	public void validateBusType(String busType) {
+		if(!busType.equals("sleeper")) {
+			throw new BusException("Invalid Bus Type");
+		}
+		if(!busType.equals("semi_sleeper")) {
+			throw new BusException("Invalid Bus Type");
+		}
+	}
+	public void validateBusClass(String busClass) {
+		if(!busClass.equals("ac")) {
+			throw new BusException("Invalid bus class");
+		}
+		if(!busClass.equals("non_ac")) {
+			throw new BusException("Invalid bus class");
 		}
 	}
 

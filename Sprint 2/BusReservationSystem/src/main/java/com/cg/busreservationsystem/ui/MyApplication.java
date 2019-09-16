@@ -93,14 +93,14 @@ public class MyApplication {
 				// fetch details here
 				System.out.println("Enter the bus name");
 				String busName = scanner.next();
-				int busType = 0;
+				String busType = "";
 				while (true) {
 
-					System.out.println("Enter the bus type, 0 for sleeper, 1 for semi-sleeper");
-					busType = scanner.nextInt();
+					System.out.println("Enter the bus type(sleeper/semi_sleeper)");
+					busType = scanner.next();
 
 					try {
-						UserServiceImpl.validateBusType(busType);
+						validation.validateBusType(busType);
 						break;
 					} catch (RuntimeException e) {
 						// TODO: handle exception
@@ -109,11 +109,11 @@ public class MyApplication {
 					}
 				}
 
-				int busClass = 0;
+				String busClass = "";
 				while (true) {
 
-					System.out.println("Enter the bus class, 0 for AC, 1 for non-AC");
-					busClass = scanner.nextInt();
+					System.out.println("Enter the bus class(ac/non_ac)");
+					busClass = scanner.next();
 					try {
 						validation.validateBusClass(busClass);
 						break;

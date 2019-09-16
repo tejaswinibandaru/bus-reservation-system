@@ -62,6 +62,17 @@ public class TestBusBooking {
 			System.out.println(bus);
 		}
 		System.out.println(userdao.findDayOfWeekByBus(BigInteger.valueOf(1)));
+		
+		Bus b=new Bus();
+		b.setBusName("kaveri");
+		b.setBusType("sleeper");
+		b.setBusClass("ac");
+		b.setNoOfSeats(30);
+		b.setSource("mumbai");
+		b.setDestination("pune");
+		b.setCost(500.0);
+		System.out.println(b);
+		
 	}
 
 }
