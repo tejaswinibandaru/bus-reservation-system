@@ -29,7 +29,7 @@ public interface UserDao {
 	public Bus findBusById(BigInteger busId);
 	
 	public BusTransaction saveTransaction(BusTransaction busTransaction);
-	public Integer removeTransaction(Bus bus);
+	public Integer removeTransaction(BigInteger transactionId);
 	public List<BusTransaction> findAllTransactions();
 	public List<BusTransaction> findTransactionsByDate(LocalDate date);
 	public List<BusTransaction> getTransactionList();

@@ -10,7 +10,7 @@ public class BusTransaction {
 	private BigInteger transactionId;
 	private LocalDate date;
 	private Integer availableSeats;
-	private ArrayList<Booking> bookings;
+	private List<Booking> bookings;
 	private String ticketStatus;
 	private Bus bus;
 	//private Integer deleteFlag;
@@ -60,7 +60,7 @@ public class BusTransaction {
 	}
 
 	public void setBookings(List<Booking> list) {
-		this.bookings = list;
+		this.bookings =  list;
 	}
 
 	public String getTicketStatus() {
