@@ -67,7 +67,7 @@ public class BusTransaction {
 	}
 
 	public void setBookings(List<Booking> list) {
-		this.bookings = list;
+		this.bookings =  list;
 	}
 
 	public String getTicketStatus() {
