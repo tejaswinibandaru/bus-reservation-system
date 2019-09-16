@@ -1,5 +1,0 @@
-projectKey=com.cg.busreservationsystem:BusReservationSystem
-serverUrl=http://localhost:9000
-dashboardUrl=http://localhost:9000/dashboard/index/com.cg.busreservationsystem:BusReservationSystem
-ceTaskId=AW051OKwChw20MB6KO8k
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AW051OKwChw20MB6KO8k

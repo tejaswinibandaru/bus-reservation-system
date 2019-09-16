@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import com.cg.busreservationsystem.exception.BusException;
 import com.cg.busreservationsystem.exception.DateException;
@@ -61,7 +62,7 @@ public class Validation {
 		Scanner sc=new Scanner(System.in);
 		try {
 			return sc.nextDouble();
-		}catch (InputMismatchException e) {
+		}catch (Exception e) {
 			throw new InputMismatchException("Wrong cost type entered");
 		}
 	}

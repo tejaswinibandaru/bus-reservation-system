@@ -78,10 +78,13 @@ public class Passenger {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-try {
-		if (this.hashCode()==(obj.hashCode()))
-				return true;
+	public boolean equals(Object obj) throws NullPointerException {
+		try { if (obj==null)
+				return false;
+		else {
+	if (this.hashCode()==(obj.hashCode()))
+			return true;
+		}
 /*if (this == obj)
 			return true;
 		if (obj == null)
@@ -115,10 +118,9 @@ try {
 			return false;
 		return true;*/
 		
-		return false;
-	} catch(Exception e){System.out.println("Exception:" +e);
+	} catch(RuntimeException e){System.out.println("Exception:" +e);
 	}
-		return false;
+		return true;
 	}
 	
 

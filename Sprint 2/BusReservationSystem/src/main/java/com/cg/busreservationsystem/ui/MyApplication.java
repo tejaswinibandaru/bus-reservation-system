@@ -10,6 +10,8 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.apache.log4j.Logger;
+
 import com.cg.busreservationsystem.dto.Booking;
 import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.dto.BusTransaction;
@@ -49,7 +51,7 @@ public class MyApplication {
 						customerMenu();
 					}
 					break;
-				} catch (RuntimeException e) {
+				} catch (RuntimeException e) { 
 				System.out.println(EXCEPTIONMSG + e.getMessage());
 					continue;
 				}

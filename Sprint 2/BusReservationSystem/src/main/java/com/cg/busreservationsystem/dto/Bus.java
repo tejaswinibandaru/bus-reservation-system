@@ -140,10 +140,81 @@ public class Bus {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		try {
-			if (this.hashCode() == (obj.hashCode()))
-				return true;
+	
+	public boolean equals(Object obj) throws NullPointerException {
+		try { if (obj==null)
+				return false;
+		else {
+	if (this.hashCode()==(obj.hashCode()))
+			return true;
+		}
+		/*if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bus other = (Bus) obj;
+		if (busClass == null) {
+			if (other.busClass != null)
+				return false;
+		} else if (!busClass.equals(other.busClass))
+			return false;
+		if (busId == null) {
+			if (other.busId != null)
+				return false;
+		} else if (!busId.equals(other.busId))
+			return false;
+		if (busName == null) {
+			if (other.busName != null)
+				return false;
+		} else if (!busName.equals(other.busName))
+			return false;
+		if (busType == null) {
+			if (other.busType != null)
+				return false;
+		} else if (!busType.equals(other.busType))
+			return false;
+		if (cost == null) {
+			if (other.cost != null)
+				return false;
+		} else if (!cost.equals(other.cost))
+			return false;
+		if (dayOfJourney == null) {
+			if (other.dayOfJourney != null)
+				return false;
+		} else if (!dayOfJourney.equals(other.dayOfJourney))
+			return false;
+<<<<<<< HEAD
+		/*
+		 * if (deleteFlag == null) { if (other.deleteFlag != null) return false; } else
+		 * if (!deleteFlag.equals(other.deleteFlag)) return false;
+		 */
+		/*if (destination == null) {
+=======
+		if (destination == null) {
+>>>>>>> branch 'master' of https://github.com/tejaswinibandaru/bus-reservation-system.git
+			if (other.destination != null)
+				return false;
+		} else if (!destination.equals(other.destination))
+			return false;
+		if (noOfSeats == null) {
+			if (other.noOfSeats != null)
+				return false;
+		} else if (!noOfSeats.equals(other.noOfSeats))
+			return false;
+		if (source == null) {
+			if (other.source != null)
+				return false;
+		} else if (!source.equals(other.source))
+			return false;*/
+		
+	} catch(RuntimeException e){System.out.println("Exception:" +e);
+	}
+		return true;
+	}
+	
+
 			/*
 			 * if (this == obj) return true; if (obj == null) return false; if (getClass()
 			 * != obj.getClass()) return false; Bus other = (Bus) obj; if (busClass == null)
@@ -172,12 +243,6 @@ public class Bus {
 			 * return false;
 			 */
 
-			return false;
-		} catch (Exception e) {
-			System.out.println("Exception:" + e);
-		}
-		return false;
-	}
 
 	@Override
 	public String toString() {
