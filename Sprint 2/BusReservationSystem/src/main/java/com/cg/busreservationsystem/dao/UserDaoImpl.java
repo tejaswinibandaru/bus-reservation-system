@@ -466,12 +466,34 @@ public class UserDaoImpl implements UserDao {
 		 * Bus b=this.findBusById(busId); if(b==null) { return 0; } busList.remove(b);
 		 * return 1;
 		 */
-		return 1;
+		String sql= "UPDATE bus SET delete_flag=1 WHERE bus_id=?;";
+		
+		int noOfRec=0;
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setLong(1, busId.longValue());
+
+			noOfRec=preparedStatement.executeUpdate();
+		}catch (SQLException e) {
+			System.out.println(" Error at removeBus Dao method : "+e);
+			myLogger.error(" Error at removeBus Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at removeBus Dao method : "+e);
+					myLogger.error(" Error at removeBus Dao method : "+e);
+				}
+			}
+		}
+		return noOfRec;
 	}
 
 	@Override
 	public List<Bus> findAllBuses() {
 		// TODO Auto-generated method stub
+		
 		return busList;
 	}
 
