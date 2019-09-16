@@ -555,7 +555,7 @@ public class UserDaoImpl implements UserDao {
 				 * 0)); passengersList.add(passenger); }
 				 */
 				//
-				bus.setBusName(resultSet.getString("user_id"));
+				bus.setBusName(resultSet.getString("bus_name"));
 				bus.setCost(resultSet.getDouble("cost"));
 				//bus.setBusClass(resultSet.getString("bus_class"));							//ENUMERATION	x2
 				bus.setSource(resultSet.getString("source"));
