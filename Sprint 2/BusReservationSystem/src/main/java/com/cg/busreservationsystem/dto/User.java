@@ -16,7 +16,7 @@ public class User {
 	private Set<Booking> bookingsList;
 	private Set<Bus> busList;
 	private Set<BusTransaction> transactionsList;
-	private Integer deleteFlag;
+	//private Integer deleteFlag;
 	
 	public User() {
 		
@@ -109,13 +109,12 @@ public class User {
 	}
 	
 
-	public Integer getDeleteFlag() {
-		return deleteFlag;
-	}
-
-	public void setDeleteFlag(Integer deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
+	/*
+	 * public Integer getDeleteFlag() { return deleteFlag; }
+	 * 
+	 * public void setDeleteFlag(Integer deleteFlag) { this.deleteFlag = deleteFlag;
+	 * }
+	 */
 
 	@Override
 	public int hashCode() {
@@ -123,7 +122,7 @@ public class User {
 		int result = 1;
 		result = prime * result + ((bookingsList == null) ? 0 : bookingsList.hashCode());
 		result = prime * result + ((busList == null) ? 0 : busList.hashCode());
-		result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
+		//result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
@@ -153,11 +152,10 @@ public class User {
 				return false;
 		} else if (!busList.equals(other.busList))
 			return false;
-		if (deleteFlag == null) {
-			if (other.deleteFlag != null)
-				return false;
-		} else if (!deleteFlag.equals(other.deleteFlag))
-			return false;
+		/*
+		 * if (deleteFlag == null) { if (other.deleteFlag != null) return false; } else
+		 * if (!deleteFlag.equals(other.deleteFlag)) return false;
+		 */
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -200,7 +198,7 @@ public class User {
 	public String toString() {
 		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", userType=" + userType
 				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", bookingsList=" + bookingsList + ", busList="
-				+ busList + ", transactionsList=" + transactionsList + ", deleteFlag=" + deleteFlag + "]";
+				+ busList + ", transactionsList=" + transactionsList + "]";
 	}
 
 	
