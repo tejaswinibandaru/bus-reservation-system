@@ -19,7 +19,15 @@ public class User {
 	//private Integer deleteFlag;
 	
 	public User() {
-		
+		 userId=BigInteger.valueOf(0);
+	 username="";
+		 password="";
+;
+		 userType=null;
+		 email="";
+		 phoneNumber=BigInteger.valueOf(0);
+		 bookingsList=null;
+	    transactionsList=null;
 	}
 
 	public User(BigInteger userId, String username, String password, Character userType, String email,
@@ -135,7 +143,12 @@ public class User {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		try {
+	if (this.hashCode()==(obj.hashCode()))
+			return true;
+		
+		
+		/*if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
@@ -156,7 +169,7 @@ public class User {
 		 * if (deleteFlag == null) { if (other.deleteFlag != null) return false; } else
 		 * if (!deleteFlag.equals(other.deleteFlag)) return false;
 		 */
-		if (email == null) {
+	/*	if (email == null) {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
@@ -191,8 +204,14 @@ public class User {
 				return false;
 		} else if (!username.equals(other.username))
 			return false;
-		return true;
-	}
+		return true;*/
+	
+	return false;
+} catch(Exception e){System.out.println("Exception:" +e);
+}
+	return false;
+}
+	
 
 	@Override
 	public String toString() {

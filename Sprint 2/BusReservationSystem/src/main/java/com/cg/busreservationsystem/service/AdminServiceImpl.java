@@ -60,7 +60,6 @@ public class AdminServiceImpl implements AdminService{
 		try {
 			return sc.nextInt();
 		}catch (InputMismatchException e) {
-			// TODO: handle exception
 			throw new InputMismatchException("Wrong input type");
 		}
 		

@@ -37,7 +37,14 @@ public class Booking {
 	static BigInteger idCounter= BigInteger.valueOf(1000L);
 	
 	public Booking() {
-		
+	 bookingId=BigInteger.valueOf(0);
+     userId=BigInteger.valueOf(0);
+	  transactionId=BigInteger.valueOf(0);
+      dateOfJourney=null;
+	 passengers= null;
+	modeOfPayment="";
+	 totalCost=0.0;
+	  bookingStatus="";
 	}
 
 	public Booking(LocalDate dateOfJourney, Bus bus, List<Passenger> passengerList,String modeOfPayment) {
@@ -132,12 +139,13 @@ public class Booking {
 	}
 
 	@Override
+	
 	public boolean equals(Object obj) {
-		if (this == obj)
+		try {
+	if (this.hashCode()==(obj.hashCode()))
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+						
+		/*if (getClass() != obj.getClass())
 			return false;
 		Booking other = (Booking) obj;
 		if (bookingId == null) {
@@ -164,7 +172,7 @@ public class Booking {
 		 * if (deleteFlag == null) { if (other.deleteFlag != null) return false; } else
 		 * if (!deleteFlag.equals(other.deleteFlag)) return false;
 		 */
-		if (modeOfPayment == null) {
+	/*	if (modeOfPayment == null) {
 			if (other.modeOfPayment != null)
 				return false;
 		} else if (!modeOfPayment.equals(other.modeOfPayment))
@@ -178,8 +186,12 @@ public class Booking {
 			if (other.totalCost != null)
 				return false;
 		} else if (!totalCost.equals(other.totalCost))
-			return false;
-		return true;
+			return false;*/
+		
+		return false;
+	} catch(Exception e){System.out.println("Exception:" +e);
+	}
+		return false;
 	}
 
 	double costCalc() {

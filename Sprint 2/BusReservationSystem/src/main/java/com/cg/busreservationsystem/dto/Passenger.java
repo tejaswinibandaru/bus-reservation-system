@@ -11,7 +11,11 @@ public class Passenger {
 	//private Integer deleteFlag;
 	
 	public Passenger() {
-		
+		 passengerId=BigInteger.valueOf(0);
+		 bookingId=BigInteger.valueOf(0);
+	     passengerName="";
+		 passengerAge=0;
+	     passengerGender=null;
 	}
 
 	public Passenger(BigInteger passengerId, String passengerName, Integer passengerAge, Character passengerGender) {
@@ -75,7 +79,10 @@ public class Passenger {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+try {
+		if (this.hashCode()==(obj.hashCode()))
+				return true;
+/*if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
@@ -86,7 +93,7 @@ public class Passenger {
 		 * if (deleteFlag == null) { if (other.deleteFlag != null) return false; } else
 		 * if (!deleteFlag.equals(other.deleteFlag)) return false;
 		 */
-		if (passengerAge == null) {
+		/*if (passengerAge == null) {
 			if (other.passengerAge != null)
 				return false;
 		} else if (!passengerAge.equals(other.passengerAge))
@@ -106,8 +113,14 @@ public class Passenger {
 				return false;
 		} else if (!passengerName.equals(other.passengerName))
 			return false;
-		return true;
+		return true;*/
+		
+		return false;
+	} catch(Exception e){System.out.println("Exception:" +e);
 	}
+		return false;
+	}
+	
 
 	@Override
 	public String toString() {

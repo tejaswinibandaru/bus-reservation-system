@@ -79,7 +79,7 @@ public class UserDaoImpl implements UserDao {
 			booking.setBookingId(generatedId);
 		} catch (SQLException e) {
 			myLogger.error(" Error at saveBooking Dao method : "+e);
-			throw new BookingException(" Error at saveBooking Dao method : "+e);
+			throw new BookingException(" Error at saveBooking Dao method: "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
@@ -186,13 +186,13 @@ public class UserDaoImpl implements UserDao {
 				//booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey"));		//timestamp to localdate
 			}
 		}catch (SQLException e) {
-			System.out.println(" Error at findAllBookings Dao method : "+e);
+			System.out.println(" Error at findBookingById Dao method : "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBookings Dao method : "+e);
+					System.out.println(" Error at findBookingById Dao method : "+e);
 				}
 			}
 		}

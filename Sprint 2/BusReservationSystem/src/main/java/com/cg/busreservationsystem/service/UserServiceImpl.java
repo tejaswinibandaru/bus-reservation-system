@@ -73,7 +73,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			return sc.nextInt();
 		}catch (InputMismatchException e) {
-			// TODO: handle exception
 			throw new InputMismatchException("Wrong input type");
 		}
 

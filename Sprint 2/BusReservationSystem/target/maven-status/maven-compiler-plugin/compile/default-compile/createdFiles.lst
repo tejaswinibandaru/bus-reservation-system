@@ -1,13 +1,15 @@
 com\cg\busreservationsystem\exception\BusException.class
 com\cg\busreservationsystem\test\TestBusBooking.class
 com\cg\busreservationsystem\dto\Bus.class
+com\cg\busreservationsystem\dto\BusTransaction.class
 com\cg\busreservationsystem\exception\PassengerException.class
 com\cg\busreservationsystem\dao\TransactionDao.class
-com\cg\busreservationsystem\dto\Customer.class
 com\cg\busreservationsystem\exception\BookingException.class
 com\cg\busreservationsystem\service\AdminService.class
 com\cg\busreservationsystem\service\AdminServiceImpl.class
 com\cg\busreservationsystem\service\UserServiceImpl.class
+com\cg\busreservationsystem\dao\UserDao.class
+com\cg\busreservationsystem\util\DBUtil.class
 com\cg\busreservationsystem\dto\Booking.class
 com\cg\busreservationsystem\service\UserService.class
 com\cg\busreservationsystem\dto\Passenger.class
@@ -19,8 +21,8 @@ com\cg\busreservationsystem\service\CustomerServiceImpl.class
 com\cg\busreservationsystem\dao\BusDao.class
 com\cg\busreservationsystem\dao\BusDaoImpl.class
 com\cg\busreservationsystem\dao\BookingDao.class
+com\cg\busreservationsystem\dao\UserDaoImpl.class
 com\cg\busreservationsystem\ui\MyApplication.class
 com\cg\busreservationsystem\dao\BookingDaoImpl.class
-com\cg\busreservationsystem\dto\Transaction.class
 com\cg\busreservationsystem\service\Validation.class
 com\cg\busreservationsystem\dto\User.class
