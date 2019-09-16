@@ -18,6 +18,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.cg.busreservationsystem.dao.UserDao;
 import com.cg.busreservationsystem.dao.UserDaoImpl;
+import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.exception.BookingException;
 import com.cg.busreservationsystem.util.DBUtil;
 
@@ -56,6 +57,11 @@ public class TestBusBooking {
 		days.add(DayOfWeek.of(2));
 		Collections.sort(days);
 		System.out.println(userdao.saveBusDay(days, BigInteger.valueOf(1)));
+		
+		for(Bus bus:userdao.findAllBuses()) {
+			System.out.println(bus);
+		}
+		
 	}
 
 }
