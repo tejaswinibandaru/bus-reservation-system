@@ -27,7 +27,6 @@ public class UserDaoImpl implements UserDao {
 	//prep -work 1- Connection
 	private static Connection connection;
 	private PreparedStatement preparedStatement;
-	private Statement statement;
 	private ResultSet resultSet;
 	private static Logger myLogger;
 	static{   	
@@ -129,6 +128,7 @@ public class UserDaoImpl implements UserDao {
 	public List<Booking> findAllBookings() {
 		// TODO Auto-generated method stub
 		String sql ="select * from booking where delete_flag=0";
+		String sql2 = "select * from passenger where booking_id=? AND delete_flag=0";
 		List<Booking> bookingList = new ArrayList<Booking>();	
 		try {
 			preparedStatement= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
@@ -139,6 +139,21 @@ public class UserDaoImpl implements UserDao {
 				Booking booking = new Booking();
 				//get the value from rs and set to booking obj
 				booking.setBookingId(BigInteger.valueOf(resultSet.getLong("booking_id")));
+				//
+				PreparedStatement preparedStatement2 =connection.prepareStatement(sql2);
+				preparedStatement2.setLong(1, booking.getBookingId().longValue());
+				ResultSet resultSet2 =preparedStatement2.executeQuery();
+				while(resultSet2.next())
+				{
+					Passenger passenger= new Passenger();
+					passenger.setBookingId(BigInteger.valueOf(resultSet2.getLong("booking_id")));
+					passenger.setPassengerName(resultSet2.getString("passenger_name"));
+					passenger.setPassengerId(BigInteger.valueOf(resultSet2.getLong("passenger_id")));
+					passenger.setPassengerAge(resultSet2.getInt("passenger_age"));
+					passenger.setPassengerGender(resultSet2.getString("passenger_gender").charAt(0));
+					passengersList.add(passenger);
+				}
+				//
 				booking.setUserId(BigInteger.valueOf(resultSet.getLong("user_id")));
 				booking.setTransactionId(BigInteger.valueOf(resultSet.getLong("transaction_id")));
 				//booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey").toLocalDate());		//converting from timestamp to localdate
@@ -146,6 +161,7 @@ public class UserDaoImpl implements UserDao {
 				booking.setBus(findBusById(busId));
 				//findPassengerListById();						find passengerListById
 				//booking.setPassengers(resultSet);
+				booking.setPassengers(passengersList);
 				booking.setTotalCost(resultSet.getDouble(4));
 				booking.setModeOfPayment(resultSet.getString("mode_of_payment"));
 				booking.setBookingStatus(resultSet.getString("booking_status"));
