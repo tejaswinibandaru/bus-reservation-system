@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
 		String userDir = props.getProperty("user.dir") + "/src/main/resources/";
 		System.out.println("Current working directory is " + userDir);
 		PropertyConfigurator.configure(userDir + "log4j.properties");
-		myLogger = Logger.getLogger("DBUtil.class");
+		myLogger = Logger.getLogger("UserDaoImpl.class");
 		try {
 			connection = DBUtil.getConnection();
 			myLogger.info("connection Obtained!!");
@@ -436,7 +436,6 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement.setString(6, bus.getDestination());
 			preparedStatement.setDouble(7, bus.getCost());
 
-			// int returnedVal =saveBusDay(bus.getDayOfJourney(),bus.getBusId());
 
 			noOfRecs = preparedStatement.executeUpdate();
 			myLogger.info(noOfRecs + " rows inserted");
@@ -448,6 +447,8 @@ public class UserDaoImpl implements UserDao {
 				bus.setBusId(BigInteger.valueOf(resultSet.getLong(1)));
 				myLogger.info("Auto generated id: " + generatedId);
 			}
+			int returnedVal =saveBusDay(bus.getDayOfJourney(),bus.getBusId());
+			myLogger.info(returnedVal+" days added to bus Id "+bus.getBusId());
 
 		} catch (SQLException e) {
 			System.out.println(" Error at saveBus Dao method : " + e);
@@ -496,7 +497,6 @@ public class UserDaoImpl implements UserDao {
 			}
 		}
 
-		// return passenger;
 		return noOfRecs;
 	}
 

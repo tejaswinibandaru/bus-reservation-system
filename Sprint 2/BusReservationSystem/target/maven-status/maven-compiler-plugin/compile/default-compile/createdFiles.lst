@@ -12,7 +12,9 @@ com\cg\busreservationsystem\service\UserServiceImpl.class
 com\cg\busreservationsystem\dao\UserDaoImpl.class
 com\cg\busreservationsystem\dao\UserDao.class
 com\cg\busreservationsystem\ui\MyApplication.class
+com\cg\busreservationsystem\dto\Bus$busClassList.class
 com\cg\busreservationsystem\util\DBUtil.class
+com\cg\busreservationsystem\dto\Bus$busTypeList.class
 com\cg\busreservationsystem\dto\Booking.class
 com\cg\busreservationsystem\service\Validation.class
 com\cg\busreservationsystem\dto\User.class

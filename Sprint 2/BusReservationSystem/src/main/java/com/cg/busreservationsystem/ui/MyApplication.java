@@ -72,13 +72,17 @@ public class MyApplication {
 		while (runLoop != 0) {
 			int choice = 0;
 			while (true) {
+				System.out.println("-------------------------------------------------");
 				System.out.println("Press 1 for Adding Bus Details");
 				System.out.println("Press 2 for Removing Bus Details");
 				System.out.println("Press 3 for Modifying Bus Details");
-				System.out.println("Press 4 for Viewing BusTransaction Details");
-				System.out.println("Press 5 for Editing Personal Details");
+				System.out.println("Press 4 for Viewing All Buses");
+				System.out.println("Press 5 for Viewing BusTransaction Details");
+				System.out.println("Press 6 for Editing Personal Details");
+				System.out.println("---------------------------------------------------");
 				System.out.println("Enter your choice:");
-				input = scanner.next(); // INputMismatchExcp
+				
+				input = scanner.next(); 
 				try {
 					choice = validation.validateChoice(input);
 					break;
@@ -101,7 +105,7 @@ public class MyApplication {
 					busType = scanner.next();
 
 					try {
-						validation.validateBusType(busType.trim());
+						validation.validateBusType(busType);
 						break;
 					} catch (RuntimeException e) {
 						
@@ -203,8 +207,15 @@ public class MyApplication {
 						continue;
 					}
 				}
-				Bus bus = new Bus(BigInteger.valueOf(++counter), busName, busType, busClass, busSeats, days, source,
-						destination, costPerSeat);
+				Bus bus = new Bus();
+				bus.setBusName(busName);
+				bus.setBusType(busType);
+				bus.setBusClass(busClass);
+				bus.setNoOfSeats(busSeats);
+				bus.setDayOfJourney(days);
+				bus.setSource(source);
+				bus.setDestination(destination);
+				bus.setCost(costPerSeat);
 
 				bus = userService.addBusDetails(bus);
 				System.out.println("Bus added: ");

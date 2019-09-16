@@ -20,7 +20,7 @@ bus_class VARCHAR(30) NOT NULL,
 no_of_seats INT NOT NULL,
 source VARCHAR(30)  NOT NULL,
 destination VARCHAR(30)  NOT NULL,
-cost decimal  NOT NULL 
+cost decimal  NOT NULL, 
 delete_flag INT  NOT NULL);
 
 CREATE TABLE bus_day(
@@ -31,19 +31,20 @@ delete_flag INT  NOT NULL,
 FOREIGN KEY (bus_id) REFERENCES bus(bus_id) );
 
 CREATE TABLE booking(
-booking_id BIGINT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
+booking_id BIGINT PRIMARY KEY AUTO_INCREMENT,
 user_id BIGINT NOT NULL,
 transaction_id BIGINT NOT NULL,
 bus_id BIGINT NOT NULL,
 date_of_journey TIMESTAMP NOT NULL,
-mode_of_payment VARCHAR(30)  NOT NULL,
-total_cost decimal  NOT NULL ,
-booking_status VARCHAR  NOT NULL,
-delete_flag INT  NOT NULL
+mode_of_payment VARCHAR(30) NOT NULL,
+total_cost DECIMAL  NOT NULL ,
+booking_status VARCHAR(30) NOT NULL,
+delete_flag INT  NOT NULL,
 FOREIGN KEY (user_id) REFERENCES user(user_id),
-FOREIGN KEY (transaction_id) REFERENCES transaction(transaction_id),
-FOREIGN KEY (bus_id) REFERENCES bus(bus_id));
+FOREIGN KEY (transaction_id) REFERENCES bus_transaction(transaction_id),
+FOREIGN KEY (bus_id) REFERENCES bus(bus_id)
 );
+
 
 CREATE table passenger(
 passenger_id BIGINT PRIMARY KEY auto_increment  NOT NULL,
