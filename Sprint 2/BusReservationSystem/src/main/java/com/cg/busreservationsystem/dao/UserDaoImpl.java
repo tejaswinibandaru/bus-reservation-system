@@ -471,7 +471,7 @@ public class UserDaoImpl implements UserDao {
 			
 			while(resultSet.next())
 			{
-				days.add((DayOfWeek)resultSet.getObject(3));
+				days.add(DayOfWeek.valueOf(resultSet.getString(3)));
 			}
 		} catch (SQLException e) {
 			System.out.println(" Error at findBusDay Dao method : "+e);
@@ -541,20 +541,7 @@ public class UserDaoImpl implements UserDao {
 				
 				//get the value from rs and set to booking obj
 				bus.setBusId(BigInteger.valueOf(resultSet.getLong(1)));
-				//
-				/*
-				 * PreparedStatement preparedStatement2 =connection.prepareStatement(sql);
-				 * preparedStatement2.setLong(1, booking.getBookingId().longValue()); ResultSet
-				 * resultSet2 =preparedStatement2.executeQuery(); while(resultSet2.next()) {
-				 * Passenger passenger= new Passenger();
-				 * passenger.setBookingId(BigInteger.valueOf(resultSet2.getLong("booking_id")));
-				 * passenger.setPassengerName(resultSet2.getString("passenger_name"));
-				 * passenger.setPassengerId(BigInteger.valueOf(resultSet2.getLong("passenger_id"
-				 * ))); passenger.setPassengerAge(resultSet2.getInt("passenger_age"));
-				 * passenger.setPassengerGender(resultSet2.getString("passenger_gender").charAt(
-				 * 0)); passengersList.add(passenger); }
-				 */
-				//
+				
 				bus.setBusName(resultSet.getString("bus_name"));
 				bus.setCost(resultSet.getDouble("cost"));
 				//bus.setBusClass(resultSet.getString("bus_class"));							//ENUMERATION	x2
@@ -567,16 +554,7 @@ public class UserDaoImpl implements UserDao {
 				bus.setDayOfJourney(days);
 				
 				busList.add(bus);
-				/*
-				 * booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey").
-				 * toLocalDateTime().toLocalDate()); //converting from timestamp to localdate
-				 * BigInteger busId = BigInteger.valueOf(resultSet.getLong("bus_id"));
-				 * booking.setBus(findBusById(busId)); booking.setPassengers(passengersList);
-				 * booking.setTotalCost(resultSet.getDouble("total_cost"));
-				 * booking.setModeOfPayment(resultSet.getString("mode_of_payment"));
-				 * booking.setBookingStatus(resultSet.getString("booking_status")); //add the
-				 * booking obj to bookingList bookingList.add(booking);
-				 */
+				
 
 			}
 		} catch (SQLException e) {
