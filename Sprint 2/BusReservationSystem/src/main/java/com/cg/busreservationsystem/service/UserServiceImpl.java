@@ -98,7 +98,6 @@ public class UserServiceImpl implements UserService {
 		List<DayOfWeek> days;
 		DayOfWeek dayOfWeek = dateOfJourney.getDayOfWeek();
 		System.out.println(dayOfWeek);
-		System.out.println(viewBuses());
 		for (Bus bus : viewBuses()){
 			days=bus.getDayOfJourney();
 			Collections.sort(days);

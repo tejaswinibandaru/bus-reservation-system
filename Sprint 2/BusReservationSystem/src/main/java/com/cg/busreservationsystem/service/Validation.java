@@ -150,6 +150,19 @@ public class Validation {
 			throw new BusException("Integer choice to be entered");
 		return choice;
 	}
+	
+	public int validateAdminChoice(String input) {
+		int choice;
+		if(isValidNumeric(input)) {
+			choice = Integer.parseInt(input);
+			if(choice < 1 ||choice> 6) {
+				throw new BusException("Wrong choice entered");
+			}
+		}
+		else
+			throw new BusException("Integer choice to be entered");
+		return choice;
+	}
 	public int validateRunloopChoice(String input) {
 		// TODO Auto-generated method stub
 		int choice;

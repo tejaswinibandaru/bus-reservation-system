@@ -464,7 +464,6 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement.setString(6, bus.getDestination());
 			preparedStatement.setDouble(7, bus.getCost());
 
-
 			noOfRecs = preparedStatement.executeUpdate();
 			myLogger.info(noOfRecs + " rows inserted");
 
@@ -475,8 +474,8 @@ public class UserDaoImpl implements UserDao {
 				bus.setBusId(BigInteger.valueOf(resultSet.getLong(1)));
 				myLogger.info("Auto generated id: " + generatedId);
 			}
-			int returnedVal =saveBusDay(bus.getDayOfJourney(),bus.getBusId());
-			myLogger.info(returnedVal+" days added to bus Id "+bus.getBusId());
+			int returnedVal = saveBusDay(bus.getDayOfJourney(), bus.getBusId());
+			myLogger.info(returnedVal + " days added to bus Id " + bus.getBusId());
 
 		} catch (SQLException e) {
 			System.out.println(" Error at saveBus Dao method : " + e);
@@ -527,14 +526,14 @@ public class UserDaoImpl implements UserDao {
 
 		return noOfRecs;
 	}
-	
+
 	public int removeBusDayByBusId(BigInteger busId) {
 		String sql = "UPDATE bus_day SET delete_flag=1 WHERE bus_id=?";
-		int noOfRec=0;
+		int noOfRec = 0;
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setLong(1, busId.longValue());
-			
+
 			noOfRec = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(" Error at removeBusDayByBusId Dao method : " + e);
@@ -565,6 +564,11 @@ public class UserDaoImpl implements UserDao {
 			while (resultSet.next()) {
 				days.add(DayOfWeek.valueOf(resultSet.getString(3)));
 			}
+			for(Bus bus:findAllBuses()) {
+				if(bus.getBusId().equals(busId)) {
+					bus.setDayOfJourney(days);
+				}
+			}
 		} catch (SQLException e) {
 			System.out.println(" Error at findBusDay Dao method : " + e);
 			myLogger.error(" Error at findBusDay Dao method : " + e);
@@ -592,11 +596,14 @@ public class UserDaoImpl implements UserDao {
 		String sql = "UPDATE bus SET delete_flag=1 WHERE bus_id=?;";
 
 		int noOfRec = 0;
+		int delete_days = 0;
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setLong(1, busId.longValue());
 
 			noOfRec = preparedStatement.executeUpdate();
+			delete_days = removeBusDayByBusId(busId);
+
 		} catch (SQLException e) {
 			System.out.println(" Error at removeBus Dao method : " + e);
 			myLogger.error(" Error at removeBus Dao method : " + e);
@@ -636,15 +643,21 @@ public class UserDaoImpl implements UserDao {
 
 				bus.setBusName(resultSet.getString("bus_name"));
 				bus.setCost(resultSet.getDouble("cost"));
-				// bus.setBusClass(resultSet.getString("bus_class")); //ENUMERATION x2
+				bus.setBusType(resultSet.getString("bus_type"));
+				bus.setBusClass(resultSet.getString("bus_class"));
 				bus.setSource(resultSet.getString("source"));
 				bus.setDestination(resultSet.getString("destination"));
 				bus.setNoOfSeats(resultSet.getInt("no_of_seats"));
+				
 
-				List<DayOfWeek> days = new ArrayList<DayOfWeek>();
-				days = findDayOfWeekByBus(bus.getBusId());
-				bus.setDayOfJourney(days);
-
+				/*
+				 * List<DayOfWeek> days = new ArrayList<DayOfWeek>();
+				 * 
+				 * days = findDayOfWeekByBus(bus.getBusId()); System.out.println(days);
+				 * bus.setDayOfJourney(days);
+				 * 
+				 * System.out.println(bus.getDayOfJourney());
+				 */
 				busList.add(bus);
 
 			}
