@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
 	public Booking saveBooking(Booking booking) {
 		// TODO Auto-generated method stub
 		// added to AL
-		String sql = "INSERT INTO booking(user_id,transaction_id,bus_id,date_of_journey,mode_of_payment,total_cost) values(?,?,?,?,?,?);";
+		String sql = "INSERT INTO booking(user_id,transaction_id,bus_id,date_of_journey,mode_of_payment,total_cost,booking_status,delete_flag) values(?,?,?,?,?,?,?,0);";
 		try {
 			// step1 : obtain ps
 			preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -67,6 +67,7 @@ public class UserDaoImpl implements UserDao {
 			// timestamp
 			preparedStatement.setString(5, booking.getModeOfPayment());
 			preparedStatement.setDouble(6, booking.getTotalCost());
+			preparedStatement.setString(7, booking.getBookingStatus());
 			// step 3: execute Query (for DML we have executeUpdate method )
 			int noOfRec = preparedStatement.executeUpdate();
 			// getting the auto-generated value
