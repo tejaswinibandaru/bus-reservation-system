@@ -499,6 +499,30 @@ public class UserDaoImpl implements UserDao {
 
 		return noOfRecs;
 	}
+	
+	public int removeBusDayByBusId(BigInteger busId) {
+		String sql = "UPDATE bus_day SET delete_flag=1 WHERE bus_id=?";
+		int noOfRec=0;
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setLong(1, busId.longValue());
+			
+			noOfRec = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(" Error at removeBusDayByBusId Dao method : " + e);
+			myLogger.error(" Error at removeBusDayByBusId Dao method : " + e);
+		} finally {
+			if (preparedStatement != null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at removeBusDayByBusId Dao method : " + e);
+					myLogger.error(" Error at removeBusDayByBusId Dao method : " + e);
+				}
+			}
+		}
+		return noOfRec;
+	}
 
 	public List<DayOfWeek> findDayOfWeekByBus(BigInteger busId) {
 		List<DayOfWeek> days = new ArrayList<DayOfWeek>();
