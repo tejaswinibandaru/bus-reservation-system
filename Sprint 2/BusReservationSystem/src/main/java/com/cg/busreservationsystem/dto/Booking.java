@@ -139,12 +139,13 @@ public class Booking {
 	}
 
 	@Override
-	
-	public boolean equals(Object obj) {
-		try {
+	public boolean equals(Object obj) throws NullPointerException {
+		try { if (obj==null)
+				return false;
+		else {
 	if (this.hashCode()==(obj.hashCode()))
 			return true;
-						
+		}
 		/*if (getClass() != obj.getClass())
 			return false;
 		Booking other = (Booking) obj;
@@ -188,11 +189,11 @@ public class Booking {
 		} else if (!totalCost.equals(other.totalCost))
 			return false;*/
 		
-		return false;
-	} catch(Exception e){System.out.println("Exception:" +e);
+	} catch(RuntimeException e){System.out.println("Exception:" +e);
 	}
-		return false;
+		return true;
 	}
+	
 
 	double costCalc() {
 		double cost = (bus.getCost())*(passengers.size());

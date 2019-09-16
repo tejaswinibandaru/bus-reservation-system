@@ -136,10 +136,13 @@ public class Bus {
 
 
 	@Override
-	public boolean equals(Object obj) {
-		try {
-			if (this.hashCode()==(obj.hashCode()))
-					return true;
+	public boolean equals(Object obj) throws NullPointerException {
+		try { if (obj==null)
+				return false;
+		else {
+	if (this.hashCode()==(obj.hashCode()))
+			return true;
+		}
 		/*if (this == obj)
 			return true;
 		if (obj == null)
@@ -200,12 +203,11 @@ public class Bus {
 				return false;
 		} else if (!source.equals(other.source))
 			return false;*/
-			
-			return false;
-		} catch(Exception e){System.out.println("Exception:" +e);
-		}
-			return false;
-		}
+		
+	} catch(RuntimeException e){System.out.println("Exception:" +e);
+	}
+		return true;
+	}
 	
 
 

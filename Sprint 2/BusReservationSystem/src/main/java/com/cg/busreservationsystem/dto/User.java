@@ -9,7 +9,7 @@ import java.util.Set;
 public class User {
 	private BigInteger userId;
 	private String username;
-	private String password;
+	private String pass;
 	private Character userType;
 	private String email;
 	private BigInteger phoneNumber;
@@ -21,8 +21,7 @@ public class User {
 	public User() {
 		 userId=BigInteger.valueOf(0);
 	 username="";
-		 password="";
-;
+		 pass="";
 		 userType=null;
 		 email="";
 		 phoneNumber=BigInteger.valueOf(0);
@@ -35,7 +34,7 @@ public class User {
 		super();
 		this.userId = userId;
 		this.username = username;
-		this.password = password;
+		this.pass = password;
 		this.userType = userType;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
@@ -61,11 +60,11 @@ public class User {
 	}
 
 	public String getPassword() {
-		return password;
+		return pass;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.pass = password;
 	}
 
 	public Character getUserType() {
@@ -132,7 +131,7 @@ public class User {
 		result = prime * result + ((busList == null) ? 0 : busList.hashCode());
 		//result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((transactionsList == null) ? 0 : transactionsList.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
@@ -142,10 +141,13 @@ public class User {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		try {
+	public boolean equals(Object obj) throws NullPointerException {
+		try { if (obj==null)
+				return false;
+		else {
 	if (this.hashCode()==(obj.hashCode()))
 			return true;
+		}
 		
 		
 		/*if (this == obj)
@@ -205,17 +207,17 @@ public class User {
 		} else if (!username.equals(other.username))
 			return false;
 		return true;*/
+		
+	} catch(RuntimeException e){System.out.println("Exception:" +e);
+	}
+		return true;
+	}
 	
-	return false;
-} catch(Exception e){System.out.println("Exception:" +e);
-}
-	return false;
-}
 	
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", userType=" + userType
+		return "User [userId=" + userId + ", username=" + username + ", password=" + pass + ", userType=" + userType
 				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", bookingsList=" + bookingsList + ", busList="
 				+ busList + ", transactionsList=" + transactionsList + "]";
 	}
