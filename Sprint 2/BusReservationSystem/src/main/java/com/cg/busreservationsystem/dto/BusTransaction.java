@@ -3,6 +3,7 @@ package com.cg.busreservationsystem.dto;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.cg.busreservationsystem.exception.BusException;
 
@@ -11,7 +12,7 @@ public class BusTransaction {
 	private BigInteger transactionId;
 	private LocalDate date;
 	private Integer availableSeats;
-	private ArrayList<Booking> bookings;
+	private List<Booking> bookings;
 	private String ticketStatus;
 	private Bus bus;
 	//private Integer deleteFlag;
@@ -61,12 +62,12 @@ public class BusTransaction {
 		this.availableSeats = availableSeats;
 	}
 
-	public ArrayList<Booking> getBookings() {
+	public List<Booking> getBookings() {
 		return bookings;
 	}
 
-	public void setBookings(ArrayList<Booking> bookings) {
-		this.bookings = bookings;
+	public void setBookings(List<Booking> list) {
+		this.bookings = list;
 	}
 
 	public String getTicketStatus() {

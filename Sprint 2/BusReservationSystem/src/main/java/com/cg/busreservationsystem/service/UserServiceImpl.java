@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -94,15 +95,17 @@ public class UserServiceImpl implements UserService {
 		 */
 		//adminServ = (AdminServiceImpl) adm;
 		List<Bus> busList = new ArrayList<Bus>();
-		Set<DayOfWeek> days;
+		List<DayOfWeek> days;
 		DayOfWeek dayOfWeek = dateOfJourney.getDayOfWeek();
 		System.out.println(dayOfWeek);
 		System.out.println(viewBuses());
 		for (Bus bus : viewBuses()){
-			days = bus.getDayOfJourney();
+			days=bus.getDayOfJourney();
+			Collections.sort(days);
 			if(days.contains(dayOfWeek)) {
 				if((bus.getSource().equalsIgnoreCase(src)) && bus.getDestination().equalsIgnoreCase(dest))
 					busList.add(bus);
+				
 			}
 
 		}
@@ -121,7 +124,7 @@ public class UserServiceImpl implements UserService {
 			trans = new BusTransaction();
 			trans.setBus(bus);
 			trans.setDate(dateOfJourney);
-			userDao.getTransactionList().add(trans);
+			userDao.getTransactionList().add(trans); //userDao.saveBusTransaction(trans)
 			//System.out.println(trans.getBus());
 
 			System.out.println(trans.getAvailableSeats()+" is num of available seats");
@@ -230,11 +233,10 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}*/
 
-	@Override
-	public List<Passenger> viewPassengers() {
-		// TODO Auto-generated method stub
-		return userDao.findAllPassengers();
-	}
-
+	/*
+	 * @Override public List<Passenger> viewPassengers() { // TODO Auto-generated
+	 * method stub return userDao.findAllPassengers();								 //viewpassenger by bookingId
+	 * }
+	 */
 
 }
