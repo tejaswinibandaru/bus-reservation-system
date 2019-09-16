@@ -577,12 +577,53 @@ public class UserDaoImpl implements UserDao {
 	public Bus findBusById(BigInteger busId) {
 		// TODO Auto-generated method stub
 
-		for(Bus b:busList) {
-			if(busId.equals(b.getBusId())) {
-				return b;
+		/*
+		 * for(Bus b:busList) { if(busId.equals(b.getBusId())) { return b; } } return
+		 * null;
+		 */
+		String sql ="select * from bus where delete_flag=0 AND bus_id=?";
+		//String sql2 = "select * from passenger where booking_id=? AND delete_flag=0";
+		//List<Bus> busList = new ArrayList<Bus>();	
+		Bus bus= new Bus();
+		try {
+			preparedStatement= connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setLong(1, busId.longValue());
+			//for select queries we have executeQuery method which returns ResultSet
+			resultSet= preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				//create booking object
+				
+				//get the value from rs and set to booking obj
+				bus.setBusId(BigInteger.valueOf(resultSet.getLong(1)));
+				
+				bus.setBusName(resultSet.getString("bus_name"));
+				bus.setCost(resultSet.getDouble("cost"));
+				//bus.setBusClass(resultSet.getString("bus_class"));							//ENUMERATION	x2
+				bus.setSource(resultSet.getString("source"));
+				bus.setDestination(resultSet.getString("destination"));
+				bus.setNoOfSeats(resultSet.getInt("no_of_seats"));
+				
+				List<DayOfWeek> days = new ArrayList<DayOfWeek>();
+				days =  findDayOfWeekByBus(bus.getBusId());
+				bus.setDayOfJourney(days);
+				
+				//busList.add(bus);
+				
+			}
+		} catch (SQLException e) {
+			System.out.println(" Error at findAllBuses Dao method : "+e);
+			myLogger.error(" Error at findAllBuses Dao method : "+e);
+		}finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					System.out.println(" Error at findAllBuses Dao method : "+e);
+					myLogger.error(" Error at findAllBuses  Dao method : "+e);
+				}
 			}
 		}
-		return null;
+		return bus;
 	}
 
 	public List<BusTransaction> getTransactionList() {
