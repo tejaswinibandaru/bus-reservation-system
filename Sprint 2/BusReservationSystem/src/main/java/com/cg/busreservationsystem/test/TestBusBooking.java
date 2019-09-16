@@ -106,6 +106,8 @@ public class TestBusBooking {
 		
 		System.out.println(userdao.saveBooking(book));
 		
+		System.out.println(userdao.findAllBuses());
+		
 		
 	}
 

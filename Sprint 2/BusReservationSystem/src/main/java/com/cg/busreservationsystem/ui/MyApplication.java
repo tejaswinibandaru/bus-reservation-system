@@ -86,7 +86,7 @@ public class MyApplication {
 				
 				input = scanner.next(); 
 				try {
-					choice = validation.validateChoice(input);
+					choice = validation.validateAdminChoice(input);
 					break;
 				} catch (RuntimeException e) {
 					
@@ -297,6 +297,11 @@ public class MyApplication {
 				}
 				break;
 			case 4:
+				for(Bus busOb:userService.viewBuses()) {
+					System.out.println(busOb.getBusId()+" "+busOb.getBusName()+" "+busOb.getNoOfSeats()+" "+busOb.getBusType()+" "+busOb.getBusClass()+" "+busOb.getSource()+" "+busOb.getDestination()+" "+busOb.getCost());
+				}
+				break;
+			case 5:
 				LocalDate date;
 				while (true) {
 					System.out.println("Enter the date(DD-MM-YYYY): ");
@@ -318,7 +323,7 @@ public class MyApplication {
 							busTransaction.getDate() + " " + busTransaction.getBus() + busTransaction.getBookings());
 				}
 				break;
-			case 5:
+			case 6:
 				System.out.println("You cannot edit your personal details. System is under maintenance");
 				break;
 			default:

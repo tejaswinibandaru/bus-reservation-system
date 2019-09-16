@@ -23,6 +23,7 @@ public interface UserDao {
 	
 	public Bus saveBus(Bus bus);
 	public int saveBusDay(List<DayOfWeek> dayOfWeek, BigInteger busId);
+	public int removeBusDayByBusId(BigInteger busId);
 	public List<DayOfWeek> findDayOfWeekByBus(BigInteger busId);
 	public Integer removeBus(BigInteger busId);
 	public List<Bus> findAllBuses();
