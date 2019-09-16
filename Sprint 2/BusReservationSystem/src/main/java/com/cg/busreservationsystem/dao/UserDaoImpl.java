@@ -584,7 +584,8 @@ public class UserDaoImpl implements UserDao {
 
 				bus.setBusName(resultSet.getString("bus_name"));
 				bus.setCost(resultSet.getDouble("cost"));
-				// bus.setBusClass(resultSet.getString("bus_class")); //ENUMERATION x2
+				bus.setBusType(resultSet.getString("bus_type"));
+				bus.setBusClass(resultSet.getString("bus_class"));
 				bus.setSource(resultSet.getString("source"));
 				bus.setDestination(resultSet.getString("destination"));
 				bus.setNoOfSeats(resultSet.getInt("no_of_seats"));
@@ -592,6 +593,7 @@ public class UserDaoImpl implements UserDao {
 				List<DayOfWeek> days = new ArrayList<DayOfWeek>();
 				days = findDayOfWeekByBus(bus.getBusId());
 				bus.setDayOfJourney(days);
+				System.out.println(bus.getDayOfJourney());
 
 				busList.add(bus);
 
@@ -611,6 +613,7 @@ public class UserDaoImpl implements UserDao {
 		}
 		return busList;
 	}
+	
 
 	@Override
 	public Bus findBusById(BigInteger busId) {

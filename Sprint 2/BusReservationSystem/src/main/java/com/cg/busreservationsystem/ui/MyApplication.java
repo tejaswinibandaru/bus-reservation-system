@@ -39,9 +39,11 @@ public class MyApplication {
 		while (runLoop != 0) {
 			int choice;
 			while (true) {
-
+				System.out.println("-------------------------------------");
 				System.out.println("Select 1 for Admin");
 				System.out.println("Select 2 for Customer");
+				System.out.println("--------------------------------------");
+				System.out.println("Enter your choice:");
 				input = scanner.next();
 				try {
 					choice = validation.validateChoice(input);
@@ -323,8 +325,10 @@ public class MyApplication {
 				System.out.println("Wrong choice : Enter a valid Integer input");
 				break;
 			}
-			System.out.println("Press 1 to continue, 0 to exit");
+			System.out.println("----------------------------------------------------");
+			System.out.println("Press 1 to continue, 0 to exit to the main menu");
 			runLoop = scanner.nextInt();
+			System.out.println("----------------------------------------------------");
 		}
 
 	}
