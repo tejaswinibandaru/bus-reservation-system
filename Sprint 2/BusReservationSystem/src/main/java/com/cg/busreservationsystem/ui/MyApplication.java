@@ -23,7 +23,7 @@ public class MyApplication {
 	static UserService userService;
 	static int counter = 0;
 	static Validation validation;
-
+    static final String EXCEPTIONMSG="Exception occured: ";
 	public static void main(String[] args) {
 		userService = new UserServiceImpl();
 		showUserMenu();
@@ -35,7 +35,7 @@ public class MyApplication {
 		int runLoop = 1;
 		String input;
 		while (runLoop != 0) {
-			int choice = 0;
+			int choice;
 			while (true) {
 
 				System.out.println("Select 1 for Admin");
@@ -50,8 +50,7 @@ public class MyApplication {
 					}
 					break;
 				} catch (RuntimeException e) {
-					// TODO: handle exception
-					System.out.println("Exception occured:" + e.getMessage());
+				System.out.println(EXCEPTIONMSG + e.getMessage());
 					continue;
 				}
 			}
@@ -82,8 +81,8 @@ public class MyApplication {
 					choice = validation.validateChoice(input);
 					break;
 				} catch (RuntimeException e) {
-					// TODO: handle exception
-					System.out.println("Exception occured:" + e.getMessage());
+					
+					System.out.println(EXCEPTIONMSG + e.getMessage());
 					continue;
 				}
 			}
@@ -103,8 +102,8 @@ public class MyApplication {
 						validation.validateBusType(busType);
 						break;
 					} catch (RuntimeException e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" + e.getMessage());
+						
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}
@@ -118,8 +117,8 @@ public class MyApplication {
 						validation.validateBusClass(busClass);
 						break;
 					} catch (Exception e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" + e.getMessage());
+						
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}
@@ -131,7 +130,7 @@ public class MyApplication {
 						busSeats = UserServiceImpl.checkNumberInput();
 						break;
 					} catch (Exception e) {
-						// TODO: handle exception
+						
 						System.out.println("Exception :" + e.getMessage());
 						continue;
 					}
@@ -144,8 +143,8 @@ public class MyApplication {
 						noOfDays = validation.validateChoice(input);
 						break;
 					} catch (RuntimeException e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" + e.getMessage());
+						
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}
@@ -160,8 +159,8 @@ public class MyApplication {
 							day = validation.validateChoice(input);
 							break;
 						} catch (RuntimeException e) {
-							// TODO: handle exception
-							System.out.println("Exception occured:" + e.getMessage());
+							
+							System.out.println(EXCEPTIONMSG + e.getMessage());
 							continue;
 						}
 					}
@@ -182,8 +181,8 @@ public class MyApplication {
 						validation.validateTravel(source, destination);
 						break;
 					} catch (Exception e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" + e.getMessage());
+						
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}
@@ -197,8 +196,8 @@ public class MyApplication {
 						costPerSeat = Validation.validateCost();
 						break;
 					} catch (Exception e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" + e.getMessage());
+						
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}
@@ -238,7 +237,7 @@ public class MyApplication {
 						break;
 					} catch (RuntimeException e) {
 
-						System.out.println("Exception occured:" + e.getMessage());
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}
@@ -264,8 +263,8 @@ public class MyApplication {
 										System.out.println("cost per seat of the bus updated");
 										break;
 									} catch (Exception e) {
-										// TODO: handle exception
-										System.out.println("Exception occured:" + e.getMessage());
+										
+										System.out.println(EXCEPTIONMSG + e.getMessage());
 										continue;
 									}
 								}
@@ -277,7 +276,7 @@ public class MyApplication {
 						break;
 					} catch (RuntimeException e) {
 
-						System.out.println("Exception occured:" + e.getMessage());
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}
@@ -336,8 +335,8 @@ public class MyApplication {
 					choice = validation.validateIntegerChoice(input);
 					break;
 				} catch (RuntimeException e) {
-					// TODO: handle exception
-					System.out.println("Exception occured:" + e.getMessage());
+					
+					System.out.println(EXCEPTIONMSG + e.getMessage());
 					continue;
 				}
 			}
@@ -374,8 +373,8 @@ public class MyApplication {
 						validation.validateTravel(source, destination);
 						break;
 					} catch (Exception e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" + e.getMessage());
+						
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}
@@ -396,8 +395,8 @@ public class MyApplication {
 						// BigInteger busId=scanner.nextBigInteger();
 						break;
 					} catch (Exception e) {
-						// TODO: handle exception
-						System.out.println("Exception occured:" + e.getMessage());
+						
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}
@@ -412,8 +411,8 @@ public class MyApplication {
 								validation.validatePassengersCount(passengersCount);
 								break;
 							} catch (Exception e) {
-								// TODO: handle exception
-								System.out.println("Exception occurred: " + e.getMessage());
+								
+								System.out.println(EXCEPTIONMSG + e.getMessage());
 								continue;
 							}
 						}
@@ -443,8 +442,8 @@ public class MyApplication {
 									validation.validatePaymentMode(paymentMode);
 									break;
 								} catch (Exception e) {
-									// TODO: handle exception
-									System.out.println("Exception occured:" + e.getMessage());
+									
+									System.out.println(EXCEPTIONMSG + e.getMessage());
 									continue;
 								}
 							}
@@ -495,7 +494,7 @@ public class MyApplication {
 						break;
 					} catch (RuntimeException e) {
 
-						System.out.println("Exception occured:" + e.getMessage());
+						System.out.println(EXCEPTIONMSG + e.getMessage());
 						continue;
 					}
 				}

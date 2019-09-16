@@ -19,7 +19,14 @@ public class Bus {
 	private Double cost;
 	
 	public Bus() {
-		
+		  busId=BigInteger.valueOf(0);
+	     busName="";
+		  busClass="";
+		 noOfSeats=0;
+		 dayOfJourney=null;
+		 source="";
+	     destination="";
+		 cost=0.0;
 	}
 	
 	
@@ -135,7 +142,10 @@ public class Bus {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		try {
+			if (this.hashCode()==(obj.hashCode()))
+					return true;
+		/*if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
@@ -172,7 +182,15 @@ public class Bus {
 				return false;
 		} else if (!dayOfJourney.equals(other.dayOfJourney))
 			return false;
+<<<<<<< HEAD
+		/*
+		 * if (deleteFlag == null) { if (other.deleteFlag != null) return false; } else
+		 * if (!deleteFlag.equals(other.deleteFlag)) return false;
+		 */
+		/*if (destination == null) {
+=======
 		if (destination == null) {
+>>>>>>> branch 'master' of https://github.com/tejaswinibandaru/bus-reservation-system.git
 			if (other.destination != null)
 				return false;
 		} else if (!destination.equals(other.destination))
@@ -186,9 +204,14 @@ public class Bus {
 			if (other.source != null)
 				return false;
 		} else if (!source.equals(other.source))
+			return false;*/
+			
 			return false;
-		return true;
-	}
+		} catch(Exception e){System.out.println("Exception:" +e);
+		}
+			return false;
+		}
+	
 
 
 	@Override

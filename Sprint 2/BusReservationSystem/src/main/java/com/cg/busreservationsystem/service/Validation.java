@@ -66,7 +66,6 @@ public class Validation {
 		try {
 			return sc.nextDouble();
 		}catch (InputMismatchException e) {
-			// TODO: handle exception
 			throw new InputMismatchException("Wrong cost type entered");
 		}
 	}
@@ -143,7 +142,7 @@ public class Validation {
     }
 	public int validateChoice(String input) {
 		// TODO Auto-generated method stub
-		int choice = 0;
+		int choice;
 		if(isValidNumeric(input)) {
 			choice = Integer.parseInt(input);
 			if(choice < 1 ||choice> 2) {
@@ -156,7 +155,7 @@ public class Validation {
 	}
 	public int validateRunloopChoice(String input) {
 		// TODO Auto-generated method stub
-		int choice = 0;
+		int choice;
 		if(isValidNumeric(input)) {
 			choice = Integer.parseInt(input);
 			if(choice < 0 ||choice> 1) {
@@ -175,7 +174,7 @@ public class Validation {
 		}
 	public int validateDayChoice(String input) {
 		// TODO Auto-generated method stub
-		int choice = 0;
+		int choice;
 		if(isValidNumeric(input)) {
 			choice = Integer.parseInt(input);
 			if(choice < 1 ||choice > 7) {
