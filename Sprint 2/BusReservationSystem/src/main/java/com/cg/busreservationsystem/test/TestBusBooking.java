@@ -52,16 +52,16 @@ public class TestBusBooking {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UserDao userdao= new UserDaoImpl();
-		List<DayOfWeek> days=new ArrayList<DayOfWeek>();
-		days.add(DayOfWeek.of(1));
-		days.add(DayOfWeek.of(2));
-		Collections.sort(days);
-		System.out.println(userdao.saveBusDay(days, BigInteger.valueOf(1)));
+		/*
+		 * List<DayOfWeek> days=new ArrayList<DayOfWeek>(); days.add(DayOfWeek.of(1));
+		 * days.add(DayOfWeek.of(2)); Collections.sort(days);
+		 * System.out.println(userdao.saveBusDay(days, BigInteger.valueOf(1)));
+		 */
 		
 		for(Bus bus:userdao.findAllBuses()) {
 			System.out.println(bus);
 		}
-		
+		System.out.println(userdao.findDayOfWeekByBus(BigInteger.valueOf(1)));
 	}
 
 }

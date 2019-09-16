@@ -8,10 +8,10 @@ import java.util.Set;
 public class Bus {
 	private BigInteger busId;
 	private String busName;
-	private static String[] busTypeList= {"sleeper","semi-sleeper"};
-	private static String[] busClassList= {"AC","Non-AC"};
-	private String busType;
-	private String busClass;
+	private enum busTypeList{SLEEPER,SEMI_SLEEPER;}
+	private enum busClassList{AC,NON_AC};
+	private busTypeList busType;
+	private busClassList busClass;
 	private Integer noOfSeats;
 	private List<DayOfWeek> dayOfJourney;
 	private String source;
@@ -23,14 +23,14 @@ public class Bus {
 	}
 	
 	
-	public Bus(BigInteger busId,String busName, int busType, int busClass, Integer noOfSeats,
+	public Bus(BigInteger busId,String busName, String busType, String busClass, Integer noOfSeats,
 			List<DayOfWeek> dayOfJourney, String source, String destination, Double cost) {
 		super();
 		
 		this.busId = busId;
 		this.busName = busName;
-		this.busType = busTypeList[busType];
-		this.busClass = busClassList[busClass];
+		this.busType = busTypeList.valueOf(busType.toUpperCase());
+		this.busClass =busClassList.valueOf(busClass.toUpperCase());
 		this.noOfSeats = noOfSeats;
 		this.dayOfJourney = dayOfJourney;
 		this.source = source;
@@ -55,20 +55,14 @@ public class Bus {
 		this.busName = busName;
 	}
 	
-	public String getBusType() {
+	public busTypeList getBusType() {
 		return this.busType;
 	}
 	
-	public String getBusClass() {
+	public busClassList getBusClass() {
 		return this.busClass;
 	}
 	
-	public static String[] getBusTypeList() {
-		return busTypeList;
-	}
-	public static String[] getBusClassList() {
-		return busClassList;
-	}
 	public Integer getNoOfSeats() {
 		return noOfSeats;
 	}
