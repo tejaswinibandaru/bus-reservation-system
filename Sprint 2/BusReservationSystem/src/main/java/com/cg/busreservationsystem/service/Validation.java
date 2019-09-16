@@ -44,18 +44,14 @@ public class Validation {
 
 	
 	public void validateBusType(String busType) {
-		if(!busType.equals("sleeper")) {
-			throw new BusException("Invalid Bus Type");
-		}
-		if(!busType.equals("semi_sleeper")) {
+		System.out.println(busType);
+		if(!busType.equalsIgnoreCase("sleeper")&&(!busType.equalsIgnoreCase("semi_sleeper"))) {
+			System.out.println(busType);
 			throw new BusException("Invalid Bus Type");
 		}
 	}
 	public void validateBusClass(String busClass) {
-		if(!busClass.equals("ac")) {
-			throw new BusException("Invalid bus class");
-		}
-		if(!busClass.equals("non_ac")) {
+		if((!busClass.equalsIgnoreCase("ac"))&&(!busClass.equalsIgnoreCase("non_ac"))) {
 			throw new BusException("Invalid bus class");
 		}
 	}

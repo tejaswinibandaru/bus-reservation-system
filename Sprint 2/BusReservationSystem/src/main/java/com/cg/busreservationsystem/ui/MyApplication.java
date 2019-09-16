@@ -92,14 +92,14 @@ public class MyApplication {
 				// fetch details here
 				System.out.println("Enter the bus name");
 				String busName = scanner.next();
-				String busType = "";
+				String busType;
 				while (true) {
 
 					System.out.println("Enter the bus type(sleeper/semi_sleeper)");
 					busType = scanner.next();
 
 					try {
-						validation.validateBusType(busType);
+						validation.validateBusType(busType.trim());
 						break;
 					} catch (RuntimeException e) {
 						
@@ -108,7 +108,7 @@ public class MyApplication {
 					}
 				}
 
-				String busClass = "";
+				String busClass;
 				while (true) {
 
 					System.out.println("Enter the bus class(ac/non_ac)");
@@ -140,7 +140,7 @@ public class MyApplication {
 					System.out.println("Enter the no of days of the week on which day the bus will run");
 					input = scanner.next();
 					try {
-						noOfDays = validation.validateChoice(input);
+						noOfDays = validation.validateDayChoice(input);
 						break;
 					} catch (RuntimeException e) {
 						
