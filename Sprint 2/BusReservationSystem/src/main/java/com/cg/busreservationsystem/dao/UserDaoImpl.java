@@ -87,6 +87,7 @@ public class UserDaoImpl implements UserDao {
 					preparedStatement.close();
 				} catch (SQLException e) {
 					System.out.println(" Error at saveBooking Dao method : "+e);
+					myLogger.error(" Error at saveBooking Dao method : "+e);
 				}
 			}
 		}
@@ -107,14 +108,14 @@ public class UserDaoImpl implements UserDao {
 			noOfRec=preparedStatement.executeUpdate();
 		}catch (SQLException e) {
 			System.out.println(" Error at remove booking Dao method : "+e);
-			myLogger.error(" Error at saveBooking Dao method : "+e);
+			myLogger.error(" Error at removeBooking Dao method : "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
 					System.out.println(" Error at remove booking Dao method : "+e);
-					myLogger.error(" Error at saveBooking Dao method : "+e);
+					myLogger.error(" Error at removeBooking Dao method : "+e);
 				}
 			}
 		}
@@ -173,14 +174,14 @@ public class UserDaoImpl implements UserDao {
 			}
 		} catch (SQLException e) {
 			System.out.println(" Error at findAllBookings Dao method : "+e);
-			myLogger.error(" Error at saveBooking Dao method : "+e);
+			myLogger.error(" Error at findAllBookings Dao method : "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
 					System.out.println(" Error at findAllBookings Dao method : "+e);
-					myLogger.error(" Error at saveBooking Dao method : "+e);
+					myLogger.error(" Error at findAllBookings  Dao method : "+e);
 				}
 			}
 		}
@@ -233,15 +234,15 @@ public class UserDaoImpl implements UserDao {
 				booking.setBookingStatus(resultSet.getString("booking_status"));
 			}
 		}catch (SQLException e) {
-			System.out.println(" Error at findAllBookings Dao method : "+e);
-			myLogger.error(" Error at saveBooking Dao method : "+e);
+			System.out.println(" Error at findBookingById Dao method : "+e);
+			myLogger.error(" Error at findBookingById Dao method : "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBookings Dao method : "+e);
-					myLogger.error(" Error at saveBooking Dao method : "+e);
+					System.out.println(" Error at findBookingById Dao method : "+e);
+					myLogger.error(" Error at findBookingById Dao method : "+e);
 				}
 			}
 		}
@@ -259,7 +260,7 @@ public class UserDaoImpl implements UserDao {
 		//passengersList.add(passenger);
 
 		String sql = "INSERT INTO passenger(booking_id, passenger_name, passenger_age, passenger_gender,delete_flag) VALUES (?,?,?,?,0)";
-
+		int noOfRecs=0;
 		try {
 			preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 
@@ -268,22 +269,23 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement.setInt(1, passenger.getPassengerAge());
 			preparedStatement.setString(1, passenger.getPassengerGender().toString());
 
-			resultSet= preparedStatement.executeQuery();
+			noOfRecs= preparedStatement.executeUpdate();
+			resultSet = preparedStatement.getGeneratedKeys();
 			while (resultSet.next())
 			{
 				passenger.setPassengerId(BigInteger.valueOf(resultSet.getLong("passenger_id")));
 			}
 
 		} catch (SQLException e) {
-			System.out.println(" Error at findAllBookings Dao method : "+e);
-			myLogger.error(" Error at saveBooking Dao method : "+e);
+			System.out.println(" Error at savePassenger Dao method : "+e);
+			myLogger.error(" Error at savePassenger Dao method : "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBookings Dao method : "+e);
-					myLogger.error(" Error at saveBooking Dao method : "+e);
+					System.out.println(" Error at savePassenger Dao method : "+e);
+					myLogger.error(" Error at savePassenger Dao method : "+e);
 				}
 			}
 		}
@@ -314,15 +316,15 @@ public class UserDaoImpl implements UserDao {
 				passengersList.add(passenger);
 			}
 		}catch (SQLException e) {
-			System.out.println(" Error at findAllBookings Dao method : "+e);
-			myLogger.error(" Error at saveBooking Dao method : "+e);
+			System.out.println(" Error at findPassengerByBookingId Dao method : "+e);
+			myLogger.error(" Error at findPassengerByBookingId Dao method : "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBookings Dao method : "+e);
-					myLogger.error(" Error at saveBooking Dao method : "+e);
+					System.out.println(" Error at findPassengerByBookingId Dao method : "+e);
+					myLogger.error(" Error at findPassengerByBookingId Dao method : "+e);
 				}
 			}
 		}
@@ -355,15 +357,15 @@ public class UserDaoImpl implements UserDao {
 				passenger.setPassengerGender(resultSet2.getString("passenger_gender").charAt(0));
 			}
 		}catch (SQLException e) {
-			System.out.println(" Error at findAllBookings Dao method : "+e);
-			myLogger.error(" Error at saveBooking Dao method : "+e);
+			System.out.println(" Error at findPassengerByName Dao method : "+e);
+			myLogger.error(" Error at findPassengerByName Dao method : "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBookings Dao method : "+e);
-					myLogger.error(" Error at saveBooking Dao method : "+e);
+					System.out.println(" Error at findPassengerByName Dao method : "+e);
+					myLogger.error(" Error at findPassengerByName Dao method : "+e);
 				}
 			}
 		}
@@ -376,7 +378,7 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		//busList.add(bus);
 		String sql = "INSERT INTO bus(bus_name, bus_type, bus_class, no_of_seats,source, destination,cost,delete_flag) VALUES (?,?,?,?,?,?,?,0)";
-
+		int noOfRecs=0;
 		try {
 			preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 
@@ -390,22 +392,23 @@ public class UserDaoImpl implements UserDao {
 
 			//int returnedVal =saveBusDay(bus.getDayOfJourney(),bus.getBusId());
 
-			resultSet= preparedStatement.executeQuery();
+			noOfRecs= preparedStatement.executeUpdate();
+			resultSet = preparedStatement.getGeneratedKeys();
 			while (resultSet.next())
 			{
 				bus.setBusId(BigInteger.valueOf(resultSet.getLong("bus_id")));
 			}
 
 		} catch (SQLException e) {
-			System.out.println(" Error at findAllBookings Dao method : "+e);
-			myLogger.error(" Error at saveBooking Dao method : "+e);
+			System.out.println(" Error at saveBus Dao method : "+e);
+			myLogger.error(" Error at saveBus Dao method : "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBookings Dao method : "+e);
-					myLogger.error(" Error at saveBooking Dao method : "+e);
+					System.out.println(" Error at saveBus Dao method : "+e);
+					myLogger.error(" Error at saveBus Dao method : "+e);
 				}
 			}
 		}
@@ -433,15 +436,15 @@ public class UserDaoImpl implements UserDao {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(" Error at findAllBookings Dao method : "+e);
-			myLogger.error(" Error at saveBooking Dao method : "+e);
+			System.out.println(" Error at saveBusDay Dao method : "+e);
+			myLogger.error(" Error at saveBusDay Dao method : "+e);
 		}finally {
 			if(preparedStatement!=null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
-					System.out.println(" Error at findAllBookings Dao method : "+e);
-					myLogger.error(" Error at saveBooking Dao method : "+e);
+					System.out.println(" Error at saveBusDay Dao method : "+e);
+					myLogger.error(" Error at saveBusDay Dao method : "+e);
 				}
 			}
 		}
@@ -454,12 +457,10 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Integer removeBus(BigInteger busId) {
 		// TODO Auto-generated method stub
-		Bus b=this.findBusById(busId);
-		if(b==null) {
-			return 0;
-		}
-		busList.remove(b);
-		return 1;
+		/*
+		 * Bus b=this.findBusById(busId); if(b==null) { return 0; } busList.remove(b);
+		 * return 1;
+		 */
 	}
 
 	@Override
