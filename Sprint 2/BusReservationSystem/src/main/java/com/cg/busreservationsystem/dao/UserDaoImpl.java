@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +63,7 @@ public class UserDaoImpl implements UserDao {
 
 			preparedStatement.setLong(2, booking.getTransactionId().longValue());								//getTrsansactionId
 			preparedStatement.setLong(3, booking.getBus().getBusId().longValue());
-			//preparedStatement.setTimestamp(4, booking.getDateOfJourney().);				//to timestamp
+			preparedStatement.setTimestamp(4, Timestamp.valueOf(booking.getDateOfJourney().atStartOfDay()));				//to timestamp
 			preparedStatement.setString(5, booking.getModeOfPayment());
 			preparedStatement.setDouble(6, booking.getTotalCost());
 			//step 3: execute Query (for DML we have executeUpdate method )
@@ -158,11 +159,9 @@ public class UserDaoImpl implements UserDao {
 				//
 				booking.setUserId(BigInteger.valueOf(resultSet.getLong("user_id")));
 				booking.setTransactionId(BigInteger.valueOf(resultSet.getLong("transaction_id")));
-				//booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey").toLocalDate());		//converting from timestamp to localdate
+				booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey").toLocalDateTime().toLocalDate());		//converting from timestamp to localdate
 				BigInteger busId = BigInteger.valueOf(resultSet.getLong("bus_id"));
 				booking.setBus(findBusById(busId));
-				//findPassengerListById();						find passengerListById
-				//booking.setPassengers(resultSet);
 				booking.setPassengers(passengersList);
 				booking.setTotalCost(resultSet.getDouble("total_cost"));
 				booking.setModeOfPayment(resultSet.getString("mode_of_payment"));
@@ -205,7 +204,6 @@ public class UserDaoImpl implements UserDao {
 			while(resultSet.next())
 			{
 				booking.setBookingId(bookingId);
-				//booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey"));		//timestamp to localdate
 
 				PreparedStatement preparedStatement2 =connection.prepareStatement(sql2);
 				preparedStatement2.setLong(1, booking.getBookingId().longValue());
@@ -223,7 +221,7 @@ public class UserDaoImpl implements UserDao {
 				//
 				booking.setUserId(BigInteger.valueOf(resultSet.getLong("user_id")));
 				booking.setTransactionId(BigInteger.valueOf(resultSet.getLong("transaction_id")));
-				//booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey").toLocalDate());		//converting from timestamp to localdate
+				booking.setDateOfJourney(resultSet.getTimestamp("date_of_journey").toLocalDateTime().toLocalDate());		//converting from timestamp to localdate
 				BigInteger busId = BigInteger.valueOf(resultSet.getLong("bus_id"));
 				booking.setBus(findBusById(busId));
 				//findPassengerListById();						find passengerListById
