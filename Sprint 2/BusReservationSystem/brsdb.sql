@@ -11,6 +11,7 @@ email VARCHAR(30)  NOT NULL,
 phone_number BIGINT  NOT NULL,
 delete_flag INT  NOT NULL);
 
+
 CREATE TABLE bus(
 bus_id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 bus_name VARCHAR(30) NOT NULL,
@@ -24,36 +25,43 @@ delete_flag INT  NOT NULL);
 
 CREATE TABLE bus_day(
 bus_day_id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-bus_id BIGINT FOREIGN KEY REFERENCES bus(bus_id) NOT NULL,
+bus_id BIGINT NOT NULL,
 day VARCHAR(30)  NOT NULL,
-delete_flag INT  NOT NULL);
+delete_flag INT  NOT NULL,
+FOREIGN KEY (bus_id) REFERENCES bus(bus_id) );
 
 CREATE TABLE booking(
 booking_id BIGINT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
-user_id BIGINT FOREIGN KEY NOT NULL,
-transaction_id BIGINT  FOREIGN KEY NOT NULL,
-bus_id BIGINT  FOREIGN KEY NOT NULL,
+user_id BIGINT NOT NULL,
+transaction_id BIGINT NOT NULL,
+bus_id BIGINT NOT NULL,
 date_of_journey TIMESTAMP NOT NULL,
 mode_of_payment VARCHAR(30)  NOT NULL,
 total_cost decimal  NOT NULL ,
 booking_status VARCHAR  NOT NULL,
-delete_flag INT  NOT NULL);
+delete_flag INT  NOT NULL
+FOREIGN KEY (user_id) REFERENCES user(user_id),
+FOREIGN KEY (transaction_id) REFERENCES transaction(transaction_id),
+FOREIGN KEY (bus_id) REFERENCES bus(bus_id));
+);
 
-CREATE TABLE passenger(
-passenger_id BIGINT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
-booking_id BIGINT FOREIGN KEY AUTO_INCREMENT  NOT NULL,
+CREATE table passenger(
+passenger_id BIGINT PRIMARY KEY auto_increment  NOT NULL,
+booking_id BIGINT NOT NULL,
 passenger_name VARCHAR(30)  NOT NULL,
 passenger_age INT  NOT NULL,
-passenger_gender CHAR  NOT NULL,
-delete_flag INT  NOT NULL);
+passenger_gender CHAR NOT NULL,
+delete_flag INT NOT NULL,
+FOREIGN KEY (booking_id) REFERENCES booking(booking_id));
 
 CREATE TABLE transaction(
 transaction_id BIGINT PRIMARY KEY AUTO_INCREMENT  NOT NULL,
 date TIMESTAMP NOT NULL,
-bus_id BIGINT FOREIGN KEY AUTO_INCREMENT NOT NULL,
+bus_id BIGINT  NOT NULL,
 available_seats INT NOT NULL,
-transaction_status VARCHAR NOT NULL,
-delete_flag INT  NOT NULL);
+transaction_status VARCHAR(20) NOT NULL,
+delete_flag INT NOT NULL,
+FOREIGN KEY (bus_id) REFERENCES bus(bus_id));
 
 #saveBooking
 INSERT INTO booking(user_id,transaction_id,bus_id,date_of_journey,mode_of_payment,total_cost) VALUES(?,?,?,?,?,?);

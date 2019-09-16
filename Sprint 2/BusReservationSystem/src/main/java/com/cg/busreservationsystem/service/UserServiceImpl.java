@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
 			trans = new BusTransaction();
 			trans.setBus(bus);
 			trans.setDate(dateOfJourney);
-			userDao.getTransactionList().add(trans);
+			userDao.getTransactionList().add(trans); //userDao.saveBusTransaction(trans)
 			//System.out.println(trans.getBus());
 
 			System.out.println(trans.getAvailableSeats()+" is num of available seats");
