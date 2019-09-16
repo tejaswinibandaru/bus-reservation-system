@@ -8,7 +8,7 @@ public class Passenger {
 	private String passengerName;
 	private Integer passengerAge;
 	private Character passengerGender;
-	private Integer deleteFlag;
+	//private Integer deleteFlag;
 	
 	public Passenger() {
 		
@@ -54,19 +54,18 @@ public class Passenger {
 		this.passengerGender = passengerGender;
 	}
 
-	public Integer getDeleteFlag() {
-		return deleteFlag;
-	}
-
-	public void setDeleteFlag(Integer deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
+	/*
+	 * public Integer getDeleteFlag() { return deleteFlag; }
+	 * 
+	 * public void setDeleteFlag(Integer deleteFlag) { this.deleteFlag = deleteFlag;
+	 * }
+	 */
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
+		//result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
 		result = prime * result + ((passengerAge == null) ? 0 : passengerAge.hashCode());
 		result = prime * result + ((passengerGender == null) ? 0 : passengerGender.hashCode());
 		result = prime * result + ((passengerId == null) ? 0 : passengerId.hashCode());
@@ -83,11 +82,10 @@ public class Passenger {
 		if (getClass() != obj.getClass())
 			return false;
 		Passenger other = (Passenger) obj;
-		if (deleteFlag == null) {
-			if (other.deleteFlag != null)
-				return false;
-		} else if (!deleteFlag.equals(other.deleteFlag))
-			return false;
+		/*
+		 * if (deleteFlag == null) { if (other.deleteFlag != null) return false; } else
+		 * if (!deleteFlag.equals(other.deleteFlag)) return false;
+		 */
 		if (passengerAge == null) {
 			if (other.passengerAge != null)
 				return false;
@@ -114,7 +112,7 @@ public class Passenger {
 	@Override
 	public String toString() {
 		return "Passenger [passengerId=" + passengerId + ", passengerName=" + passengerName + ", passengerAge="
-				+ passengerAge + ", passengerGender=" + passengerGender + ", deleteFlag=" + deleteFlag + "]";
+				+ passengerAge + ", passengerGender=" + passengerGender + "]";
 	}
 
 	public BigInteger getBookingId() {
