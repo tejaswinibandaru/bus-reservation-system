@@ -19,41 +19,47 @@ bus_class varchar(30) NOT NULL,
 no_of_seats int NOT NULL,
 source varchar(30)  NOT NULL,
 destination varchar(30)  NOT NULL,
-cost decimal  NOT NULL 
+cost decimal  NOT NULL, 
 delete_flag int  NOT NULL);
 
 CREATE table bus_day(
 bus_day_id bigint PRIMARY KEY AUTO_INCREMENT NOT NULL,
-bus_id bigint FOREIGN KEY REFERENCES bus(bus_id) NOT NULL,
+bus_id bigint NOT NULL,
 day varchar(30)  NOT NULL,
-delete_flag int  NOT NULL);
+delete_flag int  NOT NULL,
+FOREIGN KEY (bus_id) REFERENCES bus(bus_id) );
 
 CREATE table booking(
 booking_id bigint PRIMARY KEY auto_increment  NOT NULL,
-user_id bigint FOREIGN KEY NOT NULL,
-transaction_id bigint  FOREIGN KEY NOT NULL,
-bus_id bigint  FOREIGN KEY NOT NULL,
+user_id bigint  NOT NULL,
+transaction_id bigint NOT NULL,
+bus_id bigint NOT NULL,
 date_of_journey TIMESTAMP NOT NULL,
 mode_of_payment varchar(30)  NOT NULL,
 total_cost decimal  NOT NULL ,
-booking_status varchar  NOT NULL,
-delete_flag int  NOT NULL);
+booking_status varchar(20)  NOT NULL,
+delete_flag int  NOT NULL,
+FOREIGN KEY (user_id) REFERENCES user(user_id),
+FOREIGN KEY (transaction_id) REFERENCES transaction(transaction_id),
+FOREIGN KEY (bus_id) REFERENCES bus(bus_id));
 
 CREATE table passenger(
 passenger_id bigint PRIMARY KEY auto_increment  NOT NULL,
-booking_id bigint FOREIGN KEY auto_increment  NOT NULL,
+booking_id bigint NOT NULL,
 passenger_name varchar(30)  NOT NULL,
 passenger_age int  NOT NULL,
 passenger_gender char  NOT NULL,
-delete_flag int  NOT NULL);
+delete_flag int  NOT NULL,
+FOREIGN KEY (booking_id) REFERENCES booking(booking_id));
 
 CREATE table transaction(
 transaction_id bigint PRIMARY KEY auto_increment  NOT NULL,
 date TIMESTAMP NOT NULL,
-bus_id bigint FOREIGN KEY AUTO_INCREMENT NOT NULL,
+bus_id bigint  NOT NULL,
 available_seats int NOT NULL,
-transaction_status varchar NOT NULL,
-delete_flag int  NOT NULL);
+transaction_status varchar(20) NOT NULL,
+delete_flag int NOT NULL,
+FOREIGN KEY (bus_id) REFERENCES bus(bus_id));
 
 #saveBooking
 INSERT INTO booking(user_id,transaction_id,bus_id,date_of_journey,mode_of_payment,total_cost) values(?,?,?,?,?,?);

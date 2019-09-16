@@ -265,6 +265,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public List<BusTransaction> getTransactionList() {
+		
 		return transactionList;
 	}
 
