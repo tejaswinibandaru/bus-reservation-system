@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -95,15 +96,17 @@ public class UserServiceImpl implements UserService {
 		 */
 		//adminServ = (AdminServiceImpl) adm;
 		List<Bus> busList = new ArrayList<Bus>();
-		Set<DayOfWeek> days;
+		List<DayOfWeek> days;
 		DayOfWeek dayOfWeek = dateOfJourney.getDayOfWeek();
 		System.out.println(dayOfWeek);
 		System.out.println(viewBuses());
 		for (Bus bus : viewBuses()){
-			days = bus.getDayOfJourney();
+			days=bus.getDayOfJourney();
+			Collections.sort(days);
 			if(days.contains(dayOfWeek)) {
 				if((bus.getSource().equalsIgnoreCase(src)) && bus.getDestination().equalsIgnoreCase(dest))
 					busList.add(bus);
+				
 			}
 
 		}

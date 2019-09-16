@@ -393,10 +393,15 @@ public class UserDaoImpl implements UserDao {
 			//int returnedVal =saveBusDay(bus.getDayOfJourney(),bus.getBusId());
 
 			noOfRecs= preparedStatement.executeUpdate();
-			resultSet = preparedStatement.getGeneratedKeys();
-			while (resultSet.next())
+			myLogger.info(noOfRecs+" rows inserted");
+			
+			BigInteger generatedId=BigInteger.valueOf(0L);
+			resultSet=preparedStatement.getGeneratedKeys();
+
+			if (resultSet.next())
 			{
-				bus.setBusId(BigInteger.valueOf(resultSet.getLong("bus_id")));
+				bus.setBusId(BigInteger.valueOf(resultSet.getLong(1)));
+				myLogger.info("Auto generated id: "+generatedId);
 			}
 
 		} catch (SQLException e) {
@@ -461,6 +466,7 @@ public class UserDaoImpl implements UserDao {
 		 * Bus b=this.findBusById(busId); if(b==null) { return 0; } busList.remove(b);
 		 * return 1;
 		 */
+		return 1;
 	}
 
 	@Override

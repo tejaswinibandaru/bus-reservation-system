@@ -2,6 +2,7 @@
 
 import java.math.BigInteger;
 import java.time.DayOfWeek;
+import java.util.List;
 import java.util.Set;
 
 public class Bus {
@@ -12,11 +13,10 @@ public class Bus {
 	private String busType;
 	private String busClass;
 	private Integer noOfSeats;
-	private Set<DayOfWeek> dayOfJourney;
+	private List<DayOfWeek> dayOfJourney;
 	private String source;
 	private String destination;
 	private Double cost;
-	//private Integer deleteFlag;
 	
 	public Bus() {
 		
@@ -24,7 +24,7 @@ public class Bus {
 	
 	
 	public Bus(BigInteger busId,String busName, int busType, int busClass, Integer noOfSeats,
-			Set<DayOfWeek> dayOfJourney, String source, String destination, Double cost) {
+			List<DayOfWeek> dayOfJourney, String source, String destination, Double cost) {
 		super();
 		
 		this.busId = busId;
@@ -77,11 +77,11 @@ public class Bus {
 		this.noOfSeats = noOfSeats;
 	}
 
-	public Set<DayOfWeek> getDayOfJourney() {
+	public List<DayOfWeek> getDayOfJourney() {
 		return dayOfJourney;
 	}
 
-	public void setDayOfJourney(Set<DayOfWeek> dayOfJourney) {
+	public void setDayOfJourney(List<DayOfWeek> dayOfJourney) {
 		this.dayOfJourney = dayOfJourney;
 	}
 
@@ -110,14 +110,6 @@ public class Bus {
 	}
 
 
-	/*
-	 * public Integer getDeleteFlag() { return deleteFlag; }
-	 * 
-	 * 
-	 * public void setDeleteFlag(Integer deleteFlag) { this.deleteFlag = deleteFlag;
-	 * }
-	 */
-
 
 	@Override
 	public int hashCode() {
@@ -129,7 +121,6 @@ public class Bus {
 		result = prime * result + ((busType == null) ? 0 : busType.hashCode());
 		result = prime * result + ((cost == null) ? 0 : cost.hashCode());
 		result = prime * result + ((dayOfJourney == null) ? 0 : dayOfJourney.hashCode());
-		//result = prime * result + ((deleteFlag == null) ? 0 : deleteFlag.hashCode());
 		result = prime * result + ((destination == null) ? 0 : destination.hashCode());
 		result = prime * result + ((noOfSeats == null) ? 0 : noOfSeats.hashCode());
 		result = prime * result + ((source == null) ? 0 : source.hashCode());
@@ -176,10 +167,6 @@ public class Bus {
 				return false;
 		} else if (!dayOfJourney.equals(other.dayOfJourney))
 			return false;
-		/*
-		 * if (deleteFlag == null) { if (other.deleteFlag != null) return false; } else
-		 * if (!deleteFlag.equals(other.deleteFlag)) return false;
-		 */
 		if (destination == null) {
 			if (other.destination != null)
 				return false;

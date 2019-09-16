@@ -149,7 +149,7 @@ public class MyApplication {
 						continue;
 					}
 				}
-				Set<DayOfWeek> days = new TreeSet<DayOfWeek>();
+				List<DayOfWeek> days = new ArrayList<DayOfWeek>();
 				for (int i = 0; i < noOfDays; i++) {
 					int day = 0;
 					while (true) {
