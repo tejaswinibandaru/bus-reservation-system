@@ -79,10 +79,12 @@ public class UserDaoImpl implements UserDao {
 			// setting the auto-generated Id to current booking obj
 			booking.setBookingId(generatedId);
 		} catch (SQLException e) {
+
 			myLogger.error(" Error at saveBooking Dao method : " + e);
 			throw new BookingException(" Error at saveBooking Dao method : " + e);
 		} finally {
 			if (preparedStatement != null) {
+
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
@@ -232,16 +234,24 @@ public class UserDaoImpl implements UserDao {
 				booking.setModeOfPayment(resultSet.getString("mode_of_payment"));
 				booking.setBookingStatus(resultSet.getString("booking_status"));
 			}
+
 		} catch (SQLException e) {
 			System.out.println(" Error at findBookingById Dao method : " + e);
+
 			myLogger.error(" Error at findBookingById Dao method : " + e);
+
 		} finally {
 			if (preparedStatement != null) {
 				try {
 					preparedStatement.close();
 				} catch (SQLException e) {
+
 					System.out.println(" Error at findBookingById Dao method : " + e);
 					myLogger.error(" Error at findBookingById Dao method : " + e);
+
+					System.out.println(" Error at findBookingById Dao method : " + e);
+					myLogger.error(" Error at findBookingById Dao method : " + e);
+
 				}
 			}
 		}
@@ -418,8 +428,8 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			preparedStatement.setString(1, bus.getBusName());
-			preparedStatement.setString(2, bus.getBusType());
-			preparedStatement.setString(3, bus.getBusClass());
+			preparedStatement.setString(2, bus.getBusType().name());
+			preparedStatement.setString(3, bus.getBusClass().name());
 			preparedStatement.setInt(4, bus.getNoOfSeats());
 			preparedStatement.setString(5, bus.getSource());
 			preparedStatement.setString(6, bus.getDestination());

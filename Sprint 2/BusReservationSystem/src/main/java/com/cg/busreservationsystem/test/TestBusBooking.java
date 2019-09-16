@@ -18,6 +18,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.cg.busreservationsystem.dao.UserDao;
 import com.cg.busreservationsystem.dao.UserDaoImpl;
+import com.cg.busreservationsystem.dto.Bus;
 import com.cg.busreservationsystem.exception.BookingException;
 import com.cg.busreservationsystem.util.DBUtil;
 
@@ -51,11 +52,27 @@ public class TestBusBooking {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UserDao userdao= new UserDaoImpl();
-		List<DayOfWeek> days=new ArrayList<DayOfWeek>();
-		days.add(DayOfWeek.of(1));
-		days.add(DayOfWeek.of(2));
-		Collections.sort(days);
-		System.out.println(userdao.saveBusDay(days, BigInteger.valueOf(1)));
+		/*
+		 * List<DayOfWeek> days=new ArrayList<DayOfWeek>(); days.add(DayOfWeek.of(1));
+		 * days.add(DayOfWeek.of(2)); Collections.sort(days);
+		 * System.out.println(userdao.saveBusDay(days, BigInteger.valueOf(1)));
+		 */
+		
+		for(Bus bus:userdao.findAllBuses()) {
+			System.out.println(bus);
+		}
+		System.out.println(userdao.findDayOfWeekByBus(BigInteger.valueOf(1)));
+		
+		Bus b=new Bus();
+		b.setBusName("kaveri");
+		b.setBusType("sleeper");
+		b.setBusClass("ac");
+		b.setNoOfSeats(30);
+		b.setSource("mumbai");
+		b.setDestination("pune");
+		b.setCost(500.0);
+		System.out.println(b);
+		
 	}
 
 }

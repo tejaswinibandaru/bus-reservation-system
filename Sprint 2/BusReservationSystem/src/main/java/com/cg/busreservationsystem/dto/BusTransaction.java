@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cg.busreservationsystem.exception.BusException;
+
 public class BusTransaction {
 	
 	private BigInteger transactionId;
@@ -16,7 +18,12 @@ public class BusTransaction {
 	//private Integer deleteFlag;
 	
 	public BusTransaction() {
-		
+		 transactionId=BigInteger.valueOf(0);
+		 date=null;
+		 availableSeats=0;
+		 bookings=null;
+		ticketStatus="";
+		 
 	}
 
 	public BusTransaction(BigInteger transactionId, LocalDate date, Integer availableSeats, ArrayList<Booking> bookings,
@@ -102,8 +109,15 @@ public class BusTransaction {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object obj) throws NullPointerException {
+			try { if (obj==null)
+					return false;
+			else {
+		if (this.hashCode()==(obj.hashCode()))
+				return true;
+			}
+		
+		/*if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
@@ -135,7 +149,7 @@ public class BusTransaction {
 				return false;
 		} else if (!deleteFlag.equals(other.deleteFlag))
 			return false;*/
-		if (ticketStatus == null) {
+	/*	if (ticketStatus == null) {
 			if (other.ticketStatus != null)
 				return false;
 		} else if (!ticketStatus.equals(other.ticketStatus))
@@ -145,8 +159,14 @@ public class BusTransaction {
 				return false;
 		} else if (!transactionId.equals(other.transactionId))
 			return false;
+		return true;*/
+		
+		
+	} catch(RuntimeException e){System.out.println("Exception:" +e);
+	}
 		return true;
 	}
+	
 
 	@Override
 	public String toString() {

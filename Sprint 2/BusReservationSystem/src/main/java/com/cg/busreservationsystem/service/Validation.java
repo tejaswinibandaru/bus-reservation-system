@@ -42,10 +42,21 @@ public class Validation {
 		}
 	}
 
-	public void validateBusClass(int busClass) {
-		// TODO Auto-generated method stub
-		if(busClass < 0 || busClass> 1) {
-			throw new BusException("Wrong bus class");
+	
+	public void validateBusType(String busType) {
+		if(!busType.equals("sleeper")) {
+			throw new BusException("Invalid Bus Type");
+		}
+		if(!busType.equals("semi_sleeper")) {
+			throw new BusException("Invalid Bus Type");
+		}
+	}
+	public void validateBusClass(String busClass) {
+		if(!busClass.equals("ac")) {
+			throw new BusException("Invalid bus class");
+		}
+		if(!busClass.equals("non_ac")) {
+			throw new BusException("Invalid bus class");
 		}
 	}
 
@@ -55,7 +66,6 @@ public class Validation {
 		try {
 			return sc.nextDouble();
 		}catch (InputMismatchException e) {
-			// TODO: handle exception
 			throw new InputMismatchException("Wrong cost type entered");
 		}
 	}
@@ -132,7 +142,7 @@ public class Validation {
     }
 	public int validateChoice(String input) {
 		// TODO Auto-generated method stub
-		int choice = 0;
+		int choice;
 		if(isValidNumeric(input)) {
 			choice = Integer.parseInt(input);
 			if(choice < 1 ||choice> 2) {
@@ -145,7 +155,7 @@ public class Validation {
 	}
 	public int validateRunloopChoice(String input) {
 		// TODO Auto-generated method stub
-		int choice = 0;
+		int choice;
 		if(isValidNumeric(input)) {
 			choice = Integer.parseInt(input);
 			if(choice < 0 ||choice> 1) {
@@ -164,7 +174,7 @@ public class Validation {
 		}
 	public int validateDayChoice(String input) {
 		// TODO Auto-generated method stub
-		int choice = 0;
+		int choice;
 		if(isValidNumeric(input)) {
 			choice = Integer.parseInt(input);
 			if(choice < 1 ||choice > 7) {
