@@ -74,7 +74,7 @@ public class UserDaoImpl implements UserDao {
 			BigInteger generatedId = BigInteger.valueOf(0L);
 			resultSet = preparedStatement.getGeneratedKeys();
 			if (resultSet.next()) {
-				generatedId = BigInteger.valueOf(resultSet.getLong("booking_id"));
+				generatedId = BigInteger.valueOf(resultSet.getLong(1));
 				myLogger.info("Auto generated Id " + generatedId);
 			}
 			// setting the auto-generated Id to current booking obj
@@ -602,15 +602,16 @@ public class UserDaoImpl implements UserDao {
 		String sql = "select * from bus where delete_flag=0";
 		// String sql2 = "select * from passenger where booking_id=? AND delete_flag=0";
 		List<Bus> busList = new ArrayList<Bus>();
-		Bus bus = new Bus();
+		
 		try {
 			preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			// for select queries we have executeQuery method which returns ResultSet
 			resultSet = preparedStatement.executeQuery();
+			
 			while (resultSet.next()) {
 				// create booking object
-
 				// get the value from rs and set to booking obj
+				Bus bus = new Bus();
 				bus.setBusId(BigInteger.valueOf(resultSet.getLong(1)));
 
 				bus.setBusName(resultSet.getString("bus_name"));
@@ -620,16 +621,6 @@ public class UserDaoImpl implements UserDao {
 				bus.setSource(resultSet.getString("source"));
 				bus.setDestination(resultSet.getString("destination"));
 				bus.setNoOfSeats(resultSet.getInt("no_of_seats"));
-				
-
-				/*
-				 * List<DayOfWeek> days = new ArrayList<DayOfWeek>();
-				 * 
-				 * days = findDayOfWeekByBus(bus.getBusId()); System.out.println(days);
-				 * bus.setDayOfJourney(days);
-				 * 
-				 * System.out.println(bus.getDayOfJourney());
-				 */
 				busList.add(bus);
 
 			}
@@ -648,6 +639,7 @@ public class UserDaoImpl implements UserDao {
 		}
 		return busList;
 	}
+	
 
 	@Override
 	public Bus findBusById(BigInteger busId) {
@@ -674,7 +666,8 @@ public class UserDaoImpl implements UserDao {
 
 				bus.setBusName(resultSet.getString("bus_name"));
 				bus.setCost(resultSet.getDouble("cost"));
-				// bus.setBusClass(resultSet.getString("bus_class")); //ENUMERATION x2
+				bus.setBusType(resultSet.getString("bus_type"));
+				bus.setBusClass(resultSet.getString("bus_class")); //ENUMERATION x2
 				bus.setSource(resultSet.getString("source"));
 				bus.setDestination(resultSet.getString("destination"));
 				bus.setNoOfSeats(resultSet.getInt("no_of_seats"));
