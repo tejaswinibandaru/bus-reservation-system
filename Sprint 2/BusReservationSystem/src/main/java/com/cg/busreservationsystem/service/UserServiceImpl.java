@@ -99,6 +99,7 @@ public class UserServiceImpl implements UserService {
 		DayOfWeek dayOfWeek = dateOfJourney.getDayOfWeek();
 		System.out.println(dayOfWeek);
 		for (Bus bus : viewBuses()){
+			bus=userDao.findBusById(bus.getBusId());
 			days=bus.getDayOfJourney();
 			Collections.sort(days);
 			if(days.contains(dayOfWeek)) {
