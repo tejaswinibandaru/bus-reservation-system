@@ -135,6 +135,7 @@ public class UserDaoImpl implements UserDao {
 		String sql = "select * from booking where delete_flag=0";
 		String sql2 = "select * from passenger where booking_id=? AND delete_flag=0";
 		List<Booking> bookingList = new ArrayList<Booking>();
+		PreparedStatement preparedStatement2 = null;
 		try {
 			preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			// for select queries we have executeQuery method which returns ResultSet
@@ -145,7 +146,7 @@ public class UserDaoImpl implements UserDao {
 				// get the value from rs and set to booking obj
 				booking.setBookingId(BigInteger.valueOf(resultSet.getLong("booking_id")));
 				//
-				PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+				preparedStatement2 = connection.prepareStatement(sql2);
 				preparedStatement2.setLong(1, booking.getBookingId().longValue());
 				ResultSet resultSet2 = preparedStatement2.executeQuery();
 				while (resultSet2.next()) {
@@ -179,6 +180,19 @@ public class UserDaoImpl implements UserDao {
 			System.out.println(" Error at findAllBookings Dao method : " + e);
 			myLogger.error(" Error at findAllBookings Dao method : " + e);
 		} finally {
+			if (preparedStatement2 != null) {
+				try {
+					preparedStatement2.close();
+				} catch (SQLException e) {
+
+					System.out.println(" Error at findAllBookings Dao method : " + e);
+					myLogger.error(" Error at findAllBookings Dao method : " + e);
+
+					System.out.println(" Error at findAllBookings Dao method : " + e);
+					myLogger.error(" Error at findAllBookings Dao method : " + e);
+
+				}
+			}
 			if (preparedStatement != null) {
 				try {
 					preparedStatement.close();
@@ -197,6 +211,7 @@ public class UserDaoImpl implements UserDao {
 		String sql = "SELECT * FROM booking WHERE delete_flag=0 AND booking_id=?";
 		String sql2 = "select * from passenger where booking_id=? AND delete_flag=0";
 		Booking booking = new Booking();
+		PreparedStatement preparedStatement2 = null;
 		// TODO Auto-generated method stub
 		try {
 			preparedStatement = connection.prepareStatement(sql);
@@ -206,7 +221,7 @@ public class UserDaoImpl implements UserDao {
 			while (resultSet.next()) {
 				booking.setBookingId(bookingId);
 
-				PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+				preparedStatement2 = connection.prepareStatement(sql2);
 				preparedStatement2.setLong(1, booking.getBookingId().longValue());
 				ResultSet resultSet2 = preparedStatement2.executeQuery();
 				while (resultSet2.next()) {
@@ -242,6 +257,19 @@ public class UserDaoImpl implements UserDao {
 			myLogger.error(" Error at findBookingById Dao method : " + e);
 
 		} finally {
+			if (preparedStatement2 != null) {
+				try {
+					preparedStatement2.close();
+				} catch (SQLException e) {
+
+					System.out.println(" Error at findBookingById Dao method : " + e);
+					myLogger.error(" Error at findBookingById Dao method : " + e);
+
+					System.out.println(" Error at findBookingById Dao method : " + e);
+					myLogger.error(" Error at findBookingById Dao method : " + e);
+
+				}
+			}
 			if (preparedStatement != null) {
 				try {
 					preparedStatement.close();
@@ -346,20 +374,20 @@ public class UserDaoImpl implements UserDao {
 	public List<Passenger> findPassengersByBookingId(BigInteger bookingId) {
 		// TODO Auto-generated method stub
 		// return passengersList;
-		String sql2 = "select * from passenger where booking_id=? AND delete_flag=0";
+		String sql = "select * from passenger where booking_id=? AND delete_flag=0";
 		try {
 
-			PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-			preparedStatement2.setLong(1, bookingId.longValue());
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setLong(1, bookingId.longValue());
 
-			ResultSet resultSet2 = preparedStatement2.executeQuery();
-			while (resultSet2.next()) {
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
 				Passenger passenger = new Passenger();
-				passenger.setBookingId(BigInteger.valueOf(resultSet2.getLong("booking_id")));
-				passenger.setPassengerName(resultSet2.getString("passenger_name"));
-				passenger.setPassengerId(BigInteger.valueOf(resultSet2.getLong("passenger_id")));
-				passenger.setPassengerAge(resultSet2.getInt("passenger_age"));
-				passenger.setPassengerGender(resultSet2.getString("passenger_gender").charAt(0));
+				passenger.setBookingId(BigInteger.valueOf(resultSet.getLong("booking_id")));
+				passenger.setPassengerName(resultSet.getString("passenger_name"));
+				passenger.setPassengerId(BigInteger.valueOf(resultSet.getLong("passenger_id")));
+				passenger.setPassengerAge(resultSet.getInt("passenger_age"));
+				passenger.setPassengerGender(resultSet.getString("passenger_gender").charAt(0));
 				passengersList.add(passenger);
 			}
 		} catch (SQLException e) {
@@ -386,21 +414,21 @@ public class UserDaoImpl implements UserDao {
 		 * for(Passenger p:passengersList) {
 		 * if(pname.equalsIgnoreCase(p.getPassengerName())) { return p; } } return null;
 		 */
-		String sql2 = "select * from passenger where passenger_name=? AND delete_flag=0";
+		String sql = "select * from passenger where passenger_name=? AND delete_flag=0";
 		Passenger passenger = new Passenger();
 		try {
 
-			PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-			preparedStatement2.setString(1, pname);
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, pname);
 
-			ResultSet resultSet2 = preparedStatement2.executeQuery();
-			while (resultSet2.next()) {
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
 
-				passenger.setBookingId(BigInteger.valueOf(resultSet2.getLong("booking_id")));
-				passenger.setPassengerName(resultSet2.getString("passenger_name"));
-				passenger.setPassengerId(BigInteger.valueOf(resultSet2.getLong("passenger_id")));
-				passenger.setPassengerAge(resultSet2.getInt("passenger_age"));
-				passenger.setPassengerGender(resultSet2.getString("passenger_gender").charAt(0));
+				passenger.setBookingId(BigInteger.valueOf(resultSet.getLong("booking_id")));
+				passenger.setPassengerName(resultSet.getString("passenger_name"));
+				passenger.setPassengerId(BigInteger.valueOf(resultSet.getLong("passenger_id")));
+				passenger.setPassengerAge(resultSet.getInt("passenger_age"));
+				passenger.setPassengerGender(resultSet.getString("passenger_gender").charAt(0));
 			}
 		} catch (SQLException e) {
 			System.out.println(" Error at findPassengerByName Dao method : " + e);
